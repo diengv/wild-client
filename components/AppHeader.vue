@@ -9,16 +9,16 @@
           <img src="~/assets/images/icon-arrow-menu.svg">
         </div>
       </div>
-      <div class="s__header--search" :class="{'s__header--search__active': showSearch}" @click="hasBoxSearch()">
+      <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}" @click="hasBoxSearch()">
         <span v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
         <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
         <div v-if="showSearch && !activeNav" class="s__header--search__text">
           <span>TÌM KIẾM</span>
           <span>TRẢI NGHIỆM</span>
         </div>
-        <div v-if="activeNav" class="s__header--search__text">
-          <span>“Adventure is not only a trip, but also a rush of adrenaline.”</span>
-        </div>
+      </div>
+      <div v-if="activeNav" class="s__header--text-nav">
+        “<span>Adventure </span> is not only a trip, but also a <span> rush </span> of <span> adrenaline.</span>”
       </div>
       <div class="s__header--lang">
         <div v-if="!showSearch" class="s__header--lang__left">
@@ -290,8 +290,153 @@
               </div>
             </div>
           </div>
-          <div v-if="rightNavTypeActivity" class="s__header--box-nav__right--level">
-            abc
+          <div v-if="rightNavTypeActivity" class="s__header--box-nav__right--type-activity">
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--type-activity__item">
+              <div class="icon">
+                <img src="~/assets/images/climbing.svg">
+              </div>
+              <div class="name">
+                Rock Climbing
+              </div>
+            </div>
+          </div>
+          <div v-if="rightNavCollection" class="s__header--box-nav__right--collection">
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
+            <div class="s__header--box-nav__right--collection__item">
+              <div class="img-item">
+                <img src="~/assets/images/lv.png">
+              </div>
+              <div class="title-item">
+                Weekend Getaway
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -316,6 +461,7 @@ export default {
     rightNavLocation: false,
     rightNavLevel: false,
     rightNavTypeActivity: false,
+    rightNavCollection: false,
     rightNavLocationItemDetail: false,
     itemsNav: [
       {
@@ -427,6 +573,11 @@ export default {
             this.rightNavTypeActivity = true
             this.rightNavLevel = false
             this.rightNavLocation = false
+          }else if(val.id === 5) {
+            this.rightNavCollection = true
+            this.rightNavLevel = false
+            this.rightNavLocation = false
+            this.rightNavTypeActivity = false
           }
         } else {
           this.itemsNav[i].active = false
