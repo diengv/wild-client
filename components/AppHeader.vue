@@ -290,6 +290,9 @@
               </div>
             </div>
           </div>
+          <div v-if="rightNavTypeActivity" class="s__header--box-nav__right--level">
+            abc
+          </div>
         </div>
       </div>
     </section>
@@ -312,6 +315,7 @@ export default {
     activeNav: false,
     rightNavLocation: false,
     rightNavLevel: false,
+    rightNavTypeActivity: false,
     rightNavLocationItemDetail: false,
     itemsNav: [
       {
@@ -414,10 +418,14 @@ export default {
           if (val.id === 2) {
             this.rightNavLocation = true
             this.rightNavLevel = false
-          }
-          else if(val.id === 3)
-          {
+            this.rightNavTypeActivity = false
+          }else if(val.id === 3) {
             this.rightNavLevel = true
+            this.rightNavLocation = false
+            this.rightNavTypeActivity = false
+          }else if(val.id === 4) {
+            this.rightNavTypeActivity = true
+            this.rightNavLevel = false
             this.rightNavLocation = false
           }
         } else {
