@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="">
+    <section class="s__slider">
       <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
         <Slide v-for="slide in 10" :key="slide">
           <div class="carousel__item">{{ slide }}</div>
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
 import {Carousel, Slide} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
@@ -33,10 +32,15 @@ export default {
   components: {
     Carousel,
     Slide,
-    Navigation,
   },
   data: () => ({
     currentSlide: 0,
+    sliders:[
+      {
+        id: 1,
+
+      }
+    ]
   }),
   methods: {
     slideTo(val) {
