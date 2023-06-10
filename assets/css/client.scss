@@ -883,8 +883,147 @@ body {
     margin-top: 20px;
   }
 }
-.s__line{
+
+.s__line {
   width: 100%;
   height: 1px;
   background: #E1E1E1;
+}
+
+.s__info {
+  width: 100%;
+  display: flex;
+  margin-top: 24px;
+
+  &--left {
+    width: 50%;
+  }
+
+  &--right {
+    width: 50%;
+    display: flex;
+  }
+}
+
+.f__label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  /* identical to box height */
+
+
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.info-company {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    color: #000000;
+    margin-bottom: 8px;
+  }
+}
+
+.info-special {
+  display: flex;
+  width: 100%;
+  margin-top: 34.29px;
+
+  a {
+    display: flex;
+    margin-right: 12.23px;
+  }
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.method-pay {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.f_link {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    color: #000000;
+    padding: 4px 0;
+  }
+}
+
+.s__sitemap {
+  width: 100%;
+  display: flex;
+  margin-top: 50.29px;
+
+  &--item {
+    width: calc(100% / 5);
+  }
+}
+
+.mt-48 {
+  margin-top: 48px;
+}
+
+.cl-main {
+  background: var(--primary);
+  margin-top: 50px;
+  margin-bottom: 24px;
+}
+
+.s__copyright {
+  width: 100%;
+  display: flex;
+  margin-bottom: 141px;
+  &--left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    /* identical to box height, or 157% */
+
+
+    /* Rick Back */
+
+    color: #121212;
+  }
+  &--right{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.d-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-end{
+  justify-content: flex-end;
 }
