@@ -2,6 +2,9 @@
 // @ts-ignore
 
 export default defineNuxtConfig({
+    modules: [
+        '@nuxt/image',
+    ],
     postcss: {plugins: {tailwindcss: {}, autoprefixer: {},},},
     css: [
         '~/assets/css/main.css',
