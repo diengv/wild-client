@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="s__header">
+    <section class="s__header" :class="{'fixed': isFixed}">
       <div class="s__header--logo">
         <NuxtLink>
           <img src="~/assets/images/wild-logo.svg">
@@ -513,8 +513,18 @@ export default {
         hasHref: false,
         href: '#',
       }
-    ]
+    ],
+    scrollingUp: false,
+    scrollingDown: false,
+    isFixed: false
   }),
+  beforeMount () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+
   methods: {
     hasBoxSearch() {
       this.showSearch = !this.showSearch
@@ -586,7 +596,16 @@ export default {
     },
     showDetailLocation() {
       this.rightNavLocationItemDetail = true
+    },
+    handleScroll () {
+      // Your scroll handling here
+      if (window.scrollY > 95) {
+        this.isFixed = true
+      } else {
+        this.isFixed = false
+      }
     }
+
   }
 }
 </script>
