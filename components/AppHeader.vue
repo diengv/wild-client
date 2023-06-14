@@ -9,7 +9,8 @@
           <img src="~/assets/images/icon-arrow-menu.svg">
         </div>
       </div>
-      <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}" @click="hasBoxSearch()">
+      <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
+           @click="hasBoxSearch()">
         <span v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
         <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
         <div v-if="showSearch && !activeNav" class="s__header--search__text">
@@ -438,6 +439,16 @@
               </div>
             </div>
           </div>
+          <div v-if="rightNavCoupon" class="s__header--box-nav__right--coupon">
+            <masonry-wall :items="items" :ssr-columns="1" :column-width="300" :padding="16">
+              <template #default="{ item, index }">
+                <div style="height: 100px">
+                  <h1>{{ item.title }}</h1>
+                  <span>{{ item.description }}</span>
+                </div>
+              </template>
+            </masonry-wall>
+          </div>
         </div>
       </div>
     </section>
@@ -445,8 +456,11 @@
 </template>
 
 <script>
+import MasonryWall from '@yeger/vue-masonry-wall'
+
 export default {
   name: "AppHeader",
+  components: {MasonryWall},
   data: () => ({
     showSearch: false,
     locationActive: false,
@@ -463,6 +477,7 @@ export default {
     rightNavTypeActivity: false,
     rightNavCollection: false,
     rightNavLocationItemDetail: false,
+    rightNavCoupon: false,
     itemsNav: [
       {
         id: 1,
@@ -516,18 +531,32 @@ export default {
     ],
     scrollingUp: false,
     scrollingDown: false,
-    isFixed: false
+    isFixed: false,
+    items: [
+      { title: 'First', description: 'The first item.' },
+      { title: 'Second', description: 'The second item.'},
+      { title: 'Second', description: 'The second item.'},
+      { title: 'Second', description: 'The second item.'},
+      { title: 'Second', description: 'The second item.'},
+      { title: 'Second', description: 'The second item.'},
+    ]
   }),
-  beforeMount () {
+  beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
   },
 
   methods: {
     hasBoxSearch() {
       this.showSearch = !this.showSearch
+      if (this.showSearch) {
+        this.isFixed = true
+      } else {
+        this.isFixed = false
+      }
+
     },
     closeBoxSearch() {
       this.showSearch = false
@@ -560,8 +589,14 @@ export default {
       this.bookChoosed = book
     },
     showBoxNav() {
+      this.isFixed = !this.isFixed
       this.activeNav = !this.activeNav
-      this.showSearch = true
+      this.showSearch = false
+      this.itemsNav[0].active = false
+      this.itemsNav[1].active = true
+      this.rightNavLocation = true
+      this.rightNavLevel = false
+      this.rightNavTypeActivity = false
     },
     closeNav() {
       this.activeNav = false
@@ -571,23 +606,39 @@ export default {
       this.itemsNav.forEach((val, i) => {
         if (item.id === val.id) {
           this.itemsNav[i].active = true
+          if (val.id === 1) {
+            window.location.href = '/'
+          }
           if (val.id === 2) {
             this.rightNavLocation = true
             this.rightNavLevel = false
             this.rightNavTypeActivity = false
-          }else if(val.id === 3) {
+            this.rightNavCollection = false
+            this.rightNavCoupon = false
+          } else if (val.id === 3) {
             this.rightNavLevel = true
             this.rightNavLocation = false
             this.rightNavTypeActivity = false
-          }else if(val.id === 4) {
+            this.rightNavCollection = false
+            this.rightNavCoupon = false
+          } else if (val.id === 4) {
             this.rightNavTypeActivity = true
             this.rightNavLevel = false
             this.rightNavLocation = false
-          }else if(val.id === 5) {
+            this.rightNavCollection = false
+            this.rightNavCoupon = false
+          } else if (val.id === 5) {
             this.rightNavCollection = true
             this.rightNavLevel = false
             this.rightNavLocation = false
             this.rightNavTypeActivity = false
+            this.rightNavCoupon = false
+          } else if (val.id === 6) {
+            this.rightNavCollection = false
+            this.rightNavLevel = false
+            this.rightNavLocation = false
+            this.rightNavTypeActivity = false
+            this.rightNavCoupon = true
           }
         } else {
           this.itemsNav[i].active = false
@@ -597,7 +648,7 @@ export default {
     showDetailLocation() {
       this.rightNavLocationItemDetail = true
     },
-    handleScroll () {
+    handleScroll() {
       // Your scroll handling here
       if (window.scrollY > 95) {
         this.isFixed = true

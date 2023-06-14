@@ -2,6 +2,7 @@
   <div>
     <section class="s__footer">
       <div class="s__footer register-info">
+        <div class="register-info__gradient"></div>
         <div class="s__footer register-info__description">
           Bạn đã sẵn sàng cập nhật những <br> hoạt động mới nhất cùng intoWild?
         </div>
@@ -18,10 +19,9 @@
               Các quy định cần lưu ý:
             </div>
             <div class="s__regulations--description">
-              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget
-              consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. Curabitur eu bibendum felis.
-              Suspendisse vel augue pretium, scelerisque lectus ut, tristique nisi. Nullam nunc nulla, vestibulum vitae
-              interdum eu, porta id ligula. Mauris cursus blandit nulla, venenatis lobortis velit. <span><a href="#">Xem thêm</a> </span>
+              {{ regulations.slice(0, regulationsLenght) }}
+              <span><strong @click="moreRegulations()" class="regulations__more"><span
+                  v-if="!regulationsMore">Xem thêm</span> <span v-else>Ẩn bớt</span></strong> </span>
             </div>
           </div>
           <div class="s__line"></div>
@@ -77,17 +77,9 @@
               <div class="f__label">
                 Việt Nam
               </div>
-              <div class="f_link">
-                <a href="#">Bình Phước</a>
-                <a href="#">Dak Lak</a>
-                <a href="#">Bình Thuận</a>
-                <a href="#">Cát Bà</a>
-                <a href="#">Ninh Thuận</a>
-                <a href="#">Yên Bái</a>
-                <a href="#">Sapa</a>
-                <a href="#">Hòa Bình</a>
-                <a href="#">Phú Quốc</a>
-                <a href="#">Nha Trang</a>
+              <div class="f_link" v-if="vietnamShow.length > 0">
+                <a  v-for="(vn,index) of vietnamShow" href="#" :key="index">{{ vn.name }}</a>
+                <a v-if="!vietnamMore" @click="moreVN()" class="more__vn">Xem thêm</a>
               </div>
             </div>
             <div class="s__sitemap--item">
@@ -177,7 +169,83 @@
 
 <script>
 export default {
-  name: "AppFooter"
+  name: "AppFooter",
+  data: () => ({
+    regulations: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim faciisis id. Donec ut dolor a diam fringilla scelerisque. Curabitur eu bibendum felis. Suspendisse vel augue pretium, scelerisque lectus ut, tristique nisi. Nullam nunc nulla, vestibulum vitae interdum eu, porta id ligula. Mauris cursus blandit nulla, venenatis lobortis velit. | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. Curabitur eu bibendum felis. Suspendisse vel augue pretium, scelerisque lectus ut, tristique nisi. Nullam nunc nulla, vestibulum vitae interdum eu, porta id ligula. Mauris cursus blandit nulla, venenatis lobortis velit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. Curabitur eu bibendum felis. Suspendisse vel augue pretium, scel risque lectus ut, tristique nisi. Nullam nunc nulla, vestibulum vitae interdum eu, porta id ligula. Mauris cursus blandit nulla, venenatis lobortis velit.',
+    regulationsMore: false,
+    regulationsLenght: 400,
+    vietnam: [
+      {
+        id: 1,
+        name: 'Bình Phước'
+      },
+      {
+        id: 2,
+        name: 'Dak Lak'
+      },
+      {
+        id: 3,
+        name: 'Bình Thuận'
+      },
+      {
+        id: 4,
+        name: 'Cát Bà'
+      },
+      {
+        id: 5,
+        name: 'Ninh Thuận'
+      },
+      {
+        id: 6,
+        name: 'Yên Bái'
+      },
+      {
+        id: 7,
+        name: 'Sapa'
+      },
+      {
+        id: 8,
+        name: 'Hòa Bình'
+      },
+      {
+        id: 9,
+        name: 'Phú Quốc'
+      },
+      {
+        id: 10,
+        name: 'Nha Trang'
+      },
+      {
+        id: 11,
+        name: 'Quảng bình'
+      },
+    ],
+    vietnamShow: [],
+    vietnamMore:false
+  }),
+  mounted() {
+    this.vietnam.forEach((val,index) => {
+      if (index < 10){
+        this.vietnamShow.push(val)
+      }
+    })
+  },
+  methods: {
+    moreRegulations() {
+      this.regulationsMore = !this.regulationsMore
+      if (this.regulationsMore) {
+        this.regulationsLenght = this.regulations.length
+      } else {
+        this.regulationsLenght = 400
+      }
+    },
+    moreVN(){
+      this.vietnamMore = true
+      this.vietnam.forEach((val,index) => {
+        this.vietnamShow.push(val)
+      })
+    }
+  }
 }
 </script>
 

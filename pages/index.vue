@@ -3,6 +3,7 @@
     <section class="s__slider">
       <div class="s__slider--main">
         <div class="s__slider--main__image">
+          <div class="s__slider--main__image--gradient"></div>
           <img src="~/assets/images/banner.jpg">
         </div>
         <div class="s__slider--main__description">
@@ -22,7 +23,15 @@
             <div class="s__opacity"></div>
             <img src="~/assets/images/thumbnail_1.jpg">
           </div>
+          <div class="s__slider--main__thumbnail--item">
+            <div class="s__opacity"></div>
+            <img src="~/assets/images/thumbnail_1.jpg">
+          </div>
           <div class="s__slider--main__thumbnail--item active">
+            <div class="s__opacity"></div>
+            <img src="~/assets/images/thumbnail_1.jpg">
+          </div>
+          <div class="s__slider--main__thumbnail--item">
             <div class="s__opacity"></div>
             <img src="~/assets/images/thumbnail_1.jpg">
           </div>
@@ -56,7 +65,7 @@
               <div class="s__topic--top__item--image">
                 <img src="~/assets/images/t-1.jpg">
               </div>
-              <div class="s__topic--top__item--info has-bg w-345">
+              <div class="s__topic--top__item--info has-bg w-345 has-left">
                 <div class="s__topic--top__item--info__title">
                   <h3>Weekend Getaway</h3>
                 </div>
@@ -217,7 +226,7 @@
         </div>
       </div>
       <div class="s__experience--one">
-        <Carousel :items-to-show="3" :wrap-around="true" :margin="20">
+        <Carousel :items-to-show="2.1" :wrap-around="true" :margin="20">
           <Slide v-for="slide in 10" :key="slide">
             <div class="carousel__item">
               <a href="#">
@@ -249,7 +258,7 @@
         </Carousel>
       </div>
       <div class="s__experience--two">
-        <Carousel :items-to-show="4.6" :wrap-around="true" :margin="20">
+        <Carousel :items-to-show="2.8" :wrap-around="true" :margin="20">
           <Slide v-for="slide in 10" :key="slide">
             <div class="carousel__item">
               <a href="#">
