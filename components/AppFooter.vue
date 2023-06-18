@@ -241,6 +241,7 @@ export default {
     },
     moreVN(){
       this.vietnamMore = true
+      this.vietnamShow = []
       this.vietnam.forEach((val,index) => {
         this.vietnamShow.push(val)
       })

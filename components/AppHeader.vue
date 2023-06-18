@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="s__header" :class="{'fixed': isFixed}">
+    <section class="s__header" :class="{'fixed': isFixed || isHome !== true}">
       <div class="s__header--logo">
         <NuxtLink>
           <img src="~/assets/images/wild-logo.svg">
@@ -461,6 +461,7 @@ import MasonryWall from '@yeger/vue-masonry-wall'
 export default {
   name: "AppHeader",
   components: {MasonryWall},
+  props: ['isHome'],
   data: () => ({
     showSearch: false,
     locationActive: false,
@@ -533,12 +534,12 @@ export default {
     scrollingDown: false,
     isFixed: false,
     items: [
-      { title: 'First', description: 'The first item.' },
-      { title: 'Second', description: 'The second item.'},
-      { title: 'Second', description: 'The second item.'},
-      { title: 'Second', description: 'The second item.'},
-      { title: 'Second', description: 'The second item.'},
-      { title: 'Second', description: 'The second item.'},
+      {title: 'First', description: 'The first item.'},
+      {title: 'Second', description: 'The second item.'},
+      {title: 'Second', description: 'The second item.'},
+      {title: 'Second', description: 'The second item.'},
+      {title: 'Second', description: 'The second item.'},
+      {title: 'Second', description: 'The second item.'},
     ]
   }),
   beforeMount() {
@@ -547,7 +548,9 @@ export default {
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
   },
-
+  mounted() {
+    console.log(1122, this.isHome)
+  },
   methods: {
     hasBoxSearch() {
       this.showSearch = !this.showSearch
