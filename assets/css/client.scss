@@ -2206,6 +2206,8 @@ body {
   width: 100%;
   padding: 40.45px 0 21px 0;
   display: flex;
+  border-bottom: 1px solid #E1E1E1;
+  margin-bottom: 23px;
 
   &--item {
     font-style: normal;
@@ -2233,7 +2235,8 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-right: 7.82px;
-    &.add-filter{
+
+    &.add-filter {
       background: #03483F;
       /* Greenie Pine */
 
@@ -2241,10 +2244,83 @@ body {
       border-radius: 5px;
       display: flex;
       color: #fff;
-      span{
+
+      span {
         display: flex;
         margin-right: 9px;
       }
+    }
+  }
+}
+
+.s__categories_filter {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+
+  &--item {
+    display: flex;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height */
+
+
+    /* Greenie Pine */
+
+    color: #03483F;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    padding: 2px 13px;
+    background: #FFFFFF;
+    /* Greenie Pine */
+
+    border: 1px solid #03483F;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 7.82px;
+    margin-bottom: 7.82px;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:first-child {
+        margin-right: 10.29px;
+      }
+    }
+  }
+}
+
+.s__items_filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &--head {
+    width: 100%;
+    display: flex;
+    margin-bottom: 25px;
+
+    h1 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 37px;
+      line-height: 47px;
+      /* identical to box height */
+
+
+      color: #000000;
+      margin: 0;
+      padding: 0;
     }
   }
 }
