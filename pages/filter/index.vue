@@ -5,13 +5,13 @@
         <div @click="showBoxLocation()" :class="{'active': boxLocation}" class="s__head_filter--item">
           <span>Địa điểm</span>
         </div>
-        <div class="s__head_filter--item">
+        <div @click="showBoxLevel()" :class="{'active': boxLevel}" class="s__head_filter--item">
           <span>Cấp độ hoạt động</span>
         </div>
-        <div class="s__head_filter--item">
+        <div @click="showBoxDate()" :class="{'active': boxDate}" class="s__head_filter--item">
           <span>Ngày khởi hành</span>
         </div>
-        <div class="s__head_filter--item">
+        <div @click="showBoxTypePlace()" :class="{'active': boxTypePlace}" class="s__head_filter--item">
           <span>Loại đặt chỗ</span>
         </div>
         <div class="s__head_filter--item add-filter">
@@ -74,7 +74,8 @@
               </label>
             </div>
             <div class="s__item_checkbox">
-              <label  class="container--checkbox" :class="{'active': checkVietNam}"><span>Việt Nam</span> <span class="icon-down-location"><img src="~/assets/images/icon-down.svg"></span>
+              <label class="container--checkbox" :class="{'active': checkVietNam}"><span>Việt Nam</span> <span
+                  class="icon-down-location"><img src="~/assets/images/icon-down.svg"></span>
                 <input @change="checkedVietNam()" type="checkbox">
                 <span class="checkmark"></span>
               </label>
@@ -188,6 +189,33 @@
               <a class="btn-search" href="#">Tìm kiếm</a>
             </div>
           </div>
+        </div>
+        <div class="s__head_filter--item__level" v-if="boxLevel">
+          <div v-for="lv in listLevel" class="filter--item-level">{{ lv.name }}</div>
+          <div class="s__line mt-5 mb-3"></div>
+          <div class="s__bottom_filter">
+            <div class="choose__again">
+              Chọn lại
+            </div>
+            <div class="filter_btn-search">
+              <a class="btn-search" href="#">Tìm kiếm</a>
+            </div>
+          </div>
+        </div>
+        <div class="s__head_filter--item__type-place" v-if="boxTypePlace">
+          <div v-for="tp in listTypePlace" class="filter--item-level">{{ tp.name }}</div>
+          <div class="s__line mt-5 mb-3"></div>
+          <div class="s__bottom_filter">
+            <div class="choose__again">
+              Chọn lại
+            </div>
+            <div class="filter_btn-search">
+              <a class="btn-search" href="#">Tìm kiếm</a>
+            </div>
+          </div>
+        </div>
+        <div class="s__head_filter--item__date" v-if="boxDate">
+          <date-picker></date-picker>
         </div>
         <div v-if="hasOpacity" class="opacity__bg"></div>
       </section>
@@ -666,6 +694,7 @@
 </template>
 
 <script>
+
 export default {
   name: "index",
   data: () => ({
@@ -674,18 +703,82 @@ export default {
     boxDate: false,
     boxTypePlace: false,
     hasOpacity: false,
-    checkVietNam: false
+    checkVietNam: false,
+    listLevel: [
+      {
+        id: 1,
+        name: 'Người mới',
+        active: false
+      },
+      {
+        id: 2,
+        name: 'Nhà chinh phục',
+        active: false
+      },
+      {
+        id: 3,
+        name: 'NKinh ',
+        active: false
+      },
+      {
+        id: 4,
+        name: 'Người mới',
+        active: false
+      }
+    ],
+    listTypePlace: [
+      {
+        id: 1,
+        name: 'Full Trip',
+        active: false
+      },
+      {
+        id: 2,
+        name: 'Land Tour',
+        active: false
+      },
+      {
+        id: 3,
+        name: 'JoinIN ',
+        active: false
+      },
+    ],
+    picked: new Date()
   }),
   methods: {
     showBoxLocation() {
       this.boxLocation = !this.boxLocation
-      if (this.boxLocation){
+      if (this.boxLocation) {
         this.hasOpacity = true
-      }else {
+      } else {
         this.hasOpacity = false
       }
     },
-    checkedVietNam(){
+    showBoxLevel() {
+      this.boxLevel = !this.boxLevel
+      if (this.boxLevel) {
+        this.hasOpacity = true
+      } else {
+        this.hasOpacity = false
+      }
+    },
+    showBoxTypePlace() {
+      this.boxTypePlace = !this.boxTypePlace
+      if (this.boxTypePlace) {
+        this.hasOpacity = true
+      } else {
+        this.hasOpacity = false
+      }
+    },
+    showBoxDate(){
+      this.boxDate = !this.boxDate
+      if (this.boxDate) {
+        this.hasOpacity = true
+      } else {
+        this.hasOpacity = false
+      }
+    },
+    checkedVietNam() {
       console.log(1212)
       this.checkVietNam = !this.checkVietNam
     }
