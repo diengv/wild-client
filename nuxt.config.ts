@@ -33,7 +33,4 @@ export default defineNuxtConfig({
 
         }
     },
-    plugins : [
-        { src: '~/plugins/vue-datepicker.js', mode: 'client' }
-    ]
 })

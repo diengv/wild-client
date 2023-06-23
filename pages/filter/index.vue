@@ -1,5 +1,6 @@
 <template>
   <div class="s__current_page">
+
     <div class="s__container">
       <section class="s__head_filter">
         <div @click="showBoxLocation()" :class="{'active': boxLocation}" class="s__head_filter--item">
@@ -215,7 +216,9 @@
           </div>
         </div>
         <div class="s__head_filter--item__date" v-if="boxDate">
-          <date-picker></date-picker>
+          <Calendar :initial-page="{ month: 4, year: 2019 }"
+                    :color="selectedColor"
+                    :attributes="attrs"/>
         </div>
         <div v-if="hasOpacity" class="opacity__bg"></div>
       </section>
@@ -694,9 +697,13 @@
 </template>
 
 <script>
+import {setupCalendar, Calendar, DatePicker} from 'v-calendar';
+import 'v-calendar/style.css';
+import {ref} from 'vue';
 
 export default {
   name: "index",
+  components: {Calendar, DatePicker},
   data: () => ({
     boxLocation: false,
     boxLevel: false,
@@ -704,6 +711,8 @@ export default {
     boxTypePlace: false,
     hasOpacity: false,
     checkVietNam: false,
+    date: null,
+
     listLevel: [
       {
         id: 1,
@@ -726,6 +735,14 @@ export default {
         active: false
       }
     ],
+    selectedColor: ref('blue'),
+    attrs: ref([
+      {
+        key: 'test',
+        highlight: true,
+        dates: {start: new Date(2019, 3, 15), end: new Date(2019, 3, 19)},
+      }
+    ]),
     listTypePlace: [
       {
         id: 1,
@@ -770,7 +787,7 @@ export default {
         this.hasOpacity = false
       }
     },
-    showBoxDate(){
+    showBoxDate() {
       this.boxDate = !this.boxDate
       if (this.boxDate) {
         this.hasOpacity = true

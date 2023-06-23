@@ -2267,7 +2267,7 @@ body {
       max-width: 895px;
       background: #fff;
       position: absolute;
-      top: calc(100% + 2px);
+      top: calc(100% - 18px);
       z-index: 99999;
       box-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.5);
       border: 1px solid rgba(3, 72, 63, 1);
@@ -2282,7 +2282,7 @@ body {
       width: 334px;
       background: #fff;
       position: absolute;
-      top: calc(100% + 2px);
+      top: calc(100% - 18px);
       z-index: 99999;
       box-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.5);
       border: 1px solid rgba(3, 72, 63, 1);
@@ -2293,12 +2293,13 @@ body {
       gap: 6px;
       left: 92px;
     }
+
     &__type-place {
       max-width: 334px;
       width: 334px;
       background: #fff;
       position: absolute;
-      top: calc(100% + 2px);
+      top: calc(100% - 18px);
       z-index: 99999;
       box-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.5);
       border: 1px solid rgba(3, 72, 63, 1);
@@ -2309,21 +2310,21 @@ body {
       gap: 6px;
       left: 370px;
     }
+
     &__date {
       max-width: 630px;
       width: 630px;
       background: #fff;
       position: absolute;
-      top: calc(100% + 2px);
+      top: calc(100% - 18px);
       z-index: 99999;
       box-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.5);
       border: 1px solid rgba(3, 72, 63, 1);
       border-radius: 5px;
-      padding: 24px 24px 0 24px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      left: 370px;
+      left: 238px;
     }
   }
 }
@@ -2567,4 +2568,83 @@ body {
   font-weight: 600;
   line-height: 24px;
   cursor: pointer;
+}
+
+.vc-container {
+  width: 100% !important;
+}
+
+.vc-pane-container {
+  background: #fff !important;
+}
+
+button {
+  &.vc-arrow {
+    background: #0D4C3F;
+    color: #fff !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+
+    &:hover {
+      background: #0D4C3F !important;
+      color: #fff !important;
+    }
+  }
+}
+
+.vc-title {
+  color: #121212;
+  text-align: center;
+  font-size: 26px;
+  font-family: Source Sans Pro;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.vc-header {
+  padding: 16px 50px;
+  margin-top: 0;
+  height: auto !important;
+  position: relative;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 1px;
+    background: #0D4C3F;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.vc-weeks {
+  padding: 30px !important;
+}
+
+.vc-pane-header-wrapper {
+  z-index: 9999;
+}
+.vc-highlight-content-solid{
+  border-radius: 32px;
+  background: #0D4C3F;
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+  font-family: Source Sans Pro;
+  text-transform: capitalize;
+}
+.vc-week{
+  margin-bottom: 10px;
+}
+.vc-weekdays{
+  color: #000;
+  font-size: 16px;
+  font-family: Source Sans Pro;
+  font-weight: 600;
+  text-transform: capitalize;
 }
