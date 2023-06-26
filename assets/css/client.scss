@@ -2629,7 +2629,8 @@ button {
 .vc-pane-header-wrapper {
   z-index: 9999;
 }
-.vc-highlight-content-solid{
+
+.vc-highlight-content-solid {
   border-radius: 32px;
   background: #0D4C3F;
   color: #fff;
@@ -2638,13 +2639,66 @@ button {
   font-family: Source Sans Pro;
   text-transform: capitalize;
 }
-.vc-week{
+
+.vc-week {
   margin-bottom: 10px;
 }
-.vc-weekdays{
+
+.vc-weekdays {
   color: #000;
   font-size: 16px;
   font-family: Source Sans Pro;
   font-weight: 600;
   text-transform: capitalize;
+}
+
+.s__activity {
+  width: 100%;
+  margin-top: 73px;
+}
+
+.s__activity--breadcrumb {
+  width: 100%;
+  display: flex;
+  padding-top: 40px;
+  padding-bottom: 33px;
+
+  &__item {
+    color: #0D4C3F;
+    font-size: 16px;
+    font-family: Source Sans Pro;
+    line-height: 24px;
+    text-decoration-line: underline;
+    margin-right: 10px;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: '/';
+      right: -8px;
+      top: 0;
+      color: #000;
+      font-size: 16px;
+      font-family: Source Sans Pro;
+      line-height: 24px;
+    }
+  }
+  &__current{
+    color: #000;
+    font-size: 16px;
+    font-family: Source Sans Pro;
+    line-height: 24px;
+  }
+}
+.s__activity--title{
+  width: 100%;
+  display: flex;
+  max-width: 670px;
+  margin-bottom: 9px;
+  h1{
+    color: #000;
+    font-size: 37px;
+    font-family: Source Sans Pro;
+    font-weight: 600;
+  }
 }
