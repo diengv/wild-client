@@ -1,5 +1,40 @@
 <template>
   <div class="s__activity">
+    <div v-if="isFixed" class="s__header--activity">
+      <div class="s__container">
+        <div class="s__header--activity__wrap">
+          <div class="s__header--activity__left">
+            <ul>
+              <li>
+                <a href="#">Về hoạt động</a>
+              </li>
+              <li class="active">
+                <a href="#">Lịch trình</a>
+              </li>
+              <li>
+                <a href="#">Thông tin quan trọng</a>
+              </li>
+              <li>
+                <a href="#">Review</a>
+              </li>
+            </ul>
+          </div>
+          <div class="s__header--activity__right">
+            <div class="s__header--activity__right--info">
+              <div class="price">
+                <span>Giá từ:</span>
+                <span class="text-price">4.400.000 VND</span>
+                <span>/người</span>
+              </div>
+              <div class="note">Đặt chỗ trước, thanh toán sau</div>
+            </div>
+            <div class="s__header--activity__right--button">
+              <a href="#">chọn ngày</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="s__container">
       <div class="s__activity--breadcrumb">
         <a class="s__activity--breadcrumb__item" href="#">Trang chủ</a>
@@ -582,7 +617,7 @@
       </div>
       <div class="s__activity--register-group">
         <div class="s__activity--register-group__left">
-            <img src="~/assets/images/reg.png">
+          <img src="~/assets/images/reg.png">
         </div>
         <div class="s__activity--register-group__right">
           <div class="s__activity--register-group__right--title">
@@ -593,7 +628,7 @@
             Bạn có thể gửi yêu cầu đăng ký nhóm riêng bất kể số lượng thành viên.
           </div>
           <div class="s__activity--register-group__right--button">
-              <a href="#">gửi yêu cầu</a>
+            <a href="#">gửi yêu cầu</a>
           </div>
         </div>
       </div>
@@ -766,8 +801,15 @@ export default {
         question: 'Tôi có thể mang theo fly cam không?',
         answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
       }
-    ]
+    ],
+    isFixed: false
   }),
+  beforeMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   mounted() {
     this.includes.forEach((val, index) => {
       if (index < 3) {
@@ -813,6 +855,14 @@ export default {
           val.active = false
         }
       })
+    },
+    handleScroll() {
+      // Your scroll handling here
+      if (window.scrollY > 95) {
+        this.isFixed = true
+      } else {
+        this.isFixed = false
+      }
     }
   }
 }
