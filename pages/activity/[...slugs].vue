@@ -231,7 +231,8 @@
             </div>
           </div>
           <div class="s__activity--dates">
-            <div @click="showContentDate(date)" v-for="date in listDates" class="s__activity--dates__item" :class="{'active' : date.active}">
+            <div @click="showContentDate(date)" v-for="date in listDates" class="s__activity--dates__item"
+                 :class="{'active' : date.active}">
               <div class="s__activity--dates__item--title">
                 {{ date.title }}
               </div>
@@ -261,8 +262,426 @@
           </div>
           <div class="s__activity--wild-buddy">
             <div class="s__activity--wild-buddy__left">
-
+              <div class="s__activity--wild-buddy__left--head">
+                <div class="s__activity--wild-buddy__left--head__avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--wild-buddy__left--head__info">
+                  <span>WildBuddy đồng hành</span>
+                  <span>Team Lê Tú</span>
+                </div>
+              </div>
+              <div class="s__activity--wild-buddy__left--bottom">
+                Tôi đã có hơn 20 năm lặn chuyên nghiệp. Được xếp hạng trong danh sách "the Raid Instructor Trainer" năm
+                2018, tôi đã dạy hơn 700 khóa học tại các cơ quan lặn khác nhau. Tôi hiện đang sống ở Việt Nam và sở hữu
+                trung tâm lặn và quán bar của riêng mình ở Nha Trang. Trọng tâm của tôi là đào tạo những "Raid
+                Instructor" có trình độ cao.
+              </div>
             </div>
+            <div class="s__activity--wild-buddy__right">
+              <div class="s__activity--wild-buddy__right--title">
+                WildBuddy của bạn có gì?
+              </div>
+              <div class="s__activity--wild-buddy__right--content">
+                <div class="s__activity--wild-buddy__right--content__item">
+                  Chúng tôi cam kết sẽ đem lại những chuyến phiêu lưu thú vị nhất ở đại dương.
+                </div>
+                <div class="s__activity--wild-buddy__right--content__item">
+                  Chương trình đào tạo quốc tế, sẽ vượt xa mong đợi của bạn.
+                </div>
+                <div class="s__activity--wild-buddy__right--content__item">
+                  Giúp bạn có cảm nhận sâu sắc hơn về văn hóa Việt Nam, bởi kỷ niệm sẽ là thứ theo bạn mãi mãi.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s__activity--box">
+        <div class="s__activity--box__title">
+          <h2>Thông tin quan trọng</h2>
+        </div>
+        <div class="s__activity--box__content--inline">
+          <div class="s__half">
+            <div class="s__wrap--important">
+              <div v-for="(inc, index) in includesShow" :key="index" v-bind:key="index"
+                   class="s__wrap--important__include">
+                {{ inc }}
+              </div>
+              <div v-if="!includesMore" @click="showMoreInclude()" class="show__more">Xem thêm</div>
+            </div>
+          </div>
+          <div class="s__half">
+            <div class="s__wrap--important">
+              <div v-for="(inc, index) in notIncludedShow" :key="index" v-bind:key="index"
+                   class="s__wrap--important__notIncluded">
+                {{ inc }}
+              </div>
+              <div v-if="!notIncludedMore" @click="showMoreNoteIncluded()" class="show__more">Xem thêm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s__take-away">
+      <div class="bg-take-away">
+        <img src="~/assets/images/bg-take-away.svg">
+      </div>
+      <div class="s__container">
+        <div class="s__take-away__wrap">
+          <div class="s__take-away__wrap--title">
+            Bạn cần mang theo
+          </div>
+          <div class="s__take-away__wrap--content">
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+            </div>
+            <div class="s__take-away__wrap--content__item">
+              <span><img src="~/assets/images/icon-bag.svg"></span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s__container">
+      <div class="s__activity--box">
+        <div class="s__activity--box__title mt-80">
+          <h2>Câu hỏi thường gặp</h2>
+        </div>
+        <div class="s__activity--box__content--question">
+          <div v-for="qa in questionAnswer" class="s__activity--box__content--question__item">
+            <div @click="showAnswer(qa)" class="s__activity--box__content--question__item--qs"
+                 :class="{'active': qa.active}">
+              {{ qa.question }}
+            </div>
+            <div v-if="qa.active" class="s__activity--box__content--question__item--aw">
+              {{ qa.answer }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s__activity--box">
+        <div class="s__activity--box__title mt-80">
+          <h2><span>12  </span>đánh giá từ khách hàng</h2>
+        </div>
+        <div class="s__activity--box__content--rate">
+          <div class="s__activity--box__content--rate__left">
+            <div class="s__activity--box__content--rate__left--item">
+              <div class="s__activity--box__content--rate__left--item__head">
+                <div class="s__activity--box__content--rate__left--item__head--avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--box__content--rate__left--item__head--info">
+                  <div class="name">Drifter</div>
+                  <div class="date">Tháng 01/2018</div>
+                  <div class="star">
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="s__activity--box__content--rate__left--item__bottom">
+                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
+                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+              </div>
+            </div>
+            <div class="s__activity--box__content--rate__left--item">
+              <div class="s__activity--box__content--rate__left--item__head">
+                <div class="s__activity--box__content--rate__left--item__head--avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--box__content--rate__left--item__head--info">
+                  <div class="name">Drifter</div>
+                  <div class="date">Tháng 01/2018</div>
+                  <div class="star">
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="s__activity--box__content--rate__left--item__bottom">
+                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
+                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+              </div>
+            </div>
+            <div class="s__activity--box__content--rate__left--item">
+              <div class="s__activity--box__content--rate__left--item__head">
+                <div class="s__activity--box__content--rate__left--item__head--avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--box__content--rate__left--item__head--info">
+                  <div class="name">Drifter</div>
+                  <div class="date">Tháng 01/2018</div>
+                  <div class="star">
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="s__activity--box__content--rate__left--item__bottom">
+                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
+                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+              </div>
+            </div>
+            <div class="s__activity--box__content--rate__left--item">
+              <div class="s__activity--box__content--rate__left--item__head">
+                <div class="s__activity--box__content--rate__left--item__head--avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--box__content--rate__left--item__head--info">
+                  <div class="name">Drifter</div>
+                  <div class="date">Tháng 01/2018</div>
+                  <div class="star">
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="s__activity--box__content--rate__left--item__bottom">
+                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
+                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+              </div>
+            </div>
+            <div class="s__activity--box__content--rate__left--item">
+              <div class="s__activity--box__content--rate__left--item__head">
+                <div class="s__activity--box__content--rate__left--item__head--avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--box__content--rate__left--item__head--info">
+                  <div class="name">Drifter</div>
+                  <div class="date">Tháng 01/2018</div>
+                  <div class="star">
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="s__activity--box__content--rate__left--item__bottom">
+                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
+                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+              </div>
+            </div>
+          </div>
+          <div class="s__activity--box__content--rate__right">
+            <div class="s__activity--box__content--rate__right--total">
+              4.6
+            </div>
+            <div class="s__activity--box__content--rate__right--star">
+              <span><img src="~/assets/images/star.svg"></span>
+              <span><img src="~/assets/images/star.svg"></span>
+              <span><img src="~/assets/images/star.svg"></span>
+              <span><img src="~/assets/images/star.svg"></span>
+              <span><img src="~/assets/images/star.svg"></span>
+            </div>
+            <div class="s__activity--box__content--rate__right--link-rate">
+              <a href="#">Gửi đánh giá của bạn</a>
+            </div>
+            <div class="s__line"></div>
+            <div class="s__activity--box__content--rate__right--list-rate">
+              <div class="s__activity--box__content--rate__right--list-rate__item">
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="text-rate">5 đánh giá</span>
+              </div>
+              <div class="s__activity--box__content--rate__right--list-rate__item">
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="text-rate">5 đánh giá</span>
+              </div>
+              <div class="s__activity--box__content--rate__right--list-rate__item">
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="text-rate">5 đánh giá</span>
+              </div>
+              <div class="s__activity--box__content--rate__right--list-rate__item">
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="text-rate">5 đánh giá</span>
+              </div>
+              <div class="s__activity--box__content--rate__right--list-rate__item">
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="start"><img src="~/assets/images/star.svg"></span>
+                <span class="text-rate">5 đánh giá</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s__activity--box__content--rate-paginate">
+          <ul>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+          </ul>
+        </div>
+      </div>
+      <div class="s__activity--register-group">
+        <div class="s__activity--register-group__left">
+            <img src="~/assets/images/reg.png">
+        </div>
+        <div class="s__activity--register-group__right">
+          <div class="s__activity--register-group__right--title">
+            Đăng ký
+            theo nhóm riêng?
+          </div>
+          <div class="s__activity--register-group__right--description">
+            Bạn có thể gửi yêu cầu đăng ký nhóm riêng bất kể số lượng thành viên.
+          </div>
+          <div class="s__activity--register-group__right--button">
+              <a href="#">gửi yêu cầu</a>
+          </div>
+        </div>
+      </div>
+      <div class="s__activity--box">
+        <div class="s__activity--box__title mt-80">
+          <h2>Các hoạt động khác cùng địa điểm</h2>
+        </div>
+        <div class="s__activities--items">
+          <div class="s__activities--items__item">
+            <a href="#">
+              <div class="s__activities--items__item--image">
+                <div class="s__activities--items__item--image__icon">
+                  <img src="~/assets/images/local.jpg">
+                </div>
+                <img src="~/assets/images/activity_1.jpg">
+              </div>
+              <div class="s__activities--items__item--head">
+                <div class="s__activities--items__item--head__left">
+                  VIỆT NAM | 3N2D | Trekking
+                </div>
+                <div class="s__activities--items__item--head__right">
+                  <span><img src="~/assets/images/booked.svg"></span>
+                  <span>Đã đặt 230</span>
+                </div>
+              </div>
+              <div class="s__activities--items__item--title">
+                <h3>
+                  #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
+                </h3>
+              </div>
+              <div class="s__activities--items__item--price">
+                từ 7.526.000 VND/người
+              </div>
+            </a>
+          </div>
+          <div class="s__activities--items__item">
+            <a href="#">
+              <div class="s__activities--items__item--image">
+                <div class="s__activities--items__item--image__icon">
+                  <img src="~/assets/images/local.jpg">
+                </div>
+                <img src="~/assets/images/activity_1.jpg">
+              </div>
+              <div class="s__activities--items__item--head">
+                <div class="s__activities--items__item--head__left">
+                  VIỆT NAM | 3N2D | Trekking
+                </div>
+                <div class="s__activities--items__item--head__right">
+                  <span><img src="~/assets/images/booked.svg"></span>
+                  <span>Đã đặt 230</span>
+                </div>
+              </div>
+              <div class="s__activities--items__item--title">
+                <h3>
+                  #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
+                </h3>
+              </div>
+              <div class="s__activities--items__item--price">
+                từ 7.526.000 VND/người
+              </div>
+            </a>
+          </div>
+          <div class="s__activities--items__item">
+            <a href="#">
+              <div class="s__activities--items__item--image">
+                <div class="s__activities--items__item--image__icon">
+                  <img src="~/assets/images/local.jpg">
+                </div>
+                <img src="~/assets/images/activity_1.jpg">
+              </div>
+              <div class="s__activities--items__item--head">
+                <div class="s__activities--items__item--head__left">
+                  VIỆT NAM | 3N2D | Trekking
+                </div>
+                <div class="s__activities--items__item--head__right">
+                  <span><img src="~/assets/images/booked.svg"></span>
+                  <span>Đã đặt 230</span>
+                </div>
+              </div>
+              <div class="s__activities--items__item--title">
+                <h3>
+                  #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
+                </h3>
+              </div>
+              <div class="s__activities--items__item--price">
+                từ 7.526.000 VND/người
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -303,11 +722,92 @@ export default {
         content: 'Bạn sẽ được trang bị kiến thức nền tảng quan trọng về bình dưỡng khí, các kiểm soát cơ thể và những kỹ năng thiết yếu ở dưới mặt nước. Khóa học sẽ cung cấp đến bạn một tài khoản trực tuyết để bạn dễ dàng xem lại các nội dung lý thuyết của chương trình bất cứ khi nào bạn cần. Ngày đầu tiên này, bạn cũng sẽ được làm quen với các kỹ thuật lặn DiveRAID ở hồ bơi sâu tại trung tâm Nha Trang.'
       }
     ],
+    includes: ['Chương trình kiến thức lý thuyết thông qua lớp học online.', 'Một buổi huấn luyện ở hồ bơi hoặc bãi nước nông', 'Bốn buổi lặn chuyên sâu trong hai ngày liên tục.', 'Bốn buổi lặn chuyên sâu trong hai ngày liên tục.', 'Bốn buổi lặn chuyên sâu trong hai ngày liên tục.'],
+    notIncluded: ['Chi phí cá nhân.', 'Hình lưu niệm.', 'Chi phí tips.', 'Chi phí tips.', 'Chi phí tips.'],
+    limitInclude: 3,
+    includesShow: [],
+    notIncludedShow: [],
+    includesMore: false,
+    notIncludedMore: false,
+    questionAnswer: [
+      {
+        id: 1,
+        active: false,
+        question: 'Chính sách hoàn hủy',
+        answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
+      },
+      {
+        id: 2,
+        active: false,
+        question: 'Trải nghiệm an toàn',
+        answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
+      },
+      {
+        id: 3,
+        active: false,
+        question: 'Chính sách thanh toán',
+        answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
+      },
+      {
+        id: 4,
+        active: false,
+        question: 'Thời tiết ở đây thế nào?',
+        answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
+      },
+      {
+        id: 5,
+        active: false,
+        question: 'Lịch trình này có phù hợp cho trẻ em không?',
+        answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
+      },
+      {
+        id: 6,
+        active: false,
+        question: 'Tôi có thể mang theo fly cam không?',
+        answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
+      }
+    ]
   }),
+  mounted() {
+    this.includes.forEach((val, index) => {
+      if (index < 3) {
+        this.includesShow.push(val)
+      }
+    })
+
+    this.notIncluded.forEach((val, index) => {
+      if (index < 3) {
+        this.notIncludedShow.push(val)
+      }
+    })
+  },
   methods: {
     showContentDate(date) {
       this.listDates.forEach((val) => {
         if (val.id === date.id) {
+          val.active = true
+        } else {
+          val.active = false
+        }
+      })
+    },
+    showMoreInclude() {
+      this.includesMore = true
+      this.includesShow = []
+      this.includes.forEach((val, index) => {
+        this.includesShow.push(val)
+      })
+    },
+    showMoreNoteIncluded() {
+      this.notIncludedMore = true
+      this.notIncludedShow = []
+      this.notIncluded.forEach((val, index) => {
+        this.notIncludedShow.push(val)
+      })
+    },
+    showAnswer(qa) {
+      this.questionAnswer.forEach((val) => {
+        if (val.id === qa.id) {
           val.active = true
         } else {
           val.active = false
