@@ -1,5 +1,21 @@
 <template>
   <div class="s__payment">
+    <div class="s__header_payment">
+      <div class="s__header_payment--logo">
+        <a href="#">
+          <img src="~/assets/images/wild-logo.svg">
+        </a>
+      </div>
+      <div class="s__header_payment--time-count">
+        <span class="time-remaining">Thời gian còn lại: </span>
+        <span class="minute-remaining">{{ minute }}</span>
+        <span>phút</span>
+        <span class="remaining_ss">:</span>
+        <span class="minute-remaining">{{ second }}</span>
+        <span>giây</span>
+      </div>
+      <div class="s__header_payment--phone">+84 988 111 645</div>
+    </div>
     <div class="s__container">
       <div class="s__payment--title">
         Xác nhận và thanh toán
@@ -178,17 +194,152 @@
             </div>
           </div>
         </div>
+        <div class="s__payment--content__right">
+          <div class="s__activity--info__right--head no-border-radius">
+            <div class="s__activity--info__right--head__item">
+              <div class="s__activity--info__right--head__item--top">
+                <div class="s__activity--info__right--head__item--top__icon">
+                  <img src="~/assets/images/icon-security.svg">
+                </div>
+                <div class="s__activity--info__right--head__item--top__label">
+                  HOÀN HỦY
+                  LINH HOẠT
+                </div>
+              </div>
+              <div class="s__activity--info__right--head__item--content">
+                Bạn sẽ nhận lại 100% giá trị cọc nếu thông báo huỷ trước ngày khởi hành theo quy định
+              </div>
+            </div>
+            <div class="s__activity--info__right--head__item">
+              <div class="s__activity--info__right--head__item--top">
+                <div class="s__activity--info__right--head__item--top__icon">
+                  <img src="~/assets/images/icon-safety.svg">
+                </div>
+                <div class="s__activity--info__right--head__item--top__label">
+                  THANH TOÁN AN TOÀN
+                </div>
+              </div>
+              <div class="s__activity--info__right--head__item--content">
+                Hỗ trợ đổi ngày đăng ký và thông tin của bạn được bảo mật ở tất cả các phương thức thanh toán
+              </div>
+            </div>
+          </div>
+          <div class="s__payment--info-review">
+            <div class="s__payment--info-review__item">
+              <div class="s__payment--info-review__item--left">
+                <span><img src="~/assets/images/icon-time.svg"></span>
+                <span>Ngày khởi hành:</span>
+              </div>
+              <div class="s__payment--info-review__item--right">
+                02/11/2022
+              </div>
+            </div>
+            <div class="s__payment--info-review__item">
+              <div class="s__payment--info-review__item--left">
+                <span><img src="~/assets/images/icon-person.svg"></span>
+                <span>Số thành viên:</span>
+              </div>
+              <div class="s__payment--info-review__item--right">
+                01 người lớn, 1 trẻ em
+              </div>
+            </div>
+            <div class="s__payment--info-review__item">
+              <div class="s__payment--info-review__item--left">
+                <span><img src="~/assets/images/type-payment.svg"></span>
+                <span>Loại thanh toán:</span>
+              </div>
+              <div class="s__payment--info-review__item--right">
+                Đặt chỗ trước, thanh toán sau
+              </div>
+            </div>
+            <div class="s__line my-24"></div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left">Giá người lớn:</div>
+              <div class="s__payment--info-review__calculate--right">1 x 5.000.000 VND</div>
+            </div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left">Giá trẻ em:</div>
+              <div class="s__payment--info-review__calculate--right">1 x 2.000.000 VND</div>
+            </div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left">Tạm tính:</div>
+              <div class="s__payment--info-review__calculate--right">7.000.000 VND</div>
+            </div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left">Phí tiện lợi:</div>
+              <div class="s__payment--info-review__calculate--right">0 VND</div>
+            </div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left">Giảm giá</div>
+              <div class="s__payment--info-review__calculate--right">200.000 VND</div>
+            </div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left">Voucher giảm giá</div>
+              <div class="s__payment--info-review__calculate--right">0 VND</div>
+            </div>
+            <div class="s__line my-24"></div>
+            <div class="s__payment--info-review__total">
+              <div class="s__payment--info-review__total--left">CẦN THANH TOÁN:</div>
+              <div class="s__payment--info-review__total--right">0 VND</div>
+            </div>
+            <div class="s__line my-24"></div>
+            <div class="s__payment--info-review__calculate">
+              <div class="s__payment--info-review__calculate--left flex-column-custom">
+                <span>Còn lại:</span>
+                <span class="note-payment">(Thanh toán khi tham gia hoạt động)</span>
+              </div>
+              <div class="s__payment--info-review__calculate--right">6.800.000 VND</div>
+            </div>
+          </div>
+          <div class="s__payment--info_button">
+            <div class="s__payment--info_button__left">
+              <div class="s__payment--wrapcheck">
+                <label class="container--checkboxs">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="text-check-payment">
+                Chọn Gửi yêu cầu đồng nghĩa với việc bạn đồng ý tuân theo <a class="s__policy" href="#">Quy định về
+                thanh toán và hoàn hủy</a>
+              </div>
+            </div>
+            <div class="s__payment--info_button__right">
+              <button class="btn-payment">Thanh toán</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
-  name: "index"
+  name: "index",
+  data: () => ({
+    timeCount: moment(60 * 10 * 1000)
+  }),
+  computed: {
+    minute: function () {
+      return this.timeCount.format('mm');
+    },
+    second: function () {
+      return this.timeCount.format('ss');
+    }
+  },
+  mounted() {
+    setInterval(() => {
+      this.timeCount = moment(this.timeCount.subtract(1, 'seconds'))
+    }, 1000);
+  }
 }
 </script>
 
 <style scoped>
 
 </style>
+<script setup lang="ts">
+</script>
