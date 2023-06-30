@@ -1,5 +1,35 @@
 <template>
   <div class="s__payment">
+    <Modal @clearModal="updateparent" :show="showChooseCoupon" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+           :height="'648px'">
+      <div class="s__coupon--wrapper">
+        <div class="s__coupon--wrapper__title">
+          Tra cứu mã giảm giá
+        </div>
+        <div class="s__line"></div>
+        <div class="s__coupon--wrapper__form">
+          <input placeholder="Nhập mã của bạn" class="coupon_input"/>
+          <button class="btn-search-coupon">Tìm mã</button>
+        </div>
+        <div class="s__coupon--wrapper__items">
+          <div v-for="(cop,index) in coupons" class="s__coupon--wrapper__items--item">
+            <div class="s__coupon--wrapper__items--item__left">
+              <span>Giảm</span>
+              <span v-if="cop.price">{{cop.price}}</span>
+              <span v-else>{{cop.percent}}</span>
+            </div>
+            <div class="s__coupon--wrapper__items--item__right">
+              <div class="s__coupon--wrapper__items--item__right--name">
+                {{ cop.name }}
+              </div>
+              <div class="s__coupon--wrapper__items--item__right--detail">
+                Điều kiện áp dụng mã
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Modal>
     <div class="s__header_payment">
       <div class="s__header_payment--logo">
         <a href="#">
@@ -183,7 +213,7 @@
               <input class="s__input"/>
               <button class="btn-add-coupon">Áp dụng</button>
             </div>
-            <div class="s__payment--coupon__search">
+            <div class="s__payment--coupon__search" @click="showCoupon()">
               <span>Tra cứu mã giảm giá</span>
             </div>
             <div class="s__payment--content__form--label-small">
@@ -320,7 +350,50 @@ import moment from 'moment';
 export default {
   name: "index",
   data: () => ({
-    timeCount: moment(60 * 10 * 1000)
+    timeCount: moment(60 * 10 * 1000),
+    showChooseCoupon: false,
+    coupons: [
+      {
+        id: 1,
+        name: 'COVIDEND2021',
+        price: '200K',
+        percent: '',
+        unconditional: false,
+        aboutToExpire: false
+      },
+      {
+        id: 2,
+        name: 'MUNGLE304',
+        price: '',
+        percent: '10%',
+        unconditional: false,
+        aboutToExpire: false
+      },
+      {
+        id: 3,
+        name: 'COVIDEND2021',
+        price: '200k',
+        percent: '',
+        unconditional: false,
+        aboutToExpire: true
+      },
+      {
+        id: 4,
+        name: 'COVIDEND2021',
+        price: '200k',
+        percent: '',
+        unconditional: true,
+        aboutToExpire: false
+      },
+      {
+        id: 5,
+        name: 'COVIDEND2021',
+        price: '',
+        percent: '10%',
+        unconditional: true,
+        aboutToExpire: false
+      },
+    ]
   }),
   computed: {
     minute: function () {
@@ -334,6 +407,14 @@ export default {
     setInterval(() => {
       this.timeCount = moment(this.timeCount.subtract(1, 'seconds'))
     }, 1000);
+  },
+  methods: {
+    showCoupon() {
+      this.showChooseCoupon = true
+    },
+    updateparent(variable) {
+      this.showChooseCoupon = variable
+    }
   }
 }
 </script>

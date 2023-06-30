@@ -1,6 +1,6 @@
 <template>
   <div class="s__activity">
-    <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'">
+    <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'" :overflow-y="'scroll'">
       <div class="s__activity--choose-date">
         <div class="s__activity--choose-date__category">
           <div class="s__activity--choose-date__category--tabs">
@@ -30,60 +30,338 @@
         <div class="s__activity--choose-date__tables">
           <table id="customers">
             <tr>
-              <th>Company</th>
-              <th>Contact</th>
-              <th>Country</th>
+              <th width="276px">Thời gian</th>
+              <th width="250px">Giá nhóm 1-3 người</th>
+              <th width="250px">Giá nhóm 4-6 người</th>
+              <th width="250px">Giá nhóm 7-10 người</th>
+              <th></th>
             </tr>
             <tr>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
             </tr>
             <tr>
-              <td>Berglunds snabbköp</td>
-              <td>Christina Berglund</td>
-              <td>Sweden</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td><button class="btn-book">Đặt chỗ</button></td>
             </tr>
             <tr>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td><button class="btn-book">Đặt chỗ</button></td>
             </tr>
             <tr>
-              <td>Ernst Handel</td>
-              <td>Roland Mendel</td>
-              <td>Austria</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td><button class="btn-book">Đặt chỗ</button></td>
             </tr>
             <tr>
-              <td>Island Trading</td>
-              <td>Helen Bennett</td>
-              <td>UK</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td><button class="btn-book">Đặt chỗ</button></td>
             </tr>
             <tr>
-              <td>Königlich Essen</td>
-              <td>Philip Cramer</td>
-              <td>Germany</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
             </tr>
             <tr>
-              <td>Laughing Bacchus Winecellars</td>
-              <td>Yoshi Tannamuri</td>
-              <td>Canada</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
             </tr>
             <tr>
-              <td>Magazzini Alimentari Riuniti</td>
-              <td>Giovanni Rovelli</td>
-              <td>Italy</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr><tr>
+            <td>
+              <div class="table-time">
+                <span>02 - 04/11</span>
+                <span>Thứ 4 - Thứ 6</span>
+              </div>
+            </td>
+            <td>
+              <div class="table-price">
+                <span class="price-large">4.800.000 VND <small>/người</small></span>
+                <span></span>
+              </div>
+            </td>
+            <td>
+              <div class="table-price">
+                <span class="price-large">4.800.000 VND <small>/người</small></span>
+                <span></span>
+              </div>
+            </td>
+            <td>
+              <div class="table-price">
+                <span class="price-large">4.800.000 VND <small>/người</small></span>
+                <span></span>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
             </tr>
             <tr>
-              <td>North/South</td>
-              <td>Simon Crowther</td>
-              <td>UK</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
             </tr>
             <tr>
-              <td>Paris spécialités</td>
-              <td>Marie Bertrand</td>
-              <td>France</td>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
             </tr>
+
           </table>
         </div>
       </div>
