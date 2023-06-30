@@ -1,5 +1,93 @@
 <template>
   <div class="s__activity">
+    <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'">
+      <div class="s__activity--choose-date">
+        <div class="s__activity--choose-date__category">
+          <div class="s__activity--choose-date__category--tabs">
+            <div class="s__activity--choose-date__category--tabs__item active">
+              Fulltrip
+            </div>
+            <div class="s__activity--choose-date__category--tabs__item">
+              Landtour
+            </div>
+            <div class="s__activity--choose-date__category--tabs__item">
+              JoinIn
+            </div>
+          </div>
+        </div>
+        <div class="s__activity--choose-date__years">
+          <div v-for="(y, index) in listYear" :key="index" class="s__activity--choose-date__years--item"
+               :class="{'active': y.active}">
+            {{ y.name }}
+          </div>
+        </div>
+        <div class="s__activity--choose-date__months">
+          <div v-for="(month, index) in listMonth" :key="index" class="s__activity--choose-date__months--item"
+               :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
+            {{ month.name }}
+          </div>
+        </div>
+        <div class="s__activity--choose-date__tables">
+          <table id="customers">
+            <tr>
+              <th>Company</th>
+              <th>Contact</th>
+              <th>Country</th>
+            </tr>
+            <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Berglunds snabbköp</td>
+              <td>Christina Berglund</td>
+              <td>Sweden</td>
+            </tr>
+            <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+            <tr>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+            </tr>
+            <tr>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+            </tr>
+            <tr>
+              <td>Königlich Essen</td>
+              <td>Philip Cramer</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+            </tr>
+            <tr>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+            </tr>
+            <tr>
+              <td>North/South</td>
+              <td>Simon Crowther</td>
+              <td>UK</td>
+            </tr>
+            <tr>
+              <td>Paris spécialités</td>
+              <td>Marie Bertrand</td>
+              <td>France</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </Modal>
     <div v-if="isFixed" class="s__header--activity">
       <div class="s__container">
         <div class="s__header--activity__wrap">
@@ -29,7 +117,7 @@
               <div class="note">Đặt chỗ trước, thanh toán sau</div>
             </div>
             <div class="s__header--activity__right--button">
-              <a href="#">chọn ngày</a>
+              <a @click="chooseDate()">chọn ngày</a>
             </div>
           </div>
         </div>
@@ -191,7 +279,7 @@
             </div>
             <div class="s__activity--info__right--bottom__description">Đăng ký trước, thanh toán sau</div>
             <div class="s__activity--info__right--bottom__choose-date">
-              <button class="btn btn-choose-date">Chọn ngày</button>
+              <button class="btn btn-choose-date" @click="chooseDate()">Chọn ngày</button>
             </div>
             <div class="s__line"></div>
             <div class="s__activity--info__right--bottom__coupons">
@@ -802,7 +890,99 @@ export default {
         answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
       }
     ],
-    isFixed: false
+    isFixed: false,
+    showChooseDate: false,
+    listYear: [
+      {
+        id: 1,
+        active: false,
+        name: '2022'
+      },
+      {
+        id: 2,
+        active: true,
+        name: '2023'
+      },
+      {
+        id: 3,
+        active: false,
+        name: '2024'
+      }
+    ],
+    listMonth: [
+      {
+        id: 1,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 1'
+      },
+      {
+        id: 2,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 2'
+      },
+      {
+        id: 3,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 3'
+      },
+      {
+        id: 4,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 4'
+      },
+      {
+        id: 5,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 5'
+      },
+      {
+        id: 6,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 6'
+      },
+      {
+        id: 7,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 7'
+      },
+      {
+        id: 8,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 8'
+      },
+      {
+        id: 9,
+        active: false,
+        isDisable: true,
+        name: 'Tháng 9'
+      },
+      {
+        id: 10,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 10'
+      },
+      {
+        id: 11,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 11'
+      },
+      {
+        id: 12,
+        active: true,
+        isDisable: false,
+        name: 'Tháng 12'
+      },
+    ]
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -863,6 +1043,13 @@ export default {
       } else {
         this.isFixed = false
       }
+    },
+    chooseDate() {
+      console.log(1212, this.showChooseDate)
+      this.showChooseDate = true
+    },
+    updateparent(variable) {
+      this.showChooseDate = variable
     }
   }
 }
