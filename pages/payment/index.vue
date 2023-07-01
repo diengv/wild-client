@@ -12,21 +12,30 @@
           <button class="btn-search-coupon">Tìm mã</button>
         </div>
         <div class="s__coupon--wrapper__items">
-          <div v-for="(cop,index) in coupons" class="s__coupon--wrapper__items--item">
-            <div class="s__coupon--wrapper__items--item__left">
+          <div @click="showDetailCouponF()" v-for="(cop,index) in coupons" class="s__coupon--wrapper__items--item">
+            <div class="s__coupon--wrapper__items--item__left" :style="{ 'background-color' : cop.bgStamp ? cop.bgStamp : 'rgba(1, 73, 64, 1)' }">
               <span>Giảm</span>
               <span v-if="cop.price">{{cop.price}}</span>
               <span v-else>{{cop.percent}}</span>
             </div>
             <div class="s__coupon--wrapper__items--item__right">
-              <div class="s__coupon--wrapper__items--item__right--name">
+              <div class="s__coupon--wrapper__items--item__right--name" :style="{color: cop.unconditional ? '#E7E7E7' : ''}">
                 {{ cop.name }}
               </div>
-              <div class="s__coupon--wrapper__items--item__right--detail">
+              <div @click="detailCoupon(cop)" class="s__coupon--wrapper__items--item__right--detail" :style="{color: cop.unconditional ? '#E7E7E7' : '',  cursor: cop.unconditional ? 'no-drop' : 'pointer'}">
                 Điều kiện áp dụng mã
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </Modal>
+
+    <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+           :height="'648px'">
+      <div class="s__coupon--wrapper__detail">
+        <div class="s__coupon--wrapper__detail--header">
+          <div class="net"><img src="~/assets/images/luoi.svg"></div>
         </div>
       </div>
     </Modal>
@@ -352,6 +361,7 @@ export default {
   data: () => ({
     timeCount: moment(60 * 10 * 1000),
     showChooseCoupon: false,
+    showDetailCoupon: false,
     coupons: [
       {
         id: 1,
@@ -359,7 +369,9 @@ export default {
         price: '200K',
         percent: '',
         unconditional: false,
-        aboutToExpire: false
+        aboutToExpire: false,
+        bgStamp: null,
+        bgHeadDetail: '#7dafad',
       },
       {
         id: 2,
@@ -367,7 +379,9 @@ export default {
         price: '',
         percent: '10%',
         unconditional: false,
-        aboutToExpire: false
+        aboutToExpire: false,
+        bgStamp: 'rgba(252, 220, 23, 1)',
+        bgHeadDetail: 'rgb(236,231,205)',
       },
       {
         id: 3,
@@ -375,7 +389,9 @@ export default {
         price: '200k',
         percent: '',
         unconditional: false,
-        aboutToExpire: true
+        aboutToExpire: true,
+        bgStamp: 'rgba(220, 80, 66, 1)',
+        bgHeadDetail: 'rgb(211,174,170)',
       },
       {
         id: 4,
@@ -383,7 +399,9 @@ export default {
         price: '200k',
         percent: '',
         unconditional: true,
-        aboutToExpire: false
+        aboutToExpire: false,
+        bgStamp: '#E7E7E7',
+        bgHeadDetail: '',
       },
       {
         id: 5,
@@ -391,7 +409,9 @@ export default {
         price: '',
         percent: '10%',
         unconditional: true,
-        aboutToExpire: false
+        aboutToExpire: false,
+        bgStamp: '#E7E7E7',
+        bgHeadDetail: '',
       },
     ]
   }),
@@ -414,6 +434,17 @@ export default {
     },
     updateparent(variable) {
       this.showChooseCoupon = variable
+    },
+    updateparentDetailCoupon(variable) {
+      this.showDetailCoupon = variable
+    },
+    detailCoupon(coupon){
+      if (!coupon.unconditional){
+        console.log(1234,coupon)
+      }
+    },
+    showDetailCouponF(){
+      this.showDetailCoupon = true
     }
   }
 }
