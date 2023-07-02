@@ -5398,8 +5398,23 @@ button {
     width: 100%;
     position: relative;
     height: 104px;
-    background: red;
     border-radius: 10px 10px 0 0;
+    &__stamp{
+      width: 114px;
+      height: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+      background-image: linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(45deg, #fff 50%, transparent 50%), linear-gradient(-135deg, #fff 50%, transparent 50%), linear-gradient(-45deg, #fff 50%, transparent 50%);
+      background-color: #014940;
+      background-position: top left, top left, top right, top right;
+      background-size: 8px 8px;
+      background-repeat: repeat-y;
+      display: flex;
+      justify-content: center;
+      margin-right: 16px;
+    }
   }
 }
 

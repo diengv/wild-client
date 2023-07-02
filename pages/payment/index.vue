@@ -34,8 +34,13 @@
     <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'" :border-radius="'10px'"
            :height="'648px'">
       <div class="s__coupon--wrapper__detail">
-        <div class="s__coupon--wrapper__detail--header">
+        <div class="s__coupon--wrapper__detail--header" :style="{'background': bgHeaderDetail}">
           <div class="net"><img src="~/assets/images/luoi.svg"></div>
+          <div class="s__coupon--wrapper__detail--header__stamp">
+            <span>Giảm</span>
+            <span v-if="cop.price">{{cop.price}}</span>
+            <span v-else>{{cop.percent}}</span>
+          </div>
         </div>
       </div>
     </Modal>
@@ -413,7 +418,8 @@ export default {
         bgStamp: '#E7E7E7',
         bgHeadDetail: '',
       },
-    ]
+    ],
+    bgHeaderDetail: '#C4FDF5'
   }),
   computed: {
     minute: function () {
