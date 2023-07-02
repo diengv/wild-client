@@ -5413,7 +5413,35 @@ button {
       background-repeat: repeat-y;
       display: flex;
       justify-content: center;
-      margin-right: 16px;
+      z-index: 999999;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 64px;
+      span {
+        display: flex;
+
+        &:first-child {
+          color: var(--white, #FFF);
+          text-align: center;
+          font-size: 16px;
+          font-family: Source Sans Pro;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+        }
+
+        &:last-child {
+          color: var(--white, #FFF);
+          text-align: center;
+          font-size: 29px;
+          font-family: Source Sans Pro;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          margin-top: -10px;
+        }
+      }
     }
   }
 }
@@ -5424,7 +5452,7 @@ button {
   top: 0;
   left: 0;
   display: flex;
-
+  z-index: 1;
   img {
     width: 100%;
     height: auto;

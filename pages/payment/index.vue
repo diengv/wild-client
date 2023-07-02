@@ -38,8 +38,7 @@
           <div class="net"><img src="~/assets/images/luoi.svg"></div>
           <div class="s__coupon--wrapper__detail--header__stamp">
             <span>Giảm</span>
-            <span v-if="cop.price">{{cop.price}}</span>
-            <span v-else>{{cop.percent}}</span>
+            <span>100k</span>
           </div>
         </div>
       </div>
