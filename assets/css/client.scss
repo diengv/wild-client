@@ -4956,11 +4956,11 @@ button {
       top: 32px;
       right: 50px;
       cursor: pointer;
+      z-index: 999;
     }
 
     &__content {
       width: 100%;
-      padding: 0 50px 48px 70px;
     }
   }
 }
@@ -5241,8 +5241,7 @@ button {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px 0px;
-
+  padding: 24px 50px 48px 70px;
   &__title {
     color: #000;
     font-size: 29px;
@@ -5351,6 +5350,7 @@ button {
       width: calc(100% - 114px - 16px);
       flex-direction: column;
       justify-content: center;
+
       &--name {
         color: var(--rick-back, #121212);
         font-size: 16px;
@@ -5360,7 +5360,8 @@ button {
         line-height: normal;
         margin-bottom: 2px;
       }
-      &--detail{
+
+      &--detail {
         color: var(--greenie-pine, #03483F);
         font-size: 14px;
         font-family: Source Sans Pro;
@@ -5372,7 +5373,8 @@ button {
     }
   }
 }
-.about-to-expire{
+
+.about-to-expire {
   color: var(--ji-tango-camp, #DC5042);
   text-align: center;
   font-size: 12px;
@@ -5385,4 +5387,76 @@ button {
   padding: 1px 8px;
   width: 76px;
   margin-bottom: 4px;
+}
+
+.s__coupon--wrapper__detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &--header {
+    width: 100%;
+    position: relative;
+    height: 104px;
+    border-radius: 10px 10px 0 0;
+    &__stamp{
+      width: 114px;
+      height: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+      background-image: linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(45deg, #fff 50%, transparent 50%), linear-gradient(-135deg, #fff 50%, transparent 50%), linear-gradient(-45deg, #fff 50%, transparent 50%);
+      background-color: #014940;
+      background-position: top left, top left, top right, top right;
+      background-size: 8px 8px;
+      background-repeat: repeat-y;
+      display: flex;
+      justify-content: center;
+      z-index: 999999;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 64px;
+      span {
+        display: flex;
+
+        &:first-child {
+          color: var(--white, #FFF);
+          text-align: center;
+          font-size: 16px;
+          font-family: Source Sans Pro;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+        }
+
+        &:last-child {
+          color: var(--white, #FFF);
+          text-align: center;
+          font-size: 29px;
+          font-family: Source Sans Pro;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          margin-top: -10px;
+        }
+      }
+    }
+  }
+}
+
+.net {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 1;
+  img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    border-radius: 10px 10px 0 0;
+  }
 }
