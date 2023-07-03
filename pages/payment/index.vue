@@ -12,17 +12,20 @@
           <button class="btn-search-coupon">Tìm mã</button>
         </div>
         <div class="s__coupon--wrapper__items">
-          <div @click="showDetailCouponF()" v-for="(cop,index) in coupons" class="s__coupon--wrapper__items--item">
-            <div class="s__coupon--wrapper__items--item__left" :style="{ 'background-color' : cop.bgStamp ? cop.bgStamp : 'rgba(1, 73, 64, 1)' }">
+          <div v-for="(cop,index) in coupons" class="s__coupon--wrapper__items--item">
+            <div class="s__coupon--wrapper__items--item__left"
+                 :style="{ 'background-color' : cop.bgStamp ? cop.bgStamp : 'rgba(1, 73, 64, 1)' }">
               <span>Giảm</span>
-              <span v-if="cop.price">{{cop.price}}</span>
-              <span v-else>{{cop.percent}}</span>
+              <span v-if="cop.price">{{ cop.price }}</span>
+              <span v-else>{{ cop.percent }}</span>
             </div>
             <div class="s__coupon--wrapper__items--item__right">
-              <div class="s__coupon--wrapper__items--item__right--name" :style="{color: cop.unconditional ? '#E7E7E7' : ''}">
+              <div class="s__coupon--wrapper__items--item__right--name"
+                   :style="{color: cop.unconditional ? '#E7E7E7' : ''}">
                 {{ cop.name }}
               </div>
-              <div @click="detailCoupon(cop)" class="s__coupon--wrapper__items--item__right--detail" :style="{color: cop.unconditional ? '#E7E7E7' : '',  cursor: cop.unconditional ? 'no-drop' : 'pointer'}">
+              <div @click="detailCoupon(cop)" class="s__coupon--wrapper__items--item__right--detail"
+                   :style="{color: cop.unconditional ? '#E7E7E7' : '',  cursor: cop.unconditional ? 'no-drop' : 'pointer'}">
                 Điều kiện áp dụng mã
               </div>
             </div>
@@ -31,7 +34,8 @@
       </div>
     </Modal>
 
-    <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+    <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'"
+           :border-radius="'10px'"
            :height="'648px'">
       <div class="s__coupon--wrapper__detail">
         <div class="s__coupon--wrapper__detail--header" :style="{'background': bgHeaderDetail}">
@@ -39,6 +43,26 @@
           <div class="s__coupon--wrapper__detail--header__stamp">
             <span>Giảm</span>
             <span>100k</span>
+          </div>
+        </div>
+        <div class="s__coupon--wrapper__detail--content">
+          <div class="s__coupon--wrapper__detail--content__title">
+            COVIDEND2021
+          </div>
+          <div class="s__coupon--wrapper__detail--content__description">
+            Giảm 200K cho 20 đơn hàng đầu tiên
+          </div>
+          <p><strong>Điều kiện sử dụng:</strong></p>
+          <p>- Áp dụng cho một số sản phẩm thuộc chủ đề <strong>Camping in the Wilderness.</strong></p>
+          <p>- Mã <strong>COVIDEND2022</strong> giảm <strong>200K</strong> cho đơn hàng có giá trị trên <strong>2.000.000 VND</strong>.</p>
+          <p>- Mã có <strong>20</strong> lần sử dụng.</p>
+          <p>- Mã chỉ áp dụng khi thanh toán bằng phương thức <strong>Thanh toán 100%</strong> và theo cổng thanh toán <strong>Chuyển
+            khoản.</strong></p>
+          <p>- Mã giảm giá áp dụng cho đặt chỗ từ ngày <strong>01/04/2022</strong> đến ngày <strong>30/04/2022.</strong></p>
+          <p>- Mã không được khôi phục vì bất cứ lý do nào</p>
+          <p>- Mã sẽ hết hạn khi giá trị sử dụng bằng hoặc vượt quá <strong>4.000.000 VND.</strong></p>
+          <div class="s__coupon--wrapper__detail--content__btn">
+            <button>Sử dụng mã</button>
           </div>
         </div>
       </div>
@@ -96,9 +120,9 @@
               </div>
               <div class="s__payment--content__form--item__input">
                 <div class="btn-choose-number">
-                  <span class="minus"><img src="~/assets/images/minus-active.svg"></span>
-                  <span class="number">01</span>
-                  <span class="plus"><img src="~/assets/images/plus-active.svg"></span>
+                  <span @click="minusAdult()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
+                  <span class="number">{{adult}}</span>
+                  <span @click="plusAdult()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
                 </div>
                 <div class="btn-note-text">5.000.000 VND/người</div>
               </div>
@@ -109,9 +133,9 @@
               </div>
               <div class="s__payment--content__form--item__input">
                 <div class="btn-choose-number">
-                  <span class="minus"><img src="~/assets/images/minus-active.svg"></span>
-                  <span class="number">01</span>
-                  <span class="plus"><img src="~/assets/images/plus-active.svg"></span>
+                  <span @click="minusChildren()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
+                  <span class="number">{{children}}</span>
+                  <span @click="plusChildren()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
                 </div>
                 <div class="btn-note-text">2.000.000 VND/người</div>
               </div>
@@ -418,7 +442,9 @@ export default {
         bgHeadDetail: '',
       },
     ],
-    bgHeaderDetail: '#C4FDF5'
+    bgHeaderDetail: '#C4FDF5',
+    adult: 1,
+    children: 0
   }),
   computed: {
     minute: function () {
@@ -443,13 +469,31 @@ export default {
     updateparentDetailCoupon(variable) {
       this.showDetailCoupon = variable
     },
-    detailCoupon(coupon){
-      if (!coupon.unconditional){
-        console.log(1234,coupon)
+    detailCoupon(coupon) {
+      if (!coupon.unconditional) {
+        this.showDetailCoupon = true
+      }else {
+
       }
     },
-    showDetailCouponF(){
-      this.showDetailCoupon = true
+    showDetailCouponF() {
+
+    },
+    minusAdult(){
+      if (this.adult > 1){
+        this.adult = this.adult - 1
+      }
+    },
+    plusAdult(){
+        this.adult = this.adult + 1
+    },
+    minusChildren(){
+      if (this.adult > 1){
+        this.adult = this.adult - 1
+      }
+    },
+    plusChildren(){
+      this.children = this.children + 1
     }
   }
 }

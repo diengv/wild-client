@@ -5242,6 +5242,7 @@ button {
   display: flex;
   flex-direction: column;
   padding: 24px 50px 48px 70px;
+
   &__title {
     color: #000;
     font-size: 29px;
@@ -5399,7 +5400,8 @@ button {
     position: relative;
     height: 104px;
     border-radius: 10px 10px 0 0;
-    &__stamp{
+
+    &__stamp {
       width: 114px;
       height: 64px;
       display: flex;
@@ -5418,6 +5420,7 @@ button {
       left: 50%;
       transform: translateX(-50%);
       top: 64px;
+
       span {
         display: flex;
 
@@ -5453,10 +5456,87 @@ button {
   left: 0;
   display: flex;
   z-index: 1;
+
   img {
     width: 100%;
     height: auto;
     display: flex;
     border-radius: 10px 10px 0 0;
+  }
+}
+
+.s__coupon--wrapper__detail--content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 60px 40px 60px;
+
+  &__title {
+    color: var(--greenie-pine, #03483F);
+    text-align: center;
+    font-size: 29px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+
+  &__description {
+    color: #000;
+    text-align: center;
+    font-size: 16px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  p {
+    color: #000;
+    font-size: 16px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+
+    strong {
+      color: #000;
+      font-size: 16px;
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    display: flex;
+    margin-top: 28px;
+
+    button {
+      border-radius: 5px;
+      background: var(--greenie-pine, #03483F);
+      width: 128px;
+      color: #FFF;
+      text-align: center;
+      font-size: 16px;
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      text-transform: uppercase;
+      padding: 10px 20px;
+    }
   }
 }

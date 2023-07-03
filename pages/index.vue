@@ -19,31 +19,12 @@
           </div>
         </div>
         <div class="s__slider--main__thumbnail">
-          <div class="s__slider--main__thumbnail--item">
+          <div v-for="(slider, index) in sliders" :key="index" class="s__slider--main__thumbnail--item"
+               :class="{'active': (index + 1) === this.activeSlider}">
             <div class="s__opacity"></div>
-            <img src="~/assets/images/thumbnail_1.jpg">
+            <img :src="slider.thumbnail">
           </div>
-          <div class="s__slider--main__thumbnail--item">
-            <div class="s__opacity"></div>
-            <img src="~/assets/images/thumbnail_1.jpg">
-          </div>
-          <div class="s__slider--main__thumbnail--item active">
-            <div class="s__opacity"></div>
-            <img src="~/assets/images/thumbnail_1.jpg">
-          </div>
-          <div class="s__slider--main__thumbnail--item">
-            <div class="s__opacity"></div>
-            <img src="~/assets/images/thumbnail_1.jpg">
-          </div>
-          <div class="s__slider--main__thumbnail--item">
-            <div class="s__opacity"></div>
-            <img src="~/assets/images/thumbnail_1.jpg">
-          </div>
-          <div class="s__slider--main__thumbnail--item">
-            <div class="s__opacity"></div>
-            <img src="~/assets/images/thumbnail_1.jpg">
-          </div>
-          <div class="s__slider--main__thumbnail--next">
+          <div @click="moveSlider(1)" class="s__slider--main__thumbnail--next">
             <img src="~/assets/images/sl-next.svg">
           </div>
         </div>
@@ -988,18 +969,40 @@ export default {
         id: 1,
         thumbnail: '/assets/images/thumbnail.png',
         banner: '/assets/images/banner.jpg',
+        active: false
       },
       {
         id: 2,
         thumbnail: '/assets/images/thumbnail.png',
         banner: '/assets/images/banner.jpg',
+        active: true
       },
       {
         id: 3,
         thumbnail: '/assets/images/thumbnail.png',
         banner: '/assets/images/banner.jpg',
+        active: false
+      },
+      {
+        id: 4,
+        thumbnail: '/assets/images/thumbnail.png',
+        banner: '/assets/images/banner.jpg',
+        active: false
+      },
+      {
+        id: 5,
+        thumbnail: '/assets/images/thumbnail.png',
+        banner: '/assets/images/banner.jpg',
+        active: false
+      },
+      {
+        id: 6,
+        thumbnail: '/assets/images/thumbnail.png',
+        banner: '/assets/images/banner.jpg',
+        active: false
       }
-    ]
+    ],
+    activeSlider: 1
   }),
   methods: {
     imagesReturn(img) {
@@ -1007,6 +1010,13 @@ export default {
     },
     slideTo(val) {
       this.currentSlide = val
+    },
+    moveSlider(amount) {
+      let newActive
+      const newIndex = this.activeSlider + amount
+      if (newIndex > this.sliders.length) newActive = 1
+      if (newIndex === 0) newActive = this.sliders
+      this.activeSlider = newActive || newIndex
     },
   },
 }
