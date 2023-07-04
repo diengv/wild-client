@@ -20,7 +20,7 @@
         </div>
         <div class="s__slider--main__thumbnail">
           <div v-for="(slider, index) in sliders" :key="index" class="s__slider--main__thumbnail--item"
-               :class="{'active': (index + 1) === this.activeSlider}">
+               :class="{'active': (index + 1) === activeSlider}">
             <div class="s__opacity"></div>
             <img :src="slider.thumbnail">
           </div>
