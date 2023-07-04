@@ -1,3 +1,10 @@
+
+.is-desktop {
+  display: block;
+}
+.is-mobile {
+  display: none;
+}
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -5540,3 +5547,4 @@ button {
     }
   }
 }
+@import "responsive";

@@ -11,7 +11,7 @@
       </div>
       <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
            @click="hasBoxSearch()">
-        <span v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
+        <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
         <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
         <div v-if="showSearch && !activeNav" class="s__header--search__text">
           <span>TÌM KIẾM</span>
@@ -23,10 +23,12 @@
       </div>
       <div class="s__header--lang">
         <div v-if="!showSearch" class="s__header--lang__left">
-          TIẾNG VIỆT / VND
+          <span class="is-desktop">TIẾNG VIỆT / VND</span>
+          <span class="is-mobile">VN</span>
         </div>
         <div v-if="!showSearch" class="s__header--lang__right">
-          +84 886 677 950
+          <span class="is-desktop">+84 886 677 950</span>
+          <span class="is-mobile"><img class="img-mes" src="~assets/images/icon-messenger.svg"></span>
         </div>
         <div v-if="activeNav" class="s__header--lang__right">
           <img class="icon-close" @click="closeNav()" src="~/assets/images/icon-close.svg">
@@ -653,7 +655,8 @@ export default {
     },
     handleScroll() {
       // Your scroll handling here
-      if (window.scrollY > 95) {
+      console.log(1234, window.scrollY )
+      if (window.scrollY > 30) {
         this.isFixed = true
       } else {
         this.isFixed = false
