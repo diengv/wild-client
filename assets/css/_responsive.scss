@@ -398,4 +398,14 @@
   .s__sitemap--item{
     width: 100%;
   }
+  .s__header--logo a img{
+    max-width: 49px
+  }
+  .s__header--logo {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
 }
