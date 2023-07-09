@@ -4,27 +4,31 @@
       <div class="s__activity--choose-date">
         <div class="s__activity--choose-date__category">
           <div class="s__activity--choose-date__category--tabs">
-            <div class="s__activity--choose-date__category--tabs__item active">
-              Fulltrip
-            </div>
-            <div class="s__activity--choose-date__category--tabs__item">
-              Landtour
-            </div>
-            <div class="s__activity--choose-date__category--tabs__item">
-              JoinIn
+            <div @click="changeCategory(category)" v-for="(category, index) in categories" :key="index" class="s__activity--choose-date__category--tabs__item" :class="{'active': category.active}">
+              {{ category.name }}
             </div>
           </div>
         </div>
         <div class="s__activity--choose-date__years">
-          <div v-for="(y, index) in listYear" :key="index" class="s__activity--choose-date__years--item"
-               :class="{'active': y.active}">
-            {{ y.name }}
-          </div>
+
         </div>
-        <div class="s__activity--choose-date__months">
-          <div v-for="(month, index) in listMonth" :key="index" class="s__activity--choose-date__months--item"
-               :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
-            {{ month.name }}
+        <div class="s__activity--choose-date__years__months">
+          <div class="__years">
+            <div @click="changeYear(y,index)" v-for="(y, index) in listYear" :key="index" class="__years--item"
+                 :class="{'active': y.active, 'p-left': pLeft}">
+              {{ y.name }}
+            </div>
+          </div>
+          <div class="__months">
+            <div class="s__activity--choose-date__months">
+              <div v-for="(month, index) in listMonth" :key="index" class="s__activity--choose-date__months--item"
+                   :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
+                {{ month.name }}
+              </div>
+              <div class="btn-arrow-right-month">
+                <img src="~/assets/images/arrow-right-month.svg">
+              </div>
+            </div>
           </div>
         </div>
         <div class="s__activity--choose-date__tables">
@@ -1173,12 +1177,12 @@ export default {
     listYear: [
       {
         id: 1,
-        active: false,
+        active: true,
         name: '2022'
       },
       {
         id: 2,
-        active: true,
+        active: false,
         name: '2023'
       },
       {
@@ -1260,7 +1264,20 @@ export default {
         isDisable: false,
         name: 'Tháng 12'
       },
-    ]
+    ],
+    categories:[
+      {
+        id: 1,
+        name: 'Land tour',
+        active: true
+      },
+      {
+        id: 2,
+        name: 'JoinIN',
+        active: false
+      }
+    ],
+    pLeft: false
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1328,6 +1345,29 @@ export default {
     },
     updateparent(variable) {
       this.showChooseDate = variable
+    },
+    changeCategory(category){
+      this.categories.forEach((val) => {
+        if (val.id === category.id){
+          val.active = true
+        }else {
+          val.active = false
+        }
+      })
+    },
+    changeYear(y,index){
+      this.listYear.forEach((val) => {
+        if ((index + 1) === this.listYear.length){
+          this.pLeft = true
+        }else {
+          this.pLeft = false
+        }
+        if (val.id === y.id){
+          val.active = true
+        }else {
+          val.active = false
+        }
+      })
     }
   }
 }

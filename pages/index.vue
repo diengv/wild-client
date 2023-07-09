@@ -19,12 +19,12 @@
           </div>
         </div>
         <div class="s__slider--main__thumbnail">
-          <div v-for="(slider, index) in sliders" :key="index" class="s__slider--main__thumbnail--item"
+          <div v-for="(slider, index) in slidersShow" :key="index" class="s__slider--main__thumbnail--item"
                :class="{'active': (index + 1) === activeSlider}">
             <div class="s__opacity"></div>
             <img :src="slider.thumbnail">
           </div>
-          <div @click="moveSlider(1)" class="s__slider--main__thumbnail--next">
+          <div @click="moveSlider(1)" class="s__slider--main__thumbnail--next" :class="{'small-screen': smallScreen}">
             <img src="~/assets/images/sl-next.svg">
           </div>
         </div>
@@ -1177,6 +1177,7 @@ import 'vue3-carousel/dist/carousel.css'
 
 export default {
   name: "index",
+  props:['pageHeight'],
   components: {
     Carousel,
     Slide,
@@ -1222,12 +1223,61 @@ export default {
         active: false
       }
     ],
-    activeSlider: 1
+    activeSlider: 1,
+    pageHeight: 0,
+    slidersShow:[],
+    smallScreen: false
   }),
   beforeMount() {
     this.changer()
   },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+    this.pageHeight = window.innerHeight
+    if (this.pageHeight <= 768){
+      this.slidersShow = []
+      this.sliders.forEach((val,index) => {
+        if (index <= 3){
+          this.slidersShow.push(val)
+        }
+      })
+
+      this.smallScreen = true
+    }else {
+      this.smallScreen = false
+      this.slidersShow = []
+      this.sliders.forEach((val,index) => {
+        if (index <= 5){
+          this.slidersShow.push(val)
+        }
+      })
+    }
+    console.log(1235,  this.slidersShow)
+  },
   methods: {
+    onResize() {
+      this.pageHeight = window.innerHeight
+      if (this.pageHeight <= 768){
+        this.slidersShow = []
+        this.sliders.forEach((val,index) => {
+          if (index <= 3){
+            this.slidersShow.push(val)
+          }
+        })
+
+        this.smallScreen = true
+      }else {
+        this.smallScreen = false
+        this.slidersShow = []
+        this.sliders.forEach((val,index) => {
+          if (index <= 5){
+            this.slidersShow.push(val)
+          }
+        })
+      }
+    },
     imagesReturn(img) {
       return require(img)
     },
@@ -1237,16 +1287,16 @@ export default {
     moveSlider(amount) {
       let newActive
       const newIndex = this.activeSlider + amount
-      if (newIndex > this.sliders.length) newActive = 1
-      if (newIndex === 0) newActive = this.sliders
+      if (newIndex > this.slidersShow.length) newActive = 1
+      if (newIndex === 0) newActive = this.slidersShow
       this.activeSlider = newActive || newIndex
     },
     changer: function () {
       setInterval(() => {
         let newActive
         const newIndex = this.activeSlider + 1
-        if (newIndex > this.sliders.length) newActive = 1
-        if (newIndex === 0) newActive = this.sliders
+        if (newIndex > this.slidersShow.length) newActive = 1
+        if (newIndex === 0) newActive = this.slidersShow
         this.activeSlider = newActive || newIndex
       }, 3000);
     },

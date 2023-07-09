@@ -183,12 +183,13 @@
         <div class="s__header--box-nav__right">
           <div v-if="rightNavLocation" class="s__header--box-nav__right--location">
             <div class="s__header--box-nav__right--location-wrap-items" v-if="!rightNavLocationItemDetail">
-              <div @click="showDetailLocation()" v-for="(country,index) in locationCountries" :key="index" class="s__header--box-nav__right--location-wrap-items__item">
+              <div @click="showDetailLocation()" v-for="(country,index) in locationCountries" :key="index"
+                   class="s__header--box-nav__right--location-wrap-items__item">
                 <div class="img-item">
                   <img :src="country.thumbnail">
                 </div>
                 <div class="title-item">
-                 {{ country.name }}
+                  {{ country.name }}
                 </div>
               </div>
             </div>
@@ -535,7 +536,7 @@ export default {
       {title: 'Second', description: 'The second item.'},
       {title: 'Second', description: 'The second item.'},
     ],
-    locationCountries:[
+    locationCountries: [
       {
         id: 1,
         thumbnail: '/assets/images/banner.jpg',
@@ -586,7 +587,8 @@ export default {
         thumbnail: '/assets/images/banner.jpg',
         name: "Georgia",
       }
-    ]
+    ],
+
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -595,7 +597,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
-    console.log(1122, this.isHome)
+
   },
   methods: {
     hasBoxSearch() {
@@ -699,7 +701,7 @@ export default {
     },
     handleScroll() {
       // Your scroll handling here
-      console.log(1234, window.scrollY )
+      console.log(1234, window.scrollY)
       if (window.scrollY > 90) {
         this.isFixed = true
       } else {
