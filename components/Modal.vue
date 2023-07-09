@@ -21,7 +21,6 @@ export default {
   watch: {
     show: function (value) {
       this.showModal = value
-      console.log(777, this.showModal)
     }
   },
   data: () => ({

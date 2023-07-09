@@ -1,10 +1,12 @@
 <template>
   <div class="s__activity">
-    <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'" :overflow-y="'scroll'">
+    <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'"
+           :overflow-y="'scroll'">
       <div class="s__activity--choose-date">
         <div class="s__activity--choose-date__category">
           <div class="s__activity--choose-date__category--tabs">
-            <div @click="changeCategory(category)" v-for="(category, index) in categories" :key="index" class="s__activity--choose-date__category--tabs__item" :class="{'active': category.active}">
+            <div @click="changeCategory(category)" v-for="(category, index) in categories" :key="index"
+                 class="s__activity--choose-date__category--tabs__item" :class="{'active': category.active}">
               {{ category.name }}
             </div>
           </div>
@@ -20,13 +22,22 @@
             </div>
           </div>
           <div class="__months">
-            <div class="s__activity--choose-date__months">
+            <div v-if="!monthRight" class="opacity-arrow-right-month">
+              <img src="~/assets/images/opacity-right-month.svg">
+            </div>
+            <div v-if="!monthLeft" class="opacity-arrow-left-month">
+              <img src="~/assets/images/opacity-left-month.svg">
+            </div>
+            <div class="s__activity--choose-date__months" :class="{'month-flex-end': monthRight}">
               <div v-for="(month, index) in listMonth" :key="index" class="s__activity--choose-date__months--item"
                    :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
                 {{ month.name }}
               </div>
-              <div class="btn-arrow-right-month">
+              <div @click="showMonthRight()" v-if="!monthRight" class="btn-arrow-right-month">
                 <img src="~/assets/images/arrow-right-month.svg">
+              </div>
+              <div @click="showMonthLeft()" v-if="!monthLeft && monthRight" class="btn-arrow-left-month">
+                <img src="~/assets/images/arrow-left-month.svg">
               </div>
             </div>
           </div>
@@ -94,7 +105,9 @@
                   <span>5.000.000 VND</span>
                 </div>
               </td>
-              <td><button class="btn-book">Đặt chỗ</button></td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
             </tr>
             <tr>
               <td>
@@ -121,7 +134,9 @@
                   <span>5.000.000 VND</span>
                 </div>
               </td>
-              <td><button class="btn-book">Đặt chỗ</button></td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
             </tr>
             <tr>
               <td>
@@ -148,7 +163,9 @@
                   <span>5.000.000 VND</span>
                 </div>
               </td>
-              <td><button class="btn-book">Đặt chỗ</button></td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
             </tr>
             <tr>
               <td>
@@ -175,7 +192,63 @@
                   <span>5.000.000 VND</span>
                 </div>
               </td>
-              <td><button class="btn-book">Đặt chỗ</button></td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
             </tr>
             <tr>
               <td>
@@ -231,59 +304,6 @@
               </td>
               <td></td>
             </tr>
-            <tr>
-              <td>
-                <div class="table-time">
-                  <span>02 - 04/11</span>
-                  <span>Thứ 4 - Thứ 6</span>
-                </div>
-              </td>
-              <td>
-                <div class="table-price">
-                  <span class="price-large">4.800.000 VND <small>/người</small></span>
-                  <span></span>
-                </div>
-              </td>
-              <td>
-                <div class="table-price">
-                  <span class="price-large">4.800.000 VND <small>/người</small></span>
-                  <span></span>
-                </div>
-              </td>
-              <td>
-                <div class="table-price">
-                  <span class="price-large">4.800.000 VND <small>/người</small></span>
-                  <span></span>
-                </div>
-              </td>
-              <td></td>
-            </tr><tr>
-            <td>
-              <div class="table-time">
-                <span>02 - 04/11</span>
-                <span>Thứ 4 - Thứ 6</span>
-              </div>
-            </td>
-            <td>
-              <div class="table-price">
-                <span class="price-large">4.800.000 VND <small>/người</small></span>
-                <span></span>
-              </div>
-            </td>
-            <td>
-              <div class="table-price">
-                <span class="price-large">4.800.000 VND <small>/người</small></span>
-                <span></span>
-              </div>
-            </td>
-            <td>
-              <div class="table-price">
-                <span class="price-large">4.800.000 VND <small>/người</small></span>
-                <span></span>
-              </div>
-            </td>
-            <td></td>
-          </tr>
             <tr>
               <td>
                 <div class="table-time">
@@ -370,6 +390,7 @@
         </div>
       </div>
     </Modal>
+    <LibraryImage @clearLibrary="updateparentLibrary" :show="showLibrary"></LibraryImage>
     <div v-if="isFixed" class="s__header--activity">
       <div class="s__container">
         <div class="s__header--activity__wrap">
@@ -439,7 +460,7 @@
         <span class="s__activity--level__help"><img src="~/assets/images/icon-helps.svg"></span>
       </div>
       <div class="s__activity--view__all">
-        <a href="#">Xem tất cả hình ảnh</a>
+        <a @click="showLibraryModal()">Xem tất cả hình ảnh</a>
       </div>
       <div class="s__activity--view__images">
         <div class="s__activity--view__images--left">
@@ -1098,10 +1119,12 @@
 import {Carousel, Slide, Navigation} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
+import LibraryImage from "../../components/LibraryImage";
 
 export default {
   name: "index",
   components: {
+    LibraryImage,
     Carousel,
     Slide,
     Navigation
@@ -1174,6 +1197,7 @@ export default {
     ],
     isFixed: false,
     showChooseDate: false,
+    showLibrary: false,
     listYear: [
       {
         id: 1,
@@ -1265,7 +1289,7 @@ export default {
         name: 'Tháng 12'
       },
     ],
-    categories:[
+    categories: [
       {
         id: 1,
         name: 'Land tour',
@@ -1277,7 +1301,9 @@ export default {
         active: false
       }
     ],
-    pLeft: false
+    pLeft: false,
+    monthLeft: false,
+    monthRight: false,
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1346,28 +1372,42 @@ export default {
     updateparent(variable) {
       this.showChooseDate = variable
     },
-    changeCategory(category){
+    updateparentLibrary(variable) {
+      this.showLibrary = variable
+    },
+    changeCategory(category) {
       this.categories.forEach((val) => {
-        if (val.id === category.id){
+        if (val.id === category.id) {
           val.active = true
-        }else {
+        } else {
           val.active = false
         }
       })
     },
-    changeYear(y,index){
+    changeYear(y, index) {
       this.listYear.forEach((val) => {
-        if ((index + 1) === this.listYear.length){
+        if ((index + 1) === this.listYear.length) {
           this.pLeft = true
-        }else {
+        } else {
           this.pLeft = false
         }
-        if (val.id === y.id){
+        if (val.id === y.id) {
           val.active = true
-        }else {
+        } else {
           val.active = false
         }
       })
+    },
+    showMonthRight() {
+      this.monthRight = true
+      this.monthLeft = false
+    },
+    showMonthLeft() {
+      this.monthRight = false
+      this.monthLeft = true
+    },
+    showLibraryModal() {
+      this.showLibrary = true
     }
   }
 }
