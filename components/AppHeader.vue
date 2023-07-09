@@ -183,20 +183,12 @@
         <div class="s__header--box-nav__right">
           <div v-if="rightNavLocation" class="s__header--box-nav__right--location">
             <div class="s__header--box-nav__right--location-wrap-items" v-if="!rightNavLocationItemDetail">
-              <div @click="showDetailLocation()" class="s__header--box-nav__right--location-wrap-items__item">
+              <div @click="showDetailLocation()" v-for="(country,index) in locationCountries" :key="index" class="s__header--box-nav__right--location-wrap-items__item">
                 <div class="img-item">
-                  <img src="~/assets/images/vn.png">
+                  <img :src="country.thumbnail">
                 </div>
                 <div class="title-item">
-                  Việt Nam
-                </div>
-              </div>
-              <div class="s__header--box-nav__right--location-wrap-items__item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Việt Nam
+                 {{ country.name }}
                 </div>
               </div>
             </div>
@@ -542,6 +534,58 @@ export default {
       {title: 'Second', description: 'The second item.'},
       {title: 'Second', description: 'The second item.'},
       {title: 'Second', description: 'The second item.'},
+    ],
+    locationCountries:[
+      {
+        id: 1,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Việt Nam",
+      },
+      {
+        id: 2,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Indonesia",
+      },
+      {
+        id: 3,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Thái Lan",
+      },
+      {
+        id: 4,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Philippines",
+      },
+      {
+        id: 5,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Ấn Độ",
+      },
+      {
+        id: 6,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Nepal",
+      },
+      {
+        id: 7,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Mông Cổ",
+      },
+      {
+        id: 8,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Pakistan",
+      },
+      {
+        id: 9,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Kyrgyzstan",
+      },
+      {
+        id: 10,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Georgia",
+      }
     ]
   }),
   beforeMount() {
@@ -656,7 +700,7 @@ export default {
     handleScroll() {
       // Your scroll handling here
       console.log(1234, window.scrollY )
-      if (window.scrollY > 30) {
+      if (window.scrollY > 90) {
         this.isFixed = true
       } else {
         this.isFixed = false

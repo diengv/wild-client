@@ -490,14 +490,14 @@ body {
         display: flex;
 
         &-wrap-items {
-          padding: 48px 100px 86px 100px;
+          padding: 48px 68px 86px 100px;
           width: 100%;
           max-width: 100%;
           display: flex;
           flex-wrap: wrap;
           gap: 16px;
           margin-bottom: 32px;
-          justify-content: center;
+          justify-content: flex-start;
 
           > * {
             flex: 0 1 230px;
