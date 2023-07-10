@@ -5737,6 +5737,7 @@ button {
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .s__library--images {
@@ -5762,6 +5763,7 @@ button {
   flex-direction: column;
   margin: 0 auto;
   margin-top: 80px;
+
   &__count {
     width: 100%;;
     display: flex;
@@ -5776,27 +5778,85 @@ button {
     line-height: 24px;
   }
 }
-.s__library--content__image{
+
+.s__library--content__image {
   width: 780px;
   max-width: 780px;
   margin: 0 auto;
   max-height: 416px;
   height: 416px;
-  background: red;
   margin-top: 32px;
   position: relative;
-  &--pre{
+
+  &--wrap {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    position: relative;
+  }
+
+  &--pre {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     left: -80px;
+    cursor: pointer;
   }
-  img.img-main-lib{
+
+  &--next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -80px;
+    cursor: pointer;
+  }
+
+  img.img-main-lib {
     position: absolute;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+}
+
+.s__library--content__thumnails {
+  width: 100%;
+  display: flex;
+  overflow-x: hidden;
+  margin-top: 48px;
+  gap: 30px;
+  margin-bottom: 170px;
+  > * {
+    flex: 0 0 187px;
+  }
+  &--item {
+    max-width: 187px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    &.active{
+      .s__opacity-item-bg{
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: rgba(0,0,0,0);
+      }
+    }
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+  }
+}
+.s__opacity-item-bg{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
 }
 @import "responsive";

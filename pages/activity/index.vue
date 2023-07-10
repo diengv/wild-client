@@ -390,7 +390,46 @@
         </div>
       </div>
     </Modal>
-    <LibraryImage @clearLibrary="updateparentLibrary" :show="showLibrary"></LibraryImage>
+    <LibraryImage @clearLibrary="updateparentLibrary" :show="showLibrary">
+      <div class="s__library--content">
+        <div class="s__library--content__count">
+          1/6
+        </div>
+        <div class="s__library--content__image">
+          <div class="s__library--content__image--wrap">
+            <img class="img-main-lib" src="assets/images/banner.jpg">
+          </div>
+          <div class="s__library--content__image--pre">
+            <img src="~/assets/images/arrow-left-month.svg">
+          </div>
+          <div class="s__library--content__image--next">
+            <img src="~/assets/images/arrow-right-month.svg">
+          </div>
+        </div>
+        <div class="s__library--content__thumnails">
+          <div class="s__library--content__thumnails--item active">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+        </div>
+      </div>
+    </LibraryImage>
     <div v-if="isFixed" class="s__header--activity">
       <div class="s__container">
         <div class="s__header--activity__wrap">

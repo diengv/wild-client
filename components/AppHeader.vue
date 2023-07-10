@@ -588,7 +588,8 @@ export default {
         name: "Georgia",
       }
     ],
-
+    isMobile: false,
+    pageWidth: 0
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -597,9 +598,20 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
-
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
   },
   methods: {
+    onResize() {
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768){
+        this.isMobile = true
+      }else {
+        this.isMobile = false
+      }
+      console.log(1212,this.isMobile)
+    },
     hasBoxSearch() {
       this.showSearch = !this.showSearch
       if (this.showSearch) {
