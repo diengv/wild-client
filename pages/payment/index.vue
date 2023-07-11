@@ -54,11 +54,14 @@
           </div>
           <p><strong>Điều kiện sử dụng:</strong></p>
           <p>- Áp dụng cho một số sản phẩm thuộc chủ đề <strong>Camping in the Wilderness.</strong></p>
-          <p>- Mã <strong>COVIDEND2022</strong> giảm <strong>200K</strong> cho đơn hàng có giá trị trên <strong>2.000.000 VND</strong>.</p>
+          <p>- Mã <strong>COVIDEND2022</strong> giảm <strong>200K</strong> cho đơn hàng có giá trị trên <strong>2.000.000
+            VND</strong>.</p>
           <p>- Mã có <strong>20</strong> lần sử dụng.</p>
-          <p>- Mã chỉ áp dụng khi thanh toán bằng phương thức <strong>Thanh toán 100%</strong> và theo cổng thanh toán <strong>Chuyển
-            khoản.</strong></p>
-          <p>- Mã giảm giá áp dụng cho đặt chỗ từ ngày <strong>01/04/2022</strong> đến ngày <strong>30/04/2022.</strong></p>
+          <p>- Mã chỉ áp dụng khi thanh toán bằng phương thức <strong>Thanh toán 100%</strong> và theo cổng thanh toán
+            <strong>Chuyển
+              khoản.</strong></p>
+          <p>- Mã giảm giá áp dụng cho đặt chỗ từ ngày <strong>01/04/2022</strong> đến ngày <strong>30/04/2022.</strong>
+          </p>
           <p>- Mã không được khôi phục vì bất cứ lý do nào</p>
           <p>- Mã sẽ hết hạn khi giá trị sử dụng bằng hoặc vượt quá <strong>4.000.000 VND.</strong></p>
           <div class="s__coupon--wrapper__detail--content__btn">
@@ -121,7 +124,7 @@
               <div class="s__payment--content__form--item__input">
                 <div class="btn-choose-number">
                   <span @click="minusAdult()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
-                  <span class="number">{{adult}}</span>
+                  <span class="number">{{ adult }}</span>
                   <span @click="plusAdult()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
                 </div>
                 <div class="btn-note-text">5.000.000 VND/người</div>
@@ -134,7 +137,7 @@
               <div class="s__payment--content__form--item__input">
                 <div class="btn-choose-number">
                   <span @click="minusChildren()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
-                  <span class="number">{{children}}</span>
+                  <span class="number">{{ children }}</span>
                   <span @click="plusChildren()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
                 </div>
                 <div class="btn-note-text">2.000.000 VND/người</div>
@@ -144,16 +147,16 @@
               * Hoạt động cần đăng ký tối thiểu 1 khách. Giá có thể sẽ thay đổi tùy thuộc vào số lượng khách.
             </div>
             <div class="s__payment--content__form--item">
-              <div class="s__payment--content__form--item__label">
+              <div class="s__payment--content__form--item__label mt--30">
                 Chọn thời gian đón:
               </div>
               <div class="s__payment--content__form--item__input flex-column">
                 <select id="countries" class="s__select">
-                  <option selected>Choose a country</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
+                  <option selected>09 PM</option>
+                  <option value="US">10 PM</option>
+                  <option value="CA">11 PM</option>
+                  <option value="FR">12 PM</option>
+                  <option value="DE">13 PM</option>
                 </select>
                 <div class="s__select--note">Thời gian phù hợp nhất để WildBuddy đón bạn</div>
               </div>
@@ -199,7 +202,7 @@
             </div>
             <div class="s__radio-button">
               <label class="container-radio">Đặt chỗ trước, thanh toán sau
-                <input type="radio" checked="checked" name="radio">
+                <input type="radio" name="radio">
                 <span class="checkmark"></span>
               </label>
               <label class="container-radio">Trả trước 50%
@@ -225,22 +228,22 @@
                 <div class="text-transfer-bank">Chuyển khoản ngân hàng</div>
               </div>
               <div class="s__payment-method__item">
-                <img src="~/assets/images/vnpay.png">
+                <img class="mt-15" src="~/assets/images/vnpay.png">
               </div>
               <div class="s__payment-method__item">
-                <img src="~/assets/images/visa.png">
+                <img class="mt-15" src="~/assets/images/visa.png">
               </div>
               <div class="s__payment-method__item">
-                <img src="~/assets/images/napas.png">
+                <img class="mt-15" src="~/assets/images/napas.png">
               </div>
               <div class="s__payment-method__item">
                 <img src="~/assets/images/momo.png">
               </div>
               <div class="s__payment-method__item">
-                <img src="~/assets/images/payon.png">
+                <img class="mt-15" src="~/assets/images/payon.png">
               </div>
               <div class="s__payment-method__item">
-                <img src="~/assets/images/onepay.png">
+                <img class="mt-15" src="~/assets/images/onepay.png">
               </div>
             </div>
             <div class="s__payment--content__form--label-small">
@@ -262,117 +265,119 @@
           </div>
         </div>
         <div class="s__payment--content__right">
-          <div class="s__activity--info__right--head no-border-radius">
-            <div class="s__activity--info__right--head__item">
-              <div class="s__activity--info__right--head__item--top">
-                <div class="s__activity--info__right--head__item--top__icon">
-                  <img src="~/assets/images/icon-security.svg">
+          <div :class="{'is-scroll': isFixed}">
+            <div class="s__activity--info__right--head no-border-radius">
+              <div class="s__activity--info__right--head__item">
+                <div class="s__activity--info__right--head__item--top">
+                  <div class="s__activity--info__right--head__item--top__icon">
+                    <img src="~/assets/images/icon-security.svg">
+                  </div>
+                  <div class="s__activity--info__right--head__item--top__label">
+                    HOÀN HỦY
+                    LINH HOẠT
+                  </div>
                 </div>
-                <div class="s__activity--info__right--head__item--top__label">
-                  HOÀN HỦY
-                  LINH HOẠT
-                </div>
-              </div>
-              <div class="s__activity--info__right--head__item--content">
-                Bạn sẽ nhận lại 100% giá trị cọc nếu thông báo huỷ trước ngày khởi hành theo quy định
-              </div>
-            </div>
-            <div class="s__activity--info__right--head__item">
-              <div class="s__activity--info__right--head__item--top">
-                <div class="s__activity--info__right--head__item--top__icon">
-                  <img src="~/assets/images/icon-safety.svg">
-                </div>
-                <div class="s__activity--info__right--head__item--top__label">
-                  THANH TOÁN AN TOÀN
+                <div class="s__activity--info__right--head__item--content">
+                  Bạn sẽ nhận lại 100% giá trị cọc nếu thông báo huỷ trước ngày khởi hành theo quy định
                 </div>
               </div>
-              <div class="s__activity--info__right--head__item--content">
-                Hỗ trợ đổi ngày đăng ký và thông tin của bạn được bảo mật ở tất cả các phương thức thanh toán
+              <div class="s__activity--info__right--head__item">
+                <div class="s__activity--info__right--head__item--top">
+                  <div class="s__activity--info__right--head__item--top__icon">
+                    <img src="~/assets/images/icon-safety.svg">
+                  </div>
+                  <div class="s__activity--info__right--head__item--top__label">
+                    THANH TOÁN AN TOÀN
+                  </div>
+                </div>
+                <div class="s__activity--info__right--head__item--content">
+                  Hỗ trợ đổi ngày đăng ký và thông tin của bạn được bảo mật ở tất cả các phương thức thanh toán
+                </div>
               </div>
             </div>
-          </div>
-          <div class="s__payment--info-review">
-            <div class="s__payment--info-review__item">
-              <div class="s__payment--info-review__item--left">
-                <span><img src="~/assets/images/icon-time.svg"></span>
-                <span>Ngày khởi hành:</span>
+            <div class="s__payment--info-review">
+              <div class="s__payment--info-review__item">
+                <div class="s__payment--info-review__item--left">
+                  <span><img src="~/assets/images/icon-time.svg"></span>
+                  <span>Ngày khởi hành:</span>
+                </div>
+                <div class="s__payment--info-review__item--right">
+                  02/11/2022
+                </div>
               </div>
-              <div class="s__payment--info-review__item--right">
-                02/11/2022
+              <div class="s__payment--info-review__item">
+                <div class="s__payment--info-review__item--left">
+                  <span><img src="~/assets/images/icon-person.svg"></span>
+                  <span>Số thành viên:</span>
+                </div>
+                <div class="s__payment--info-review__item--right">
+                  01 người lớn, 1 trẻ em
+                </div>
               </div>
-            </div>
-            <div class="s__payment--info-review__item">
-              <div class="s__payment--info-review__item--left">
-                <span><img src="~/assets/images/icon-person.svg"></span>
-                <span>Số thành viên:</span>
+              <div class="s__payment--info-review__item">
+                <div class="s__payment--info-review__item--left">
+                  <span><img src="~/assets/images/type-payment.svg"></span>
+                  <span>Loại thanh toán:</span>
+                </div>
+                <div class="s__payment--info-review__item--right">
+<!--                  Đặt chỗ trước, thanh toán sau-->
+                </div>
               </div>
-              <div class="s__payment--info-review__item--right">
-                01 người lớn, 1 trẻ em
+              <div class="s__line my-24"></div>
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left">Giá người lớn:</div>
+                <div class="s__payment--info-review__calculate--right">1 x 5.000.000 VND</div>
               </div>
-            </div>
-            <div class="s__payment--info-review__item">
-              <div class="s__payment--info-review__item--left">
-                <span><img src="~/assets/images/type-payment.svg"></span>
-                <span>Loại thanh toán:</span>
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left">Giá trẻ em:</div>
+                <div class="s__payment--info-review__calculate--right">1 x 2.000.000 VND</div>
               </div>
-              <div class="s__payment--info-review__item--right">
-                Đặt chỗ trước, thanh toán sau
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left">Tạm tính:</div>
+                <div class="s__payment--info-review__calculate--right">7.000.000 VND</div>
               </div>
-            </div>
-            <div class="s__line my-24"></div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left">Giá người lớn:</div>
-              <div class="s__payment--info-review__calculate--right">1 x 5.000.000 VND</div>
-            </div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left">Giá trẻ em:</div>
-              <div class="s__payment--info-review__calculate--right">1 x 2.000.000 VND</div>
-            </div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left">Tạm tính:</div>
-              <div class="s__payment--info-review__calculate--right">7.000.000 VND</div>
-            </div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left">Phí tiện lợi:</div>
-              <div class="s__payment--info-review__calculate--right">0 VND</div>
-            </div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left">Giảm giá</div>
-              <div class="s__payment--info-review__calculate--right">200.000 VND</div>
-            </div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left">Voucher giảm giá</div>
-              <div class="s__payment--info-review__calculate--right">0 VND</div>
-            </div>
-            <div class="s__line my-24"></div>
-            <div class="s__payment--info-review__total">
-              <div class="s__payment--info-review__total--left">CẦN THANH TOÁN:</div>
-              <div class="s__payment--info-review__total--right">0 VND</div>
-            </div>
-            <div class="s__line my-24"></div>
-            <div class="s__payment--info-review__calculate">
-              <div class="s__payment--info-review__calculate--left flex-column-custom">
-                <span>Còn lại:</span>
-                <span class="note-payment">(Thanh toán khi tham gia hoạt động)</span>
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left">Phí tiện lợi:</div>
+                <div class="s__payment--info-review__calculate--right">0 VND</div>
               </div>
-              <div class="s__payment--info-review__calculate--right">6.800.000 VND</div>
-            </div>
-          </div>
-          <div class="s__payment--info_button">
-            <div class="s__payment--info_button__left">
-              <div class="s__payment--wrapcheck">
-                <label class="container--checkboxs">
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left">Giảm giá</div>
+                <div class="s__payment--info-review__calculate--right">200.000 VND</div>
               </div>
-              <div class="text-check-payment">
-                Chọn Gửi yêu cầu đồng nghĩa với việc bạn đồng ý tuân theo <a class="s__policy" href="#">Quy định về
-                thanh toán và hoàn hủy</a>
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left">Voucher giảm giá</div>
+                <div class="s__payment--info-review__calculate--right">0 VND</div>
+              </div>
+              <div class="s__line my-24"></div>
+              <div class="s__payment--info-review__total">
+                <div class="s__payment--info-review__total--left">CẦN THANH TOÁN:</div>
+                <div class="s__payment--info-review__total--right">0 VND</div>
+              </div>
+              <div class="s__line my-24"></div>
+              <div class="s__payment--info-review__calculate">
+                <div class="s__payment--info-review__calculate--left flex-column-custom">
+                  <span>Còn lại:</span>
+                  <span class="note-payment">(Thanh toán khi tham gia hoạt động)</span>
+                </div>
+                <div class="s__payment--info-review__calculate--right">6.800.000 VND</div>
               </div>
             </div>
-            <div class="s__payment--info_button__right">
-              <button class="btn-payment">Thanh toán</button>
+            <div class="s__payment--info_button">
+              <div class="s__payment--info_button__left">
+                <div class="s__payment--wrapcheck">
+                  <label class="container--checkboxs">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="text-check-payment">
+                  Chọn Gửi yêu cầu đồng nghĩa với việc bạn đồng ý tuân theo <a class="s__policy" href="#">Quy định về
+                  thanh toán và hoàn hủy</a>
+                </div>
+              </div>
+              <div class="s__payment--info_button__right">
+                <button class="btn-payment">Thanh toán</button>
+              </div>
             </div>
           </div>
         </div>
@@ -444,8 +449,15 @@ export default {
     ],
     bgHeaderDetail: '#C4FDF5',
     adult: 1,
-    children: 0
+    children: 0,
+    isFixed: false
   }),
+  beforeMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   computed: {
     minute: function () {
       return this.timeCount.format('mm');
@@ -472,28 +484,36 @@ export default {
     detailCoupon(coupon) {
       if (!coupon.unconditional) {
         this.showDetailCoupon = true
-      }else {
+      } else {
 
       }
     },
     showDetailCouponF() {
 
     },
-    minusAdult(){
-      if (this.adult > 1){
+    minusAdult() {
+      if (this.adult > 1) {
         this.adult = this.adult - 1
       }
     },
-    plusAdult(){
-        this.adult = this.adult + 1
+    plusAdult() {
+      this.adult = this.adult + 1
     },
-    minusChildren(){
-      if (this.adult > 1){
+    minusChildren() {
+      if (this.adult > 1) {
         this.adult = this.adult - 1
       }
     },
-    plusChildren(){
+    plusChildren() {
       this.children = this.children + 1
+    },
+    handleScroll() {
+      // Your scroll handling here
+      if (window.scrollY > 90) {
+        this.isFixed = true
+      } else {
+        this.isFixed = false
+      }
     }
   }
 }

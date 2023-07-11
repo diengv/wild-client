@@ -4393,7 +4393,8 @@ button {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 11px;
-
+  align-items: center;
+  margin-bottom: 34px;
   > * {
     flex: 0 0 115px;
   }
@@ -4408,6 +4409,7 @@ button {
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    height: 80px;
   }
 }
 
@@ -4723,6 +4725,7 @@ button {
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
+  width: 245px;
 }
 
 .s__policy {
@@ -4802,6 +4805,7 @@ button {
   align-items: flex-end;
   color: #fff;
   flex: auto;
+  font-weight: bold;
 }
 
 .s__payment--notification {
@@ -5858,5 +5862,21 @@ button {
   left: 0;
   height: 100%;
   background: rgba(0,0,0,0.7);
+}
+.mt--30{
+  margin-top: -30px;
+}
+.mt-15{
+  margin-top: 13px;
+}
+.is-scroll{
+  position: fixed;
+  width: 470px;
+  top: 73px;
+  z-index: 999999;
+
+  .s__payment--info-review{
+    background: #E1E1E1;
+  }
 }
 @import "responsive";
