@@ -10,7 +10,10 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
+html [id], body [id] {
+  scroll-margin: 150px !important;
+  scroll-behavior: smooth;
+}
 .s__header {
   width: 100%;
   display: flex;
@@ -1338,6 +1341,7 @@ body {
           color: #FFFFFF;
           margin-top: 7px;
           margin-bottom: 16px;
+          max-width: 346px;
         }
 
         &__button {
@@ -1589,9 +1593,8 @@ body {
 
 .s__experience--one {
   .carousel__slide {
-    margin: 15px;
-    max-width: 370px;
     border-radius: 5px;
+    padding: 15px;
   }
 
   .carousel__item {
@@ -1611,8 +1614,8 @@ body {
         position: absolute;
         right: 20px;
         top: 20px;
-        width: 80px;
-        height: 80px;
+        width: 48px;
+        height: 48px;
         background: #fff;
         border-radius: 5px;
       }
@@ -1730,9 +1733,8 @@ body {
 
 .s__experience--two {
   .carousel__slide {
-    margin: 15px;
-    max-width: 370px;
     border-radius: 5px;
+    padding: 15px;
   }
 
   .carousel__item {
@@ -1752,8 +1754,8 @@ body {
         position: absolute;
         right: 20px;
         top: 20px;
-        width: 80px;
-        height: 80px;
+        width: 48px;
+        height: 48px;
         background: #fff;
         border-radius: 5px;
       }
@@ -2121,7 +2123,7 @@ body {
     &--info {
       display: flex;
       flex-direction: column;
-      width: calc(100% - 32px);
+      width: 137px;
 
       .name {
         font-style: normal;
@@ -2130,6 +2132,7 @@ body {
         line-height: 20px;
 
         color: #000000;
+        margin-bottom: 3px;
 
       }
 
@@ -3211,13 +3214,16 @@ button {
       color: #fff;
     }
   }
-
+  .carousel__track{
+    gap: 15px;
+  }
   .carousel__slide {
-    margin: 10.5px;
-    max-width: 370px;
     border-radius: 5px;
-    background: #FEF9E9;
-    padding: 24px 32px 32px 32px;
+
+    .carousel__item{
+      padding: 24px 32px 32px 32px;
+      background: #FEF9E9;
+    }
 
     a {
       display: flex;

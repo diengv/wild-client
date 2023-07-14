@@ -904,52 +904,8 @@
               <div class="s__activity--box__content--rate__left--item__bottom">
                 Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
                 terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
-                </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
-                </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize. The walk on the frozen river is an adventure of a lifetime, the
+                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.The walk on the frozen river is an adventure of a lifetime, the
                 beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
               </div>
             </div>
