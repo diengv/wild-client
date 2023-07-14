@@ -2,11 +2,13 @@
   <div>
     <section class="s__header" :class="{'fixed': isFixed || isHome !== true}">
       <div class="s__header--logo">
-        <NuxtLink>
-          <img src="~/assets/images/wild-logo.svg">
-        </NuxtLink>
+        <div @click="showBoxNav()">
+          <img v-if="isMobile && isFixed" src="~/assets/images/wild-logo.svg">
+          <img v-if="isMobile && !isFixed" src="~/assets/images/logo-white.svg">
+        </div>
         <div class="s__header--arrow" :class="{'active': activeNav}" @click="showBoxNav()">
-          <img src="~/assets/images/icon-arrow-menu.svg">
+          <img v-if="isMobile && isFixed" src="~/assets/images/icon-arrow-menu.svg">
+          <img v-if="isMobile && !isFixed" src="~/assets/images/icon-arrow-menu-white.svg">
         </div>
       </div>
       <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
@@ -28,7 +30,10 @@
         </div>
         <div v-if="!showSearch" class="s__header--lang__right">
           <span class="is-desktop">+84 886 677 950</span>
-          <span class="is-mobile"><img class="img-mes" src="~assets/images/icon-messenger.svg"></span>
+          <span class="is-mobile">
+            <img v-if="isMobile && isFixed" class="img-mes" src="~assets/images/icon-messenger.svg">
+            <img v-if="isMobile && !isFixed" class="img-mes" src="~assets/images/icon-message-white.svg">
+          </span>
         </div>
         <div v-if="activeNav" class="s__header--lang__right">
           <img class="icon-close" @click="closeNav()" src="~/assets/images/icon-close.svg">
@@ -598,6 +603,12 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768){
+      this.isMobile = true
+    }else {
+      this.isMobile = false
+    }
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
