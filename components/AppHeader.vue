@@ -2,11 +2,13 @@
   <div>
     <section class="s__header" :class="{'fixed': isFixed || isHome !== true}">
       <div class="s__header--logo">
-        <div @click="showBoxNav()">
+        <div>
+          <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/wild-logo.svg">
           <img v-if="isMobile && isFixed" src="~/assets/images/wild-logo.svg">
           <img v-if="isMobile && !isFixed" src="~/assets/images/logo-white.svg">
         </div>
-        <div class="s__header--arrow" :class="{'active': activeNav}" @click="showBoxNav()">
+        <div class="s__header--arrow" :class="{'active': activeNav}">
+          <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/icon-arrow-menu.svg">
           <img v-if="isMobile && isFixed" src="~/assets/images/icon-arrow-menu.svg">
           <img v-if="isMobile && !isFixed" src="~/assets/images/icon-arrow-menu-white.svg">
         </div>
