@@ -14,7 +14,7 @@
         </div>
       </div>
       <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
-           @click="hasBoxSearch()">
+           @click="hasBoxSearch()" v-on:focusout="hasBoxSearch()">
         <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
         <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
         <div v-if="showSearch && !activeNav" class="s__header--search__text">
@@ -464,6 +464,7 @@ export default {
   name: "AppHeader",
   components: {MasonryWall},
   props: ['isHome'],
+
   data: () => ({
     showSearch: false,
     locationActive: false,
@@ -732,6 +733,9 @@ export default {
       } else {
         this.isFixed = false
       }
+    },
+    handleFocusOut(){
+      alert(1)
     }
 
   }
