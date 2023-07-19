@@ -1,6 +1,21 @@
 <template>
   <div>
-    <section class="s__header" :class="{'fixed': isFixed || isHome !== true}">
+    <Modal @clearModal="updateparent"  :show="showHelp" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+           :height="'500px'">
+      <div class="s__help--modal">
+        <div class="s__help--title">
+          Các loại đặt chỗ của intoWild
+        </div>
+        <div class="s__help--description">
+          Mỗi hình thức tham gia tour sẽ có mức chi phí khác nhau. Nếu bạn là người mới, muốn được lo từ A-Z, hãy cùng đồng hành với intoWild trong Full-Trip. Còn nếu bạn có nhóm đông, tự tin có thể đi tự túc và nhận hỗ trợ của Wildbuddy bản địa thì hãy chọn Land-Tour để có chi phí tối ưu nhất nhé!
+        </div>
+        <div class="s__line mt-24px mb-32px"></div>
+        <div class="s__help--type-tours">
+
+        </div>
+      </div>
+    </Modal>
+    <section class="s__header" :class="{'fixed animate__animated animate__fadeIn': isFixed || isHome !== true}">
       <div class="s__header--logo">
         <div>
           <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/wild-logo.svg">
@@ -13,13 +28,15 @@
           <img v-if="isMobile && !isFixed" src="~/assets/images/icon-arrow-menu-white.svg">
         </div>
       </div>
-      <div v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
+      <div  v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
            @click="hasBoxSearch()" v-on:focusout="hasBoxSearch()">
-        <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
-        <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
-        <div v-if="showSearch && !activeNav" class="s__header--search__text">
-          <span>TÌM KIẾM</span>
-          <span>TRẢI NGHIỆM</span>
+        <div class="s__header--search__wraps">
+          <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
+          <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
+          <div v-if="showSearch && !activeNav" class="s__header--search__text">
+            <span>TÌM KIẾM</span>
+            <span>TRẢI NGHIỆM</span>
+          </div>
         </div>
       </div>
       <div v-if="activeNav" class="s__header--text-nav">
@@ -41,8 +58,8 @@
           <img class="icon-close" @click="closeNav()" src="~/assets/images/icon-close.svg">
         </div>
       </div>
-      <div v-if="showSearch" class="s__header--box-search">
-        <div class="s__header--box-search__wrap">
+      <div v-click-outside="clickedParent" v-if="showSearch" :class="{'animate__animated animate__fadeIn': showSearch}" class="s__header--box-search">
+        <div  class="s__header--box-search__wrap">
           <div class="s__header--box-search__wrap--location">
             <div class="s__header--box-search__wrap--label">
               Địa điểm
@@ -72,7 +89,7 @@
           <div class="s__header--box-search__wrap--book">
             <div class="s__header--box-search__wrap--label">
               <span> Loại đặt chỗ</span>
-              <span><img src="~/assets/images/icon-help.svg"></span>
+              <span @click="modalHelp()"><img src="~/assets/images/icon-help.svg"></span>
             </div>
             <div @click="showBoxBook()" class="s__header--box-search__wrap--input" :class="{'active' : locationActive}">
               <span v-if="!bookChoosed">Chọn loại đặt chỗ</span>
@@ -597,7 +614,28 @@ export default {
       }
     ],
     isMobile: false,
-    pageWidth: 0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        pageWidth: 0,
+    showHelp: false,
+    typeTours:[
+      {
+        id: 1,
+        name:'Full Trip',
+        active: true,
+        description:'Full Trip là trip khởi hành tại Việt Na. Giá trip đã bao gồm tất cả từ vé máy bay, ăn uống,... và có Wildbuddy người Việt Nam theo hỗ trợ xuyên suốt hành trình.'
+      },
+      {
+        id: 2,
+        name:'Land Tour',
+        active: false,
+        description:'Land Tour là tour khởi hành tại điểm đến. Giá tour không bao gồm vé máy bay, ăn uống và chi phí Wildbuddy người Việt Nam đi cùng, nhưng đã bao gồm full hành trình, chỗ ở và có Wildbuddy bản địa biết nói tiếng Anh hỗ trợ. Tùy vào số lượng người tham gia mà land tour có giá khác nhau.'
+      },
+      {
+        id: 3,
+        name:'JoinIN',
+        active: false,
+        description:'JoinIN là hình thức mua chung Land Tour để có mức giá nhóm tốt nhất. intoWild sẽ hỗ trợ gom nhóm, tư vấn trước chuyến đi và họp đoàn cho các bạn tham gia.'
+      }
+    ]
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -627,12 +665,14 @@ export default {
       console.log(1212,this.isMobile)
     },
     hasBoxSearch() {
+
       this.showSearch = !this.showSearch
       if (this.showSearch) {
         this.isFixed = true
       } else {
         this.isFixed = false
       }
+      this.$emit('changeFixed', this.isFixed)
 
     },
     closeBoxSearch() {
@@ -733,11 +773,21 @@ export default {
       } else {
         this.isFixed = false
       }
+      this.$emit('changeFixed', this.isFixed)
     },
     handleFocusOut(){
       alert(1)
-    }
-
+    },
+    async clickedParent(){
+      await new Promise((resolve, reject) => setTimeout(resolve, 1));
+      this.showSearch = false
+    },
+    modalHelp(){
+      this.showHelp = true
+    },
+    updateparent(variable) {
+      this.showHelp = variable
+    },
   }
 }
 </script>

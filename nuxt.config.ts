@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     css: [
         '~/assets/css/main.css',
         '~/assets/css/client.scss',
+        'animate.css/animate.min.css'
     ],
     app: {
         head: {
@@ -33,4 +34,7 @@ export default defineNuxtConfig({
 
         }
     },
+    plugins: [
+        {src: '~/plugins/clickOutside'}
+    ],
 })

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <AppHeader :isHome="isHome"></AppHeader>
+  <div :class="{ 'page-fixed' : isFixed }">
+    <AppHeader @changeFixed="updateparent"  :isHome="isHome"></AppHeader>
     <slot/>
     <AppFooter v-if="!isPayment"></AppFooter>
   </div>
@@ -15,7 +15,8 @@ export default {
   components: {AppFooter, AppHeader},
   data: () => ({
     isHome: false,
-    isPayment: false
+    isPayment: false,
+    isFixed: false,
   }),
   mounted() {
     if (this.$route.path === '/') {
@@ -29,7 +30,16 @@ export default {
     } else {
       this.isPayment = false
     }
-  }
+
+
+  },
+  methods:{
+    updateparent(variable) {
+      this.isFixed = variable
+      console.log(1234, variable)
+    },
+
+  },
 }
 </script>
 
