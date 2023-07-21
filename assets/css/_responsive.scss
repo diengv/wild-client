@@ -1,4 +1,25 @@
 @media all and (max-width: 414px) {
+  .s__header--close-mobile{
+
+  }
+  .s__header.fixed{
+    display: flex;
+    justify-content: space-between;
+  }
+  .s__slider{
+    margin-top: -64px;
+  }
+  .s__header--logo{
+    img.logo{
+      width: 49px;
+    }
+  }
+  .s__header--search__wraps{
+    height: 32px;
+    padding: 0;
+    justify-content: flex-end;
+    align-items: center;
+  }
   .s__header {
     padding: 14px 20px 15px 20px;
   }

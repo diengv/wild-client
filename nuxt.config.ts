@@ -37,4 +37,5 @@ export default defineNuxtConfig({
     plugins: [
         {src: '~/plugins/clickOutside'}
     ],
+
 })

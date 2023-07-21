@@ -1,34 +1,19 @@
 <template>
   <div>
-    <Modal @clearModal="updateparent"  :show="showHelp" :width="'624px'" :top="'100px'" :border-radius="'10px'"
-           :height="'500px'">
-      <div class="s__help--modal">
-        <div class="s__help--title">
-          Các loại đặt chỗ của intoWild
-        </div>
-        <div class="s__help--description">
-          Mỗi hình thức tham gia tour sẽ có mức chi phí khác nhau. Nếu bạn là người mới, muốn được lo từ A-Z, hãy cùng đồng hành với intoWild trong Full-Trip. Còn nếu bạn có nhóm đông, tự tin có thể đi tự túc và nhận hỗ trợ của Wildbuddy bản địa thì hãy chọn Land-Tour để có chi phí tối ưu nhất nhé!
-        </div>
-        <div class="s__line mt-24px mb-32px"></div>
-        <div class="s__help--type-tours">
-
-        </div>
-      </div>
-    </Modal>
     <section class="s__header" :class="{'fixed animate__animated animate__fadeIn': isFixed || isHome !== true}">
       <div class="s__header--logo">
         <div>
           <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/wild-logo.svg">
-          <img v-if="isMobile && isFixed" src="~/assets/images/wild-logo.svg">
-          <img v-if="isMobile && !isFixed" src="~/assets/images/logo-white.svg">
+          <img class="logo" @click="showBoxNavMobile()" v-if="isMobile && isFixed" src="~/assets/images/wild-logo.svg">
+          <img class="logo" @click="showBoxNavMobile()" v-if="isMobile && !isFixed" src="~/assets/images/logo-white.svg">
         </div>
         <div class="s__header--arrow" :class="{'active': activeNav}">
           <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/icon-arrow-menu.svg">
-          <img v-if="isMobile && isFixed" src="~/assets/images/icon-arrow-menu.svg">
-          <img v-if="isMobile && !isFixed" src="~/assets/images/icon-arrow-menu-white.svg">
+          <img @click="showBoxNavMobile()" v-if="isMobile && isFixed" src="~/assets/images/icon-arrow-menu.svg">
+          <img @click="showBoxNavMobile()" v-if="isMobile && !isFixed" src="~/assets/images/icon-arrow-menu-white.svg">
         </div>
       </div>
-      <div  v-if="!activeNav" class="s__header--search" :class="{'s__header--search__active': showSearch}"
+      <div v-if="!activeNav && !isMobile" class="s__header--search" :class="{'s__header--search__active': showSearch}"
            @click="hasBoxSearch()" v-on:focusout="hasBoxSearch()">
         <div class="s__header--search__wraps">
           <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
@@ -39,10 +24,16 @@
           </div>
         </div>
       </div>
-      <div v-if="activeNav" class="s__header--text-nav">
+      <div v-if="isMobile && !navMobile" class="s__header--search" :class="{'s__header--search__active': showSearch}">
+        <div class="s__header--search__wraps">
+          <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
+          <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
+        </div>
+      </div>
+      <div v-if="activeNav && !isMobile" class="s__header--text-nav">
         “<span>Adventure </span> is not only a trip, but also a <span> rush </span> of <span> adrenaline.</span>”
       </div>
-      <div class="s__header--lang">
+      <div v-if="!navMobile" class="s__header--lang">
         <div v-if="!showSearch" class="s__header--lang__left">
           <span class="is-desktop">TIẾNG VIỆT / VND</span>
           <span class="is-mobile">VN</span>
@@ -59,6 +50,28 @@
         </div>
       </div>
       <div v-click-outside="clickedParent" v-if="showSearch" :class="{'animate__animated animate__fadeIn': showSearch}" class="s__header--box-search">
+        <Modal @clearModal="updateparent"  :show="showHelp" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+               :height="'500px'">
+          <div class="s__help--modal">
+            <div class="s__help--title">
+              Các loại đặt chỗ của intoWild
+            </div>
+            <div class="s__help--description">
+              Mỗi hình thức tham gia tour sẽ có mức chi phí khác nhau. Nếu bạn là người mới, muốn được lo từ A-Z, hãy cùng đồng hành với intoWild trong Full-Trip. Còn nếu bạn có nhóm đông, tự tin có thể đi tự túc và nhận hỗ trợ của Wildbuddy bản địa thì hãy chọn Land-Tour để có chi phí tối ưu nhất nhé!
+            </div>
+            <div class="s__line mt-24px mb-32px"></div>
+            <div class="s__help--type-tours">
+              <div class="s__help--type-tours__button">
+                <div @click="chooseType(type)" v-for="(type, index) in typeTours" :class="{'active' : type.active}" :key="index" class="s__help--type-tours__button--item">
+                  {{ type.name }}
+                </div>
+              </div>
+              <div class="s__help--type-tours__description">
+                {{ this.typeToursDescription }}
+              </div>
+            </div>
+          </div>
+        </Modal>
         <div  class="s__header--box-search__wrap">
           <div class="s__header--box-search__wrap--location">
             <div class="s__header--box-search__wrap--label">
@@ -217,61 +230,14 @@
                 </div>
               </div>
             </div>
-            <div class="s__header--box-nav__right--location-wrap-item-detail" v-if="rightNavLocationItemDetail">
-              <div class="left">
-                <div class="left__item">
-                  Nha Trang
+            <div class="s__header--box-nav__right--location-wrap-items" v-if="rightNavLocationItemDetail">
+              <div @click="showDetailLocation()" v-for="(regions,index) in locationRegions" :key="index"
+                   class="s__header--box-nav__right--location-wrap-items__item">
+                <div class="img-item">
+                  <img :src="regions.thumbnail">
                 </div>
-                <div class="left__item">
-                  Hà Giang
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-                <div class="left__item">
-                  Cao Bằng
-                </div>
-
-              </div>
-              <div class="right">
-                <div class="right__name">
-                  Việt Nam
-                </div>
-                <div class="right__image">
-                  <img src="~/assets/images/location-vn.jpg">
+                <div class="title-item">
+                  {{ regions.name }}
                 </div>
               </div>
             </div>
@@ -470,6 +436,11 @@
           </div>
         </div>
       </div>
+
+      <!--mobile-->
+      <div v-if="navMobile" class="s__header--close-mobile">
+        <img src="~/assets/images/icon-close.svg">
+      </div>
     </section>
   </div>
 </template>
@@ -613,6 +584,23 @@ export default {
         name: "Georgia",
       }
     ],
+    locationRegions: [
+      {
+        id: 1,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Miền bắc",
+      },
+      {
+        id: 2,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Miền trung",
+      },
+      {
+        id: 3,
+        thumbnail: '/assets/images/banner.jpg',
+        name: "Miền nam",
+      },
+    ],
     isMobile: false,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         pageWidth: 0,
     showHelp: false,
@@ -635,7 +623,9 @@ export default {
         active: false,
         description:'JoinIN là hình thức mua chung Land Tour để có mức giá nhóm tốt nhất. intoWild sẽ hỗ trợ gom nhóm, tư vấn trước chuyến đi và họp đoàn cho các bạn tham gia.'
       }
-    ]
+    ],
+    typeToursDescription: '',
+    navMobile: false
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -644,6 +634,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
+    this.typeToursDescription = this.typeTours[0].description
     this.pageWidth = window.innerWidth
     if (this.pageWidth <= 768){
       this.isMobile = true
@@ -661,6 +652,7 @@ export default {
         this.isMobile = true
       }else {
         this.isMobile = false
+        this.navMobile = false
       }
       console.log(1212,this.isMobile)
     },
@@ -788,6 +780,22 @@ export default {
     updateparent(variable) {
       this.showHelp = variable
     },
+    chooseType(type){
+      this.typeTours.forEach((val) => {
+        if (type.id === val.id){
+          val.active = true
+          this.typeToursDescription = val.description
+        }else {
+          val.active = false
+        }
+      })
+    },
+    showBoxNavMobile(){
+      this.navMobile = !this.navMobile
+      this.isFixed = !this.isFixed
+      this.$emit('changeFixed', this.isFixed)
+      console.log(112233, this.navMobile)
+    }
   }
 }
 </script>
