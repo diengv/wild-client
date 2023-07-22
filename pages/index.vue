@@ -18,8 +18,8 @@
             <a href="#">Xem thêm</a>
           </div>
         </div>
-        <div class="s__slider--main__thumbnail">
-          <div v-for="(slider, index) in slidersShow" :key="index" class="s__slider--main__thumbnail--item"
+        <div class="s__slider--main__thumbnail" :class="{'height-small' : heightSmall}">
+          <div v-if="!isMobile" v-for="(slider, index) in slidersShow" :key="index" class="s__slider--main__thumbnail--item"
                :class="{'active': (index + 1) === activeSlider}">
             <div class="s__opacity"></div>
             <img :src="slider.thumbnail">
@@ -1308,7 +1308,10 @@ export default {
         price: 'từ 7.526.000 VND/người',
         bookingCount: 230
       },
-    ]
+    ],
+    heightSmall: false,
+    isMobile: false,
+    pageWidth: 0,
   }),
   beforeMount() {
     this.changer()
@@ -1320,8 +1323,9 @@ export default {
     this.pageHeight = window.innerHeight
     if (this.pageHeight <= 768){
       this.slidersShow = []
+      this.heightSmall = true
       this.sliders.forEach((val,index) => {
-        if (index <= 3){
+        if (index <= 5){
           this.slidersShow.push(val)
         }
       })
@@ -1336,7 +1340,15 @@ export default {
         }
       })
     }
-    console.log(1235,  this.slidersShow)
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768){
+      this.isMobile = true
+    }else {
+      this.isMobile = false
+    }
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
   },
   methods: {
     onResize() {
@@ -1359,6 +1371,15 @@ export default {
           }
         })
       }
+
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768){
+        this.isMobile = true
+      }else {
+        this.isMobile = false
+        this.navMobile = false
+      }
+
     },
     imagesReturn(img) {
       return require(img)

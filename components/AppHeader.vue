@@ -5,7 +5,8 @@
         <div>
           <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/wild-logo.svg">
           <img class="logo" @click="showBoxNavMobile()" v-if="isMobile && isFixed" src="~/assets/images/wild-logo.svg">
-          <img class="logo" @click="showBoxNavMobile()" v-if="isMobile && !isFixed" src="~/assets/images/logo-white.svg">
+          <img class="logo" @click="showBoxNavMobile()" v-if="isMobile && !isFixed"
+               src="~/assets/images/logo-white.svg">
         </div>
         <div class="s__header--arrow" :class="{'active': activeNav}">
           <img @click="showBoxNav()" v-if="!isMobile" src="~/assets/images/icon-arrow-menu.svg">
@@ -49,20 +50,24 @@
           <img class="icon-close" @click="closeNav()" src="~/assets/images/icon-close.svg">
         </div>
       </div>
-      <div v-click-outside="clickedParent" v-if="showSearch" :class="{'animate__animated animate__fadeIn': showSearch}" class="s__header--box-search">
-        <Modal @clearModal="updateparent"  :show="showHelp" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+      <div v-click-outside="clickedParent" v-if="showSearch" :class="{'animate__animated animate__fadeIn': showSearch}"
+           class="s__header--box-search">
+        <Modal @clearModal="updateparent" :show="showHelp" :width="'624px'" :top="'100px'" :border-radius="'10px'"
                :height="'500px'">
           <div class="s__help--modal">
             <div class="s__help--title">
               Các loại đặt chỗ của intoWild
             </div>
             <div class="s__help--description">
-              Mỗi hình thức tham gia tour sẽ có mức chi phí khác nhau. Nếu bạn là người mới, muốn được lo từ A-Z, hãy cùng đồng hành với intoWild trong Full-Trip. Còn nếu bạn có nhóm đông, tự tin có thể đi tự túc và nhận hỗ trợ của Wildbuddy bản địa thì hãy chọn Land-Tour để có chi phí tối ưu nhất nhé!
+              Mỗi hình thức tham gia tour sẽ có mức chi phí khác nhau. Nếu bạn là người mới, muốn được lo từ A-Z, hãy
+              cùng đồng hành với intoWild trong Full-Trip. Còn nếu bạn có nhóm đông, tự tin có thể đi tự túc và nhận hỗ
+              trợ của Wildbuddy bản địa thì hãy chọn Land-Tour để có chi phí tối ưu nhất nhé!
             </div>
             <div class="s__line mt-24px mb-32px"></div>
             <div class="s__help--type-tours">
               <div class="s__help--type-tours__button">
-                <div @click="chooseType(type)" v-for="(type, index) in typeTours" :class="{'active' : type.active}" :key="index" class="s__help--type-tours__button--item">
+                <div @click="chooseType(type)" v-for="(type, index) in typeTours" :class="{'active' : type.active}"
+                     :key="index" class="s__help--type-tours__button--item">
                   {{ type.name }}
                 </div>
               </div>
@@ -72,7 +77,7 @@
             </div>
           </div>
         </Modal>
-        <div  class="s__header--box-search__wrap">
+        <div class="s__header--box-search__wrap">
           <div class="s__header--box-search__wrap--location">
             <div class="s__header--box-search__wrap--label">
               Địa điểm
@@ -231,7 +236,7 @@
               </div>
             </div>
             <div class="s__header--box-nav__right--location-wrap-items" v-if="rightNavLocationItemDetail">
-              <div @click="showDetailLocation()" v-for="(regions,index) in locationRegions" :key="index"
+              <div v-for="(regions,index) in locationRegions" :key="index"
                    class="s__header--box-nav__right--location-wrap-items__item">
                 <div class="img-item">
                   <img :src="regions.thumbnail">
@@ -240,6 +245,11 @@
                   {{ regions.name }}
                 </div>
               </div>
+            </div>
+            <div @click="backToLocation()" v-if="rightNavLocationItemDetail"
+                 class="s__header--box-nav__right--location-wrap-items__back">
+              <span><img src="~/assets/images/arrow-left-month.svg"></span>
+              <span>Quay lại</span>
             </div>
           </div>
           <div v-if="rightNavLevel" class="s__header--box-nav__right--level">
@@ -439,7 +449,7 @@
 
       <!--mobile-->
       <div v-if="navMobile" class="s__header--close-mobile">
-        <img src="~/assets/images/icon-close.svg">
+        <img @click="closeNavMobile()" src="~/assets/images/icon-close.svg">
       </div>
     </section>
   </div>
@@ -602,26 +612,26 @@ export default {
       },
     ],
     isMobile: false,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        pageWidth: 0,
+    pageWidth: 0,
     showHelp: false,
-    typeTours:[
+    typeTours: [
       {
         id: 1,
-        name:'Full Trip',
+        name: 'Full Trip',
         active: true,
-        description:'Full Trip là trip khởi hành tại Việt Na. Giá trip đã bao gồm tất cả từ vé máy bay, ăn uống,... và có Wildbuddy người Việt Nam theo hỗ trợ xuyên suốt hành trình.'
+        description: 'Full Trip là trip khởi hành tại Việt Na. Giá trip đã bao gồm tất cả từ vé máy bay, ăn uống,... và có Wildbuddy người Việt Nam theo hỗ trợ xuyên suốt hành trình.'
       },
       {
         id: 2,
-        name:'Land Tour',
+        name: 'Land Tour',
         active: false,
-        description:'Land Tour là tour khởi hành tại điểm đến. Giá tour không bao gồm vé máy bay, ăn uống và chi phí Wildbuddy người Việt Nam đi cùng, nhưng đã bao gồm full hành trình, chỗ ở và có Wildbuddy bản địa biết nói tiếng Anh hỗ trợ. Tùy vào số lượng người tham gia mà land tour có giá khác nhau.'
+        description: 'Land Tour là tour khởi hành tại điểm đến. Giá tour không bao gồm vé máy bay, ăn uống và chi phí Wildbuddy người Việt Nam đi cùng, nhưng đã bao gồm full hành trình, chỗ ở và có Wildbuddy bản địa biết nói tiếng Anh hỗ trợ. Tùy vào số lượng người tham gia mà land tour có giá khác nhau.'
       },
       {
         id: 3,
-        name:'JoinIN',
+        name: 'JoinIN',
         active: false,
-        description:'JoinIN là hình thức mua chung Land Tour để có mức giá nhóm tốt nhất. intoWild sẽ hỗ trợ gom nhóm, tư vấn trước chuyến đi và họp đoàn cho các bạn tham gia.'
+        description: 'JoinIN là hình thức mua chung Land Tour để có mức giá nhóm tốt nhất. intoWild sẽ hỗ trợ gom nhóm, tư vấn trước chuyến đi và họp đoàn cho các bạn tham gia.'
       }
     ],
     typeToursDescription: '',
@@ -636,9 +646,9 @@ export default {
   mounted() {
     this.typeToursDescription = this.typeTours[0].description
     this.pageWidth = window.innerWidth
-    if (this.pageWidth <= 768){
+    if (this.pageWidth <= 768) {
       this.isMobile = true
-    }else {
+    } else {
       this.isMobile = false
     }
     this.$nextTick(() => {
@@ -648,13 +658,13 @@ export default {
   methods: {
     onResize() {
       this.pageWidth = window.innerWidth
-      if (this.pageWidth <= 768){
+      if (this.pageWidth <= 768) {
         this.isMobile = true
-      }else {
+      } else {
         this.isMobile = false
         this.navMobile = false
       }
-      console.log(1212,this.isMobile)
+      console.log(1212, this.isMobile)
     },
     hasBoxSearch() {
 
@@ -767,34 +777,42 @@ export default {
       }
       this.$emit('changeFixed', this.isFixed)
     },
-    handleFocusOut(){
+    handleFocusOut() {
       alert(1)
     },
-    async clickedParent(){
+    async clickedParent() {
       await new Promise((resolve, reject) => setTimeout(resolve, 1));
       this.showSearch = false
     },
-    modalHelp(){
+    modalHelp() {
       this.showHelp = true
     },
     updateparent(variable) {
       this.showHelp = variable
     },
-    chooseType(type){
+    chooseType(type) {
       this.typeTours.forEach((val) => {
-        if (type.id === val.id){
+        if (type.id === val.id) {
           val.active = true
           this.typeToursDescription = val.description
-        }else {
+        } else {
           val.active = false
         }
       })
     },
-    showBoxNavMobile(){
+    showBoxNavMobile() {
       this.navMobile = !this.navMobile
       this.isFixed = !this.isFixed
       this.$emit('changeFixed', this.isFixed)
       console.log(112233, this.navMobile)
+    },
+    closeNavMobile() {
+      this.navMobile = !this.navMobile
+      this.isFixed = !this.isFixed
+      this.$emit('changeFixed', this.isFixed)
+    },
+    backToLocation() {
+      this.rightNavLocationItemDetail = false
     }
   }
 }
