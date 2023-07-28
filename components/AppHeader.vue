@@ -452,6 +452,9 @@
         <img @click="closeNavMobile()" src="~/assets/images/icon-close.svg">
       </div>
     </section>
+    <section class="s__">
+
+    </section>
   </div>
 </template>
 
@@ -774,6 +777,9 @@ export default {
         this.isFixed = true
       } else {
         this.isFixed = false
+        if (this.navMobile){
+          this.isFixed = true
+        }
       }
       this.$emit('changeFixed', this.isFixed)
     },
