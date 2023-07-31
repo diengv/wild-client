@@ -1696,9 +1696,8 @@ html [id], body [id] {
     &--title {
       width: 100%;
       margin-top: 5px;
-      display: flex;
-      justify-content: flex-start;
-
+      text-align: left;
+      white-space: normal;
       h3 {
         font-style: normal;
         font-weight: 600;
@@ -6127,5 +6126,9 @@ button {
 .s__inner {
   transition: transform 0.2s; /* ❹ */
   /* ... */
+}
+.s__experience--content{
+  max-width: 1440px;
+  margin: 0 auto;
 }
 @import "responsive";

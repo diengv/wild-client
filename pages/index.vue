@@ -242,215 +242,217 @@
           </div>
         </div>
       </div>
-      <div class="s__experience--one is-desktop">
-        <div class="s__carousel">
-          <div ref="s__inner" class="s__inner" :style="innerStylesOne">
-            <div v-for="(slider, index) in sliderOne" :key="index" class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
+      <div class="s__experience--content">
+        <div class="s__experience--one is-desktop">
+          <div class="s__carousel">
+            <div ref="s__inner" class="s__inner" :style="innerStylesOne">
+              <div v-for="slider in sliderOne" :key="slider" class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
                   </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
                   </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
                   </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+            </div>
+            <div class="s__wap--action-slider">
+              <div @click="prevSliderOne()" class="s__wap--action-slider__pre">
+                <img src="~/assets/images/arrow-pre-slider.svg">
+              </div>
+              <div @click="nextSliderOne()" class="s__wap--action-slider__next">
+                <img src="~/assets/images/arrow-next-slider.svg">
+              </div>
             </div>
           </div>
-          <div class="s__wap--action-slider">
-            <div @click="prevSliderOne()" class="s__wap--action-slider__pre">
-              <img src="~/assets/images/arrow-pre-slider.svg">
-            </div>
-            <div @click="nextSliderOne()" class="s__wap--action-slider__next">
-              <img src="~/assets/images/arrow-next-slider.svg">
-            </div>
-          </div>
-        </div>
 
-      </div>
-      <div class="s__experience--two is-desktop">
-        <div class="s__carousel">
-          <div ref="s__inner" class="s__inner">
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
+        </div>
+        <div class="s__experience--two is-desktop">
+          <div class="s__carousel">
+            <div ref="s__inner" class="s__inner">
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
                   </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
                   </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
                   </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
+                  </div>
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
+                  </div>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+                  </div>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
+                  </div>
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
+                  </div>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+                  </div>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
+                  </div>
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
+                  </div>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+                  </div>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
+                  </div>
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
+                  </div>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+                  </div>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
+                  </div>
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
+                  </div>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+                  </div>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
+              <div class="carousel__item">
+                <a href="#">
+                  <div class="carousel__item--image">
+                    <div class="carousel__item--image__icon">
+                      <img src="~/assets/images/local.jpg">
+                    </div>
+                    <img src="~/assets/images/endow_1.jpg">
+                  </div>
+                  <div class="carousel__item--head">
+                    <div class="carousel__item--head__left">
+                      VIỆT NAM | 3N2D | Trekking
+                    </div>
+                    <div class="carousel__item--head__right">
+                      <span><img src="~/assets/images/booked.svg"></span>
+                      <span>Đã đặt 230</span>
+                    </div>
+                  </div>
+                  <div class="carousel__item--title">
+                    <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+                  </div>
+                  <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                </a>
+              </div>
             </div>
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
-                  </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
-                  </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
-                  </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
-            </div>
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
-                  </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
-                  </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
-                  </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
-            </div>
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
-                  </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
-                  </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
-                  </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
-            </div>
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
-                  </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
-                  </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
-                  </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
-            </div>
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
-                  </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
-                  </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
-                  </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
-            </div>
-            <div class="carousel__item">
-              <a href="#">
-                <div class="carousel__item--image">
-                  <div class="carousel__item--image__icon">
-                    <img src="~/assets/images/local.jpg">
-                  </div>
-                  <img src="~/assets/images/endow_1.jpg">
-                </div>
-                <div class="carousel__item--head">
-                  <div class="carousel__item--head__left">
-                    VIỆT NAM | 3N2D | Trekking
-                  </div>
-                  <div class="carousel__item--head__right">
-                    <span><img src="~/assets/images/booked.svg"></span>
-                    <span>Đã đặt 230</span>
-                  </div>
-                </div>
-                <div class="carousel__item--title">
-                  <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
-                </div>
-                <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-              </a>
-            </div>
-          </div>
-          <div class="s__wap--action-slider">
-            <div class="s__wap--action-slider__pre">
-              <img src="~/assets/images/arrow-pre-slider.svg">
-            </div>
-            <div class="s__wap--action-slider__next">
-              <img src="~/assets/images/arrow-next-slider.svg">
+            <div class="s__wap--action-slider">
+              <div class="s__wap--action-slider__pre">
+                <img src="~/assets/images/arrow-pre-slider.svg">
+              </div>
+              <div class="s__wap--action-slider__next">
+                <img src="~/assets/images/arrow-next-slider.svg">
+              </div>
             </div>
           </div>
         </div>
@@ -1510,9 +1512,9 @@ export default {
   },
   methods: {
     setStepOne() {
-      const innerWidth = this.$refs.s__inner.scrollWidth // ❶
-      const totalSliderOne = this.sliderOne.length
-      this.stepOne = `${innerWidth / totalSliderOne}px` // ❷
+      const innerWidth = this.$refs.s__inner.scrollWidth
+      const totalCards = this.sliderOne.length
+      this.stepOne = `${innerWidth / totalCards}px`
     },
     nextSliderOne() {
       if (this.transitioningOne) return
@@ -1521,14 +1523,14 @@ export default {
 
       this.moveLeftOne() // ❸
 
-
-      this.afterTransitionOne(() => { // ❶
-        const slider = this.sliderOne.shift() // ❷
-        this.sliderOne.push(slider) // ❸
+      this.afterTransitionOne(() => {
+        const card = this.sliderOne.shift()
+        this.sliderOne.push(card)
+        this.resetTranslateOne()
         this.transitioningOne = false
       })
 
-      this.resetTranslateOne()
+
     },
     prevSliderOne () {
       if (this.transitioningOne) return
@@ -1538,8 +1540,8 @@ export default {
       this.moveRightOne()
 
       this.afterTransitionOne(() => {
-        const slider = this.sliderOne.pop()
-        this.sliderOne.unshift(slider)
+        const card = this.sliders.pop()
+        this.sliders.unshift(card)
         this.resetTranslateOne()
         this.transitioningOne = false
       })
@@ -1547,28 +1549,26 @@ export default {
     moveLeftOne() {
       this.innerStylesOne = {
         transform: `translateX(-${this.stepOne})
-                translateX(-${this.stepOne})` // ❶
+                    translateX(-${this.stepOne})`
       }
-      console.log(5555, this.innerStylesOne)
     },
 
     moveRightOne() {
       this.innerStylesOne = {
         transform: `translateX(${this.stepOne})
-                translateX(-${this.stepOne})` // ❷
+                    translateX(-${this.stepOne})`
       }
     },
     afterTransitionOne(callback) {
-      const listener = () => { // ❹
+      const listener = () => {
         callback()
         this.$refs.s__inner.removeEventListener('transitionend', listener)
       }
-      this.$refs.s__inner.addEventListener('transitionend', listener) // ❺
+      this.$refs.s__inner.addEventListener('transitionend', listener)
     },
     resetTranslateOne() {
       this.innerStylesOne = {
         transition: 'none',
-        transform: `translateX(-${this.stepOne})`
       }
     },
     onResize() {
