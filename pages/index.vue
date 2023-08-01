@@ -1408,7 +1408,7 @@ export default {
       }, 3000);
     },
     scrollToActivity() {
-      setTimeout(() => this.$refs.boxActivity.scrollIntoView({block: 'start', behavior: 'auto'}), 200);
+      setTimeout(() => this.$refs.boxActivity.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
       window.scrollBy(0, -73);
     },
   },

@@ -35,10 +35,10 @@
         “<span>Adventure </span> is not only a trip, but also a <span> rush </span> of <span> adrenaline.</span>”
       </div>
       <div v-if="!navMobile" class="s__header--lang">
-        <div v-if="!showSearch" class="s__header--lang__left">
-<!--          <span class="is-desktop">TIẾNG VIỆT / VND</span>-->
-<!--          <span class="is-mobile">VN</span>-->
-        </div>
+<!--        <div v-if="!showSearch" class="s__header&#45;&#45;lang__left">-->
+<!--&lt;!&ndash;          <span class="is-desktop">TIẾNG VIỆT / VND</span>&ndash;&gt;-->
+<!--&lt;!&ndash;          <span class="is-mobile">VN</span>&ndash;&gt;-->
+<!--        </div>-->
         <div v-if="!showSearch" class="s__header--lang__right">
 <!--          <span class="is-desktop">+84 886 677 950</span>-->
           <span class="is-mobile">

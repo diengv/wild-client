@@ -130,37 +130,37 @@
                 <div class="btn-note-text">5.000.000 VND/người</div>
               </div>
             </div>
-            <div class="s__payment--content__form--item">
-              <div class="s__payment--content__form--item__label">
-                Trẻ em:
-              </div>
-              <div class="s__payment--content__form--item__input">
-                <div class="btn-choose-number">
-                  <span @click="minusChildren()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
-                  <span class="number">{{ children }}</span>
-                  <span @click="plusChildren()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
-                </div>
-                <div class="btn-note-text">2.000.000 VND/người</div>
-              </div>
-            </div>
+<!--            <div class="s__payment&#45;&#45;content__form&#45;&#45;item">-->
+<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__label">-->
+<!--                Trẻ em:-->
+<!--              </div>-->
+<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__input">-->
+<!--                <div class="btn-choose-number">-->
+<!--                  <span @click="minusChildren()" class="minus"><img src="~/assets/images/minus-active.svg"></span>-->
+<!--                  <span class="number">{{ children }}</span>-->
+<!--                  <span @click="plusChildren()" class="plus"><img src="~/assets/images/plus-active.svg"></span>-->
+<!--                </div>-->
+<!--                <div class="btn-note-text">2.000.000 VND/người</div>-->
+<!--              </div>-->
+<!--            </div>-->
             <div class="s__payment--content__form--item note-form">
               * Hoạt động cần đăng ký tối thiểu 1 khách. Giá có thể sẽ thay đổi tùy thuộc vào số lượng khách.
             </div>
-            <div class="s__payment--content__form--item">
-              <div class="s__payment--content__form--item__label mt--30">
-                Chọn thời gian đón:
-              </div>
-              <div class="s__payment--content__form--item__input flex-column">
-                <select id="countries" class="s__select">
-                  <option selected>09 PM</option>
-                  <option value="US">10 PM</option>
-                  <option value="CA">11 PM</option>
-                  <option value="FR">12 PM</option>
-                  <option value="DE">13 PM</option>
-                </select>
-                <div class="s__select--note">Thời gian phù hợp nhất để WildBuddy đón bạn</div>
-              </div>
-            </div>
+<!--            <div class="s__payment&#45;&#45;content__form&#45;&#45;item">-->
+<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__label mt&#45;&#45;30">-->
+<!--                Chọn thời gian đón:-->
+<!--              </div>-->
+<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__input flex-column">-->
+<!--                <select id="countries" class="s__select">-->
+<!--                  <option selected>09 PM</option>-->
+<!--                  <option value="US">10 PM</option>-->
+<!--                  <option value="CA">11 PM</option>-->
+<!--                  <option value="FR">12 PM</option>-->
+<!--                  <option value="DE">13 PM</option>-->
+<!--                </select>-->
+<!--                <div class="s__select&#45;&#45;note">Thời gian phù hợp nhất để WildBuddy đón bạn</div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
 
           <div class="s__payment--label mt-41">

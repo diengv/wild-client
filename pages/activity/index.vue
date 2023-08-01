@@ -11,9 +11,6 @@
             </div>
           </div>
         </div>
-        <div class="s__activity--choose-date__years">
-
-        </div>
         <div class="s__activity--choose-date__years__months">
           <div class="__years">
             <div @click="changeYear(y,index)" v-for="(y, index) in listYear" :key="index" class="__years--item"
@@ -22,10 +19,10 @@
             </div>
           </div>
           <div class="__months">
-            <div v-if="!monthRight" class="opacity-arrow-right-month">
+            <div v-if="!monthRight && listMonth.length > 9" class="opacity-arrow-right-month">
               <img src="~/assets/images/opacity-right-month.svg">
             </div>
-            <div v-if="!monthLeft" class="opacity-arrow-left-month">
+            <div v-if="!monthLeft && listMonth.length > 9" class="opacity-arrow-left-month">
               <img src="~/assets/images/opacity-left-month.svg">
             </div>
             <div class="s__activity--choose-date__months" :class="{'month-flex-end': monthRight}">
@@ -33,7 +30,7 @@
                    :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
                 {{ month.name }}
               </div>
-              <div @click="showMonthRight()" v-if="!monthRight" class="btn-arrow-right-month">
+              <div @click="showMonthRight()" v-if="!monthRight && listMonth.length > 9" class="btn-arrow-right-month">
                 <img src="~/assets/images/arrow-right-month.svg">
               </div>
               <div @click="showMonthLeft()" v-if="!monthLeft && monthRight" class="btn-arrow-left-month">
@@ -430,22 +427,58 @@
         </div>
       </div>
     </LibraryImage>
+    <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'"
+           :border-radius="'10px'"
+           :height="'648px'">
+      <div class="s__coupon--wrapper__detail">
+        <div class="s__coupon--wrapper__detail--header" :style="{'background': bgHeaderDetail}">
+          <div class="net"><img src="~/assets/images/luoi.svg"></div>
+          <div class="s__coupon--wrapper__detail--header__stamp">
+            <span>Giảm</span>
+            <span>100k</span>
+          </div>
+        </div>
+        <div class="s__coupon--wrapper__detail--content">
+          <div class="s__coupon--wrapper__detail--content__title">
+            COVIDEND2021
+          </div>
+          <div class="s__coupon--wrapper__detail--content__description">
+            Giảm 200K cho 20 đơn hàng đầu tiên
+          </div>
+          <p><strong>Điều kiện sử dụng:</strong></p>
+          <p>- Áp dụng cho một số sản phẩm thuộc chủ đề <strong>Camping in the Wilderness.</strong></p>
+          <p>- Mã <strong>COVIDEND2022</strong> giảm <strong>200K</strong> cho đơn hàng có giá trị trên <strong>2.000.000
+            VND</strong>.</p>
+          <p>- Mã có <strong>20</strong> lần sử dụng.</p>
+          <p>- Mã chỉ áp dụng khi thanh toán bằng phương thức <strong>Thanh toán 100%</strong> và theo cổng thanh toán
+            <strong>Chuyển
+              khoản.</strong></p>
+          <p>- Mã giảm giá áp dụng cho đặt chỗ từ ngày <strong>01/04/2022</strong> đến ngày <strong>30/04/2022.</strong>
+          </p>
+          <p>- Mã không được khôi phục vì bất cứ lý do nào</p>
+          <p>- Mã sẽ hết hạn khi giá trị sử dụng bằng hoặc vượt quá <strong>4.000.000 VND.</strong></p>
+          <div class="s__coupon--wrapper__detail--content__btn">
+            <button>Sử dụng mã</button>
+          </div>
+        </div>
+      </div>
+    </Modal>
     <div v-if="isFixed" class="s__header--activity">
       <div class="s__container">
         <div class="s__header--activity__wrap">
           <div class="s__header--activity__left">
             <ul>
-              <li>
-                <a href="#">Về hoạt động</a>
+              <li :class="{'active' : activeScroll === 'activity'}">
+                <a @click="toScroll('activity')">Về hoạt động</a>
               </li>
-              <li class="active">
-                <a href="#">Lịch trình</a>
+              <li :class="{'active' : activeScroll === 'schedule'}">
+                <a @click="toScroll('schedule')">Lịch trình</a>
               </li>
-              <li>
-                <a href="#">Thông tin quan trọng</a>
+              <li :class="{'active' : activeScroll === 'important'}">
+                <a @click="toScroll('important')">Thông tin quan trọng</a>
               </li>
-              <li>
-                <a href="#">Review</a>
+              <li :class="{'active' : activeScroll === 'review'}">
+                <a @click="toScroll('review')">Review</a>
               </li>
             </ul>
           </div>
@@ -496,15 +529,18 @@
           Cấp độ trải nghiệm:
         </span>
         <span class="s__activity--level__it">Người mới</span>
-        <span class="s__activity--level__help"><img src="~/assets/images/icon-helps.svg"></span>
+<!--        <span class="s__activity&#45;&#45;level__help"><img src="~/assets/images/icon-helps.svg"></span>-->
       </div>
       <div class="s__activity--view__all">
         <a @click="showLibraryModal()">Xem tất cả hình ảnh</a>
       </div>
       <div class="s__activity--view__images">
-        <div class="s__activity--view__images--left">
+        <div class="s__activity--view__images--left position-relative">
           <div class="s__activity--view__images--item">
             <img src="~/assets/images/im-1.png">
+          </div>
+          <div class="s__icon_local">
+            <img src="~/assets/images/local.jpg">
           </div>
         </div>
         <div class="s__activity--view__images--right">
@@ -629,10 +665,10 @@
                 2 mã giảm giá:
               </div>
               <div class="s__activity--info__right--bottom__coupons--items">
-                <div class="coupon-item">
+                <div class="coupon-item" @click="detailCoupon()">
                   Giảm 10%
                 </div>
-                <div class="coupon-item">
+                <div class="coupon-item" @click="detailCoupon()">
                   Giảm 200K
                 </div>
               </div>
@@ -667,7 +703,7 @@
           </Carousel>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box" ref="activity">
         <div class="s__activity--box__title">
           <h2>Thông tin chuyến đi</h2>
         </div>
@@ -695,7 +731,7 @@
               <img src="~/assets/images/im-map.png">
             </div>
           </div>
-          <div class="s__activity--dates">
+          <div class="s__activity--dates" ref="schedule">
             <div @click="showContentDate(date)" v-for="date in listDates" class="s__activity--dates__item"
                  :class="{'active' : date.active}">
               <div class="s__activity--dates__item--title">
@@ -762,7 +798,7 @@
           </div>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box" ref="important">
         <div class="s__activity--box__title">
           <h2>Thông tin quan trọng</h2>
         </div>
@@ -855,7 +891,7 @@
           </div>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box" ref="review">
         <div class="s__activity--box__title mt-80">
           <h2><span>12  </span>đánh giá từ khách hàng</h2>
         </div>
@@ -1211,58 +1247,58 @@ export default {
       }
     ],
     listMonth: [
-      {
-        id: 1,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 1'
-      },
-      {
-        id: 2,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 2'
-      },
-      {
-        id: 3,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 3'
-      },
-      {
-        id: 4,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 4'
-      },
-      {
-        id: 5,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 5'
-      },
-      {
-        id: 6,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 6'
-      },
-      {
-        id: 7,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 7'
-      },
-      {
-        id: 8,
-        active: false,
-        isDisable: true,
-        name: 'Tháng 8'
-      },
+      // {
+      //   id: 1,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 1'
+      // },
+      // {
+      //   id: 2,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 2'
+      // },
+      // {
+      //   id: 3,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 3'
+      // },
+      // {
+      //   id: 4,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 4'
+      // },
+      // {
+      //   id: 5,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 5'
+      // },
+      // {
+      //   id: 6,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 6'
+      // },
+      // {
+      //   id: 7,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 7'
+      // },
+      // {
+      //   id: 8,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 8'
+      // },
       {
         id: 9,
         active: false,
-        isDisable: true,
+        isDisable: false,
         name: 'Tháng 9'
       },
       {
@@ -1299,6 +1335,8 @@ export default {
     pLeft: false,
     monthLeft: false,
     monthRight: false,
+    showDetailCoupon: false,
+    activeScroll: ''
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1320,6 +1358,9 @@ export default {
     })
   },
   methods: {
+    updateparentDetailCoupon(variable) {
+      this.showDetailCoupon = variable
+    },
     showContentDate(date) {
       this.listDates.forEach((val) => {
         if (val.id === date.id) {
@@ -1403,6 +1444,31 @@ export default {
     },
     showLibraryModal() {
       this.showLibrary = true
+    },
+    detailCoupon(coupon) {
+      this.showDetailCoupon = true
+    },
+    toScroll(into){
+      if (into === 'activity'){
+        this.activeScroll = 'activity'
+        setTimeout(() => this.$refs.activity.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+      if (into === 'schedule'){
+        this.activeScroll = 'schedule'
+        setTimeout(() => this.$refs.schedule.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+      if (into === 'important'){
+        this.activeScroll = 'important'
+        setTimeout(() => this.$refs.important.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+      if (into === 'review'){
+        this.activeScroll = 'review'
+        setTimeout(() => this.$refs.review.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
     }
   }
 }
