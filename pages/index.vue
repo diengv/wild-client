@@ -217,9 +217,9 @@
         <div class="s__endow--content">
           <div class="s__endow--content__left">
             <div class="s__endow--content__left--item"></div>
-            <div class="s__endow--content__left--button">
-              <a href="#">Xem thêm</a>
-            </div>
+<!--            <div class="s__endow&#45;&#45;content__left&#45;&#45;button">-->
+<!--              <a href="#">Xem thêm</a>-->
+<!--            </div>-->
           </div>
           <div class="s__endow--content__right">
             <div class="s__endow--content__left--item">
@@ -233,9 +233,9 @@
                 </template>
               </Carousel>
             </div>
-            <div class="s__endow--content__left--button">
-              <a href="#">Xem thêm</a>
-            </div>
+<!--            <div class="s__endow&#45;&#45;content__left&#45;&#45;button">-->
+<!--              <a href="#">Xem thêm</a>-->
+<!--            </div>-->
           </div>
         </div>
       </div>
