@@ -36,11 +36,11 @@
       </div>
       <div v-if="!navMobile" class="s__header--lang">
         <div v-if="!showSearch" class="s__header--lang__left">
-          <span class="is-desktop">TIẾNG VIỆT / VND</span>
-          <span class="is-mobile">VN</span>
+<!--          <span class="is-desktop">TIẾNG VIỆT / VND</span>-->
+<!--          <span class="is-mobile">VN</span>-->
         </div>
         <div v-if="!showSearch" class="s__header--lang__right">
-          <span class="is-desktop">+84 886 677 950</span>
+<!--          <span class="is-desktop">+84 886 677 950</span>-->
           <span class="is-mobile">
             <img v-if="isMobile && isFixed" class="img-mes" src="~assets/images/icon-messenger.svg">
             <img v-if="isMobile && !isFixed" class="img-mes" src="~assets/images/icon-message-white.svg">
