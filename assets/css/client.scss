@@ -9,6 +9,9 @@
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
+  &.overflow-hidden{
+    overflow: hidden;
+  }
 }
 
 html [id], body [id] {

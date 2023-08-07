@@ -1,4 +1,4 @@
-@media all and (max-width: 414px) {
+@media all and (max-width: 768px) {
   html [id], body [id] {
     scroll-margin: 80px !important;
     scroll-behavior: smooth;
@@ -437,5 +437,36 @@
     display: flex;
     justify-content: left;
     align-items: center;
+  }
+  .s__nav-mobile{
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    &--wrap{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: 64px;
+      ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+        margin-top: 16px;
+        li{
+          cursor: pointer;
+          list-style: none;
+          padding: 12px 0;
+          & + li{
+            border-top: 1px #E1E1E1 solid;
+          }
+        }
+      }
+    }
   }
 }

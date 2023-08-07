@@ -452,8 +452,12 @@
         <img @click="closeNavMobile()" src="~/assets/images/icon-close.svg">
       </div>
     </section>
-    <section class="s__">
-
+    <section v-if="isMobile && navMobile" class="s__nav-mobile">
+      <div class="s__nav-mobile--wrap">
+        <ul>
+          <li v-for="nav in itemsNav">{{ nav.name }}</li>
+        </ul>
+      </div>
     </section>
   </div>
 </template>
@@ -461,11 +465,11 @@
 <script>
 import MasonryWall from '@yeger/vue-masonry-wall'
 
+
 export default {
   name: "AppHeader",
   components: {MasonryWall},
   props: ['isHome'],
-
   data: () => ({
     showSearch: false,
     locationActive: false,
@@ -638,7 +642,7 @@ export default {
       }
     ],
     typeToursDescription: '',
-    navMobile: false
+    navMobile: false,
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -719,10 +723,20 @@ export default {
       this.rightNavLocation = true
       this.rightNavLevel = false
       this.rightNavTypeActivity = false
+      useHead({
+        bodyAttrs: {
+          class: this.navMobile || this.activeNav ? 'overflow-hidden' : ''
+        }
+      })
     },
     closeNav() {
       this.activeNav = false
       this.showSearch = false
+      useHead({
+        bodyAttrs: {
+          class: ''
+        }
+      })
     },
     activeItemNav(item) {
       this.itemsNav.forEach((val, i) => {
@@ -808,14 +822,23 @@ export default {
     },
     showBoxNavMobile() {
       this.navMobile = !this.navMobile
-      this.isFixed = !this.isFixed
+      this.isFixed = true
       this.$emit('changeFixed', this.isFixed)
-      console.log(112233, this.navMobile)
+      useHead({
+        bodyAttrs: {
+          class: this.navMobile || this.activeNav ? 'overflow-hidden' : ''
+        }
+      })
     },
     closeNavMobile() {
       this.navMobile = !this.navMobile
       this.isFixed = !this.isFixed
       this.$emit('changeFixed', this.isFixed)
+      useHead({
+        bodyAttrs: {
+          class: ''
+        }
+      })
     },
     backToLocation() {
       this.rightNavLocationItemDetail = false
