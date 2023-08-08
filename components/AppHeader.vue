@@ -35,12 +35,12 @@
         “<span>Adventure </span> is not only a trip, but also a <span> rush </span> of <span> adrenaline.</span>”
       </div>
       <div v-if="!navMobile" class="s__header--lang">
-<!--        <div v-if="!showSearch" class="s__header&#45;&#45;lang__left">-->
-<!--&lt;!&ndash;          <span class="is-desktop">TIẾNG VIỆT / VND</span>&ndash;&gt;-->
-<!--&lt;!&ndash;          <span class="is-mobile">VN</span>&ndash;&gt;-->
-<!--        </div>-->
+        <!--        <div v-if="!showSearch" class="s__header&#45;&#45;lang__left">-->
+        <!--&lt;!&ndash;          <span class="is-desktop">TIẾNG VIỆT / VND</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;          <span class="is-mobile">VN</span>&ndash;&gt;-->
+        <!--        </div>-->
         <div v-if="!showSearch" class="s__header--lang__right">
-<!--          <span class="is-desktop">+84 886 677 950</span>-->
+          <!--          <span class="is-desktop">+84 886 677 950</span>-->
           <span class="is-mobile">
             <img v-if="isMobile && isFixed" class="img-mes" src="~assets/images/icon-messenger.svg">
             <img v-if="isMobile && !isFixed" class="img-mes" src="~assets/images/icon-message-white.svg">
@@ -455,8 +455,55 @@
     <section v-if="isMobile && navMobile" class="s__nav-mobile">
       <div class="s__nav-mobile--wrap">
         <ul>
-          <li v-for="nav in itemsNav">{{ nav.name }}</li>
+          <li @click="goToPageDetailMobile(nav)" v-for="nav in itemsNav">{{ nav.name }}</li>
         </ul>
+      </div>
+    </section>
+    <section v-if="navMobileDetail" class="s__nav-mobile--detail">
+      <div @click="backToNav()" class="s__nav-mobile--detail__header">
+        <span><img src="~/assets/images/icon-arrow-back.svg"></span>
+        <span>Quay lại</span>
+      </div>
+      <div class="s__nav-mobile--detail__content">
+        <div class="s__nav-mobile--detail__content--title">
+          Địa điểm
+        </div>
+        <div class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items">
+            <div @click="goToPageDetailChildMobile" v-if="locationCountries.length > 0"
+                 v-for="country in locationCountries" class="s__nav-mobile--items__item">
+              <div class="s__nav-mobile--items__item--image">
+                <img :src="country.thumbnail">
+              </div>
+              <div class="s__nav-mobile--items__item--title">
+                {{ country.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section v-if="navMobileDetailChild" class="s__nav-mobile--detail--child">
+      <div @click="backToNavParent()" class="s__nav-mobile--detail--child__header">
+        <span><img src="~/assets/images/icon-arrow-back.svg"></span>
+        <span>Quay lại</span>
+      </div>
+      <div class="s__nav-mobile--detail--child__content">
+        <div class="s__nav-mobile--detail__content--title">
+          Địa điểm/Việt Nam
+        </div>
+        <div class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items">
+            <div v-if="locationRegions.length > 0" v-for="reg in locationRegions" class="s__nav-mobile--items__item">
+              <div class="s__nav-mobile--items__item--image">
+                <img :src="reg.thumbnail">
+              </div>
+              <div class="s__nav-mobile--items__item--title">
+                {{ reg.name }}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -643,6 +690,8 @@ export default {
     ],
     typeToursDescription: '',
     navMobile: false,
+    navMobileDetail: false,
+    navMobileDetailChild: false
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -791,7 +840,7 @@ export default {
         this.isFixed = true
       } else {
         this.isFixed = false
-        if (this.navMobile){
+        if (this.navMobile) {
           this.isFixed = true
         }
       }
@@ -842,6 +891,23 @@ export default {
     },
     backToLocation() {
       this.rightNavLocationItemDetail = false
+    },
+    goToPageDetailMobile(nav) {
+      this.navMobileDetail = true
+      useHead({
+        bodyAttrs: {
+          class: 'overflow-hidden'
+        }
+      })
+    },
+    backToNav() {
+      this.navMobileDetail = false
+    },
+    goToPageDetailChildMobile() {
+      this.navMobileDetailChild = true
+    },
+    backToNavParent() {
+      this.navMobileDetailChild = false
     }
   }
 }
