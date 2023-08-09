@@ -1119,7 +1119,7 @@ import {Carousel, Slide, Navigation} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 import LibraryImage from "../../components/LibraryImage";
-import cu from "../../.output/public/_nuxt/index.d7979528";
+
 
 export default {
   name: "index",
