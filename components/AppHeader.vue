@@ -466,17 +466,29 @@
       </div>
       <div class="s__nav-mobile--detail__content">
         <div class="s__nav-mobile--detail__content--title">
-          Địa điểm
+          {{ this.titleNavMobileParent }}
         </div>
-        <div class="s__nav-mobile--detail__content--wrap">
+        <div v-if="navMobileLocation" class="s__nav-mobile--detail__content--wrap">
           <div class="s__nav-mobile--items">
-            <div @click="goToPageDetailChildMobile" v-if="locationCountries.length > 0"
+            <div @click="goToPageDetailChildMobile('location')" v-if="locationCountries.length > 0"
                  v-for="country in locationCountries" class="s__nav-mobile--items__item">
               <div class="s__nav-mobile--items__item--image">
                 <img :src="country.thumbnail">
               </div>
               <div class="s__nav-mobile--items__item--title">
                 {{ country.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="navMobileLevel" class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items">
+            <div v-if="locationRegions.length > 0" v-for="lv in levelList" class="s__nav-mobile--items__item">
+              <div class="s__nav-mobile--items__item--image">
+                <img :src="lv.thumbnailMobile">
+              </div>
+              <div class="s__nav-mobile--items__item--title">
+                {{ lv.name }}
               </div>
             </div>
           </div>
@@ -492,7 +504,7 @@
         <div class="s__nav-mobile--detail__content--title">
           Địa điểm/Việt Nam
         </div>
-        <div class="s__nav-mobile--detail__content--wrap">
+        <div v-if="navMobileLocationChildren" class="s__nav-mobile--detail__content--wrap">
           <div class="s__nav-mobile--items">
             <div v-if="locationRegions.length > 0" v-for="reg in locationRegions" class="s__nav-mobile--items__item">
               <div class="s__nav-mobile--items__item--image">
@@ -500,6 +512,18 @@
               </div>
               <div class="s__nav-mobile--items__item--title">
                 {{ reg.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="navMobileLevelChildren" class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items">
+            <div v-if="locationRegions.length > 0" v-for="lv in levelList" class="s__nav-mobile--items__item">
+              <div class="s__nav-mobile--items__item--image">
+                <img :src="lv.thumbnailMobile">
+              </div>
+              <div class="s__nav-mobile--items__item--title">
+                {{ lv.name }}
               </div>
             </div>
           </div>
@@ -665,6 +689,14 @@ export default {
         name: "Miền nam",
       },
     ],
+    levelList:[
+      {
+        id: 1,
+        thumbnailDesktop: '/assets/images/pc-nguoi-moi.png',
+        thumbnailMobile: 'https://img.freepik.com/free-photo/vivid-colored-transparent-autumn-leaf_23-2148239739.jpg?w=2000',
+        name: 'Người mới'
+      }
+    ],
     isMobile: false,
     pageWidth: 0,
     showHelp: false,
@@ -691,7 +723,13 @@ export default {
     typeToursDescription: '',
     navMobile: false,
     navMobileDetail: false,
-    navMobileDetailChild: false
+    navMobileDetailChild: false,
+    navMobileLocation: false,
+    navMobileLocationChildren: false,
+    titleNavMobileParent: '',
+    titleNavMobileChildren: '',
+    navMobileLevel: false,
+    navMobileLevelChildren: false,
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -893,18 +931,36 @@ export default {
       this.rightNavLocationItemDetail = false
     },
     goToPageDetailMobile(nav) {
-      this.navMobileDetail = true
-      useHead({
-        bodyAttrs: {
-          class: 'overflow-hidden'
+      if(nav.id === 1){
+        window.location = '/'
+      }else {
+        this.navMobileDetail = true
+        if (nav.id === 2){
+          this.navMobileLocation = true
+          this.navMobileLevel = false
+          this.titleNavMobileParent = 'Địa điểm'
+        }else if (nav.id === 3){
+          this.navMobileLevel = true
+          this.navMobileLocation = false
+          this.titleNavMobileParent = 'Cấp độ'
         }
-      })
+
+        useHead({
+          bodyAttrs: {
+            class: 'overflow-hidden'
+          }
+        })
+      }
     },
     backToNav() {
       this.navMobileDetail = false
     },
-    goToPageDetailChildMobile() {
+    goToPageDetailChildMobile(type) {
       this.navMobileDetailChild = true
+      if (type === 'location'){
+        this.navMobileLocationChildren = true
+        this.titleNavMobileParent = 'Địa điểm/Việt Nam'
+      }
     },
     backToNavParent() {
       this.navMobileDetailChild = false
