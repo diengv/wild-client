@@ -3237,14 +3237,13 @@ button {
     }
   }
 
-  .carousel__track {
-    gap: 15px;
-  }
+
 
   .carousel__slide {
     border-radius: 5px;
 
     .carousel__item {
+      margin: 8px;
       padding: 24px 32px 32px 32px;
       background: #FEF9E9;
     }
@@ -3399,14 +3398,13 @@ button {
     &--content {
       width: 100%;
       display: flex;
-      flex-direction: column;
       padding: 24px;
 
       .list-activity-note {
-        width: 100%;
+        width: 676px;
         display: flex;
         flex-direction: column;
-
+        margin-right: 100px;
         &__item {
           width: 100%;
           display: flex;
@@ -3435,6 +3433,49 @@ button {
           font-size: 16px;
           font-family: Source Sans Pro;
           line-height: 24px;
+        }
+      }
+      .list-activity-note-highlight{
+        width: calc(100% - 676px - 100px);
+        display: flex;
+        flex-direction: column;
+        &__head{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &--title{
+            color: #000;
+            font-family: Source Sans Pro;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-transform: uppercase;
+            height: 100%;
+            display: flex;
+            align-items: center;
+          }
+          &--button{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .s__topic--slider__head{
+              margin-bottom: 0;
+            }
+          }
+        }
+        &__content{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          margin-top: 14px;
+          img{
+            border-radius: 5px;
+            width: 100%;
+          }
         }
       }
     }
@@ -3620,6 +3661,9 @@ button {
   position: absolute;
   bottom: 0;
   left: 0;
+  img{
+    width: 100%;
+  }
 }
 
 .s__take-away__wrap {
@@ -6176,6 +6220,17 @@ button {
   }
 }
 .coupon-item{
+  cursor: pointer;
+}
+.more__cus{
+  color: #2D4C3F;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  margin-top: 8px;
   cursor: pointer;
 }
 @import "responsive";

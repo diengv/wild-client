@@ -529,7 +529,7 @@
           Cấp độ trải nghiệm:
         </span>
         <span class="s__activity--level__it">Người mới</span>
-<!--        <span class="s__activity&#45;&#45;level__help"><img src="~/assets/images/icon-helps.svg"></span>-->
+        <!--        <span class="s__activity&#45;&#45;level__help"><img src="~/assets/images/icon-helps.svg"></span>-->
       </div>
       <div class="s__activity--view__all">
         <a @click="showLibraryModal()">Xem tất cả hình ảnh</a>
@@ -758,6 +758,23 @@
                     {{ date.content }}
                   </div>
                 </div>
+                <div class="list-activity-note-highlight">
+                  <div class="list-activity-note-highlight__head">
+                    <div class="list-activity-note-highlight__head--title">
+                      HIGHLIGHT
+                    </div>
+                    <div class="list-activity-note-highlight__head--button">
+                      <div class="s__topic--slider__head">
+                        <span>1/2</span>
+                        <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
+                        <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-activity-note-highlight__content">
+                    <img src="~/assets/images/thumbnail-activity.png">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -897,14 +914,14 @@
         </div>
         <div class="s__activity--box__content--rate">
           <div class="s__activity--box__content--rate__left">
-            <div class="s__activity--box__content--rate__left--item">
+            <div v-for="cus in customersSaid" class="s__activity--box__content--rate__left--item">
               <div class="s__activity--box__content--rate__left--item__head">
                 <div class="s__activity--box__content--rate__left--item__head--avatar">
                   <img src="~/assets/images/avatar-dh.png">
                 </div>
                 <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
+                  <div class="name">{{ cus.name }}</div>
+                  <div class="date">{{ cus.dateSaid }}</div>
                   <div class="star">
                     <span><img src="~/assets/images/star.svg"></span>
                     <span><img src="~/assets/images/star.svg"></span>
@@ -915,58 +932,9 @@
                 </div>
               </div>
               <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+                {{ cus.said.slice(0, cus.lenghtTxt) }}
               </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
-                </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize. The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
-                </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
+              <p @click="moreRegulations(cus)" v-if="cus.said.length > cus.lenghtTxt" class="more__cus"><span>Xem thêm</span></p>
             </div>
           </div>
           <div class="s__activity--box__content--rate__right">
@@ -1151,6 +1119,7 @@ import {Carousel, Slide, Navigation} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 import LibraryImage from "../../components/LibraryImage";
+import cu from "../../.output/public/_nuxt/index.d7979528";
 
 export default {
   name: "index",
@@ -1336,13 +1305,47 @@ export default {
     monthLeft: false,
     monthRight: false,
     showDetailCoupon: false,
-    activeScroll: ''
+    activeScroll: '',
+    customersSaid: [
+      {
+        id: 1,
+        name: 'Drifter',
+        thumbnail: '',
+        dateSaid: 'Tháng 01/2018',
+        starRate: 5,
+        lenghtTxt: 390,
+        said: 'Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.',
+      },
+      {
+        id: 2,
+        name: 'Hùng',
+        thumbnail: '',
+        dateSaid: 'Tháng 01/2018',
+        starRate: 5,
+        lenghtTxt: 390,
+        said: 'Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize. The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.',
+      },
+      {
+        id: 2,
+        name: 'Hùng',
+        thumbnail: '',
+        dateSaid: 'Tháng 01/2018',
+        starRate: 5,
+        lenghtTxt: 390,
+        said: 'Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize. The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.',
+      }
+    ],
+    regulationsLenght: 390,
   }),
   beforeMount() {
-    window.addEventListener('scroll', this.handleScroll)
+    if (process.browser) {
+      window.addEventListener('scroll', this.handleScroll)
+    }
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
+    if (process.browser) {
+      window.removeEventListener('scroll', this.handleScroll)
+    }
   },
   mounted() {
     this.includes.forEach((val, index) => {
@@ -1448,27 +1451,34 @@ export default {
     detailCoupon(coupon) {
       this.showDetailCoupon = true
     },
-    toScroll(into){
-      if (into === 'activity'){
+    toScroll(into) {
+      if (into === 'activity') {
         this.activeScroll = 'activity'
         setTimeout(() => this.$refs.activity.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
         window.scrollBy(0, 73);
       }
-      if (into === 'schedule'){
+      if (into === 'schedule') {
         this.activeScroll = 'schedule'
         setTimeout(() => this.$refs.schedule.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
         window.scrollBy(0, 73);
       }
-      if (into === 'important'){
+      if (into === 'important') {
         this.activeScroll = 'important'
         setTimeout(() => this.$refs.important.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
         window.scrollBy(0, 73);
       }
-      if (into === 'review'){
+      if (into === 'review') {
         this.activeScroll = 'review'
         setTimeout(() => this.$refs.review.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
         window.scrollBy(0, 73);
       }
+    },
+    moreRegulations(cus) {
+      this.customersSaid.forEach((val) => {
+        if (val.id === cus.id){
+          cus.lenghtTxt = val.said.length
+        }
+      })
     }
   }
 }
