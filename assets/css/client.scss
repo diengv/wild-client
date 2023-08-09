@@ -2307,7 +2307,7 @@ html [id], body [id] {
       box-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.5);
       border: 1px solid rgba(3, 72, 63, 1);
       border-radius: 5px;
-      padding: 16px 48px;
+      padding: 32px 48px;
       display: flex;
       flex-wrap: wrap;
     }
@@ -2541,7 +2541,7 @@ html [id], body [id] {
 
 .s__checkbox--vietnam {
   width: 100%;
-  background: #E1E1E1;
+  background: #f7f7f7;
   padding: 15px;
   border-radius: 5px;
   margin-top: 15px;
@@ -2650,7 +2650,7 @@ button {
     position: absolute;
     bottom: 0;
     width: 90%;
-    height: 1px;
+    height: 2px;
     background: #0D4C3F;
     left: 50%;
     transform: translateX(-50%);
@@ -6232,5 +6232,38 @@ button {
   text-decoration-line: underline;
   margin-top: 8px;
   cursor: pointer;
+}
+.more_activity_filter{
+  width: 100%;
+  display: flex;
+  color: #2D4C3F;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  margin-top: 5px;
+  margin-bottom: 84px;
+  cursor: pointer;
+}
+.s__line--custom{
+  position: relative;
+  &:before{
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: #E1E1E1;
+    position: absolute;
+    left: -48px;
+  }
+  &:after{
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: #E1E1E1;
+    position: absolute;
+    right: -48px;
+  }
 }
 @import "responsive";

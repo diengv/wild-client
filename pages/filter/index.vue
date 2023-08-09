@@ -181,7 +181,7 @@
               </label>
             </div>
           </div>
-          <div class="s__line mt-5 mb-3"></div>
+          <div class="s__line mt-5 mb-3 s__line--custom"></div>
           <div class="s__bottom_filter">
             <div class="choose__again">
               Chọn lại
@@ -690,6 +690,9 @@
               </div>
             </a>
           </div>
+        </div>
+        <div class="more_activity_filter">
+          Xem thêm 114 hoạt động khác
         </div>
       </section>
     </div>
