@@ -14,8 +14,8 @@
    </div>
    <div class="s__container">
      <div class="s__payment--content">
-       <div class="s__payment--content__left">
-          <div class="s__payment--notification__title">
+       <div class="s__payment--content__left w-630--left-noti">
+          <div class="s__payment--notification__title mt-40px">
             Chúc mừng bạn đã đăng ký thành công cho hoạt động
           </div>
          <div class="s__payment--notification__name">

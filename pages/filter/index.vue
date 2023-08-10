@@ -1,6 +1,80 @@
 <template>
   <div class="s__current_page">
+    <Modal @clearModal="updateparent" :show="searchMore" :width="'770px'" :top="'100px'"
+           :border-radius="'10px'"
+           :height="'610px'">
+      <div class="s__search-more-title">
+        Thêm bộ lọc
+      </div>
+      <div class="s__search-more-wrap">
+        <div class="s__search-more-box">
+          <div class="s__search-more-box__title">
+            Số thành viên
+          </div>
+          <div class="s__search-more-box__content">
+            <div class="s__payment--content__form">
+              <div class="s__payment--content__form--item">
+                <div class="s__payment--content__form--item__label w-110">
+                  Người lớn:
+                </div>
+                <div class="s__payment--content__form--item__input">
+                  <div class="btn-choose-number">
+                    <span @click="minusAdult()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
+                    <span class="number">{{ adult }}</span>
+                    <span @click="plusAdult()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s__search-more-box">
+          <div class="s__search-more-box__title">
+            Ngân sách
+          </div>
+          <div class="s__search-more-box__content mt-30">
+            <div class="d-flex-wrap">
+              <div v-for="bud in budget" class="s__item_checkbox">
+                <label class="container--checkbox" :class="{'active': bud.selected}">
+                  <span>{{ bud.name }}</span>
+                  <input @change="choiseBudget()" v-model="bud.selected" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
 
+            </div>
+          </div>
+        </div>
+        <div class="s__search-more-box">
+          <div class="s__search-more-box__title">
+            Ngôn ngữ
+          </div>
+          <div class="s__search-more-box__content mt-30">
+            <div class="d-flex-wrap">
+              <div v-for="lang in languages" class="s__item_checkbox">
+                <label class="container--checkbox" :class="{'active': lang.selected}">
+                  <span>{{ lang.name }}</span>
+                  <input v-model="lang.selected" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="s__line s__line--customs "></div>
+        <div class="s__search-more-bottom">
+          <div class="s__bottom_filter">
+            <div class="choose__again" @click="reselect('search-more')">
+              Chọn lại
+            </div>
+            <div class="filter_btn-search">
+              <a class="btn-search" href="#">Tìm kiếm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Modal>
     <div class="s__container">
       <section class="s__head_filter">
         <div @click="showBoxLocation()" :class="{'active': boxLocation}" class="s__head_filter--item">
@@ -15,175 +89,35 @@
         <div @click="showBoxTypePlace()" :class="{'active': boxTypePlace}" class="s__head_filter--item">
           <span>Loại đặt chỗ</span>
         </div>
-        <div class="s__head_filter--item add-filter">
+        <div @click="showBoxSearchMore()" class="s__head_filter--item add-filter">
           <span><img src="~/assets/images/filter.svg"></span> <span>Thêm bộ lọc: </span><span>1</span>
         </div>
-        <div class="s__head_filter--item__location" v-if="boxLocation">
-          <div class="d-flex-wrap">
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Indonesia
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Thái Lan
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Philippines
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Ấn Độ
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Nepal
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Mông Cổ
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Parkistan
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Kyrgyzstan
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Georgia
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox" :class="{'active': checkVietNam}"><span>Việt Nam</span> <span
-                  class="icon-down-location"><img src="~/assets/images/icon-down.svg"></span>
-                <input @change="checkedVietNam()" type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
+        <div v-click-outside="clickedParent" class="s__head_filter--item__location" v-if="boxLocation">
+          <div class="position-relative box-location-filter">
+            <div class="d-flex-wrap">
+              <div v-for="loc in location" class="s__item_checkbox">
+                <label class="container--checkbox" :class="{'active': loc.selected}">
+                  <span>{{ loc.name }}</span> <span v-if="loc.children && loc.children.length > 0"
+                                                    class="icon-down-location"><img src="~/assets/images/icon-down.svg"></span>
+                  <input @change="testSelected()" v-model="loc.selected" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
 
-          </div>
-          <div v-if="checkVietNam" class="s__checkbox--vietnam">
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">DakLak
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Lâm Đồng
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Quảng Bình
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Hà Giang
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Nha Trang
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">DakNong
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Lào Cai
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Bình Thuận
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Đà Nẵng
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Ninh Thuận
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Hạ Long
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Phú Quốc
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Ninh Thuận
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Sapa
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Khánh Hòa
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="s__item_checkbox">
-              <label class="container--checkbox">Yên Bái
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
+                <div v-if="loc.children && loc.children.length > 0 && loc.selected" class="s__checkbox--vietnam">
+                  <div v-for="child in loc.children" class="s__item_checkbox">
+                    <label class="container--checkbox">{{ child.name }}
+                      <input v-model="child.selected" type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
           <div class="s__line mt-5 mb-3 s__line--custom"></div>
           <div class="s__bottom_filter">
-            <div class="choose__again">
+            <div class="choose__again" @click="reselect('location')">
               Chọn lại
             </div>
             <div class="filter_btn-search">
@@ -191,7 +125,7 @@
             </div>
           </div>
         </div>
-        <div class="s__head_filter--item__level" v-if="boxLevel">
+        <div v-click-outside="clickedParent" class="s__head_filter--item__level" v-if="boxLevel">
           <div v-for="lv in listLevel" class="filter--item-level">{{ lv.name }}</div>
           <div class="s__line mt-5 mb-3"></div>
           <div class="s__bottom_filter">
@@ -203,7 +137,7 @@
             </div>
           </div>
         </div>
-        <div class="s__head_filter--item__type-place" v-if="boxTypePlace">
+        <div v-click-outside="clickedParent" class="s__head_filter--item__type-place" v-if="boxTypePlace">
           <div v-for="tp in listTypePlace" class="filter--item-level">{{ tp.name }}</div>
           <div class="s__line mt-5 mb-3"></div>
           <div class="s__bottom_filter">
@@ -215,7 +149,7 @@
             </div>
           </div>
         </div>
-        <div class="s__head_filter--item__date" v-if="boxDate">
+        <div v-click-outside="clickedParent" class="s__head_filter--item__date" v-if="boxDate">
           <Calendar :initial-page="{ month: 4, year: 2019 }"
                     :color="selectedColor"
                     :attributes="attrs"/>
@@ -763,7 +697,132 @@ export default {
         active: false
       },
     ],
-    picked: new Date()
+    picked: new Date(),
+    location: [
+      {
+        id: 1,
+        name: 'Indonesia',
+        selected: false
+      },
+      {
+        id: 2,
+        name: 'Thái Lan',
+        selected: false
+      },
+      {
+        id: 3,
+        name: 'Philippines',
+        selected: false
+      },
+      {
+        id: 4,
+        name: 'Ấn Độ',
+        selected: false
+      }, {
+        id: 5,
+        name: 'Nepal',
+        selected: false
+      }, {
+        id: 6,
+        name: 'Mông Cổ',
+        selected: false
+      },
+      {
+        id: 7,
+        name: 'Parkistan',
+        selected: false
+      },
+      {
+        id: 8,
+        name: 'Kyrgyzstan',
+        selected: false
+      },
+      {
+        id: 9,
+        name: 'Georgia',
+        selected: false
+      },
+      {
+        id: 10,
+        name: 'Việt Nam',
+        selected: false,
+        children: [
+          {
+            id: 1,
+            name: 'Miền Bắc',
+            selected: false
+          },
+          {
+            id: 2,
+            name: 'Miền Trung',
+            selected: false
+          },
+          {
+            id: 3,
+            name: 'Miền Nam',
+            selected: false
+          }
+        ]
+      }
+    ],
+    searchMore: false,
+    adult: 0,
+    budget: [
+      {
+        id: 1,
+        name: '0 - 500.000 VND',
+        priceMin: 0,
+        priceMax: 500000,
+        selected: false,
+      },
+      {
+        id: 2,
+        name: '0 - 500.000 VND',
+        priceMin: 0,
+        priceMax: 500000,
+        selected: false,
+      },
+      {
+        id: 3,
+        name: '0 - 500.000 VND',
+        priceMin: 0,
+        priceMax: 500000,
+        selected: false,
+      },
+      {
+        id: 4,
+        name: '0 - 500.000 VND',
+        priceMin: 0,
+        priceMax: 500000,
+        selected: false,
+      },
+      {
+        id: 5,
+        name: '0 - 500.000 VND',
+        priceMin: 0,
+        priceMax: 500000,
+        selected: false,
+      },
+      {
+        id: 6,
+        name: '0 - 500.000 VND',
+        priceMin: 0,
+        priceMax: 500000,
+        selected: false,
+      }
+    ],
+    languages: [
+      {
+        id: 1,
+        name: 'Tiếng Anh',
+        selected: false
+      },
+      {
+        id: 2,
+        name: 'Tiếng Pháp',
+        selected: false
+      }
+    ]
   }),
   methods: {
     showBoxLocation() {
@@ -801,6 +860,53 @@ export default {
     checkedVietNam() {
       console.log(1212)
       this.checkVietNam = !this.checkVietNam
+    },
+    testSelected() {
+      console.log(1234, this.location)
+    },
+    reselect(type) {
+      if (type === 'location') {
+        this.location.forEach((val) => {
+          val.selected = false
+          if (val.children && val.children.length > 0) {
+            val.children.forEach((j) => {
+              j.selected = false
+            })
+          }
+        })
+      }else if(type === 'search-more'){
+        this.budget.forEach((val) => {
+          val.selected = false
+        })
+        this.languages.forEach((val) => {
+          val.selected = false
+        })
+      }
+    },
+    async clickedParent() {
+      await new Promise((resolve, reject) => setTimeout(resolve, 1));
+      this.boxLocation = false
+      this.boxLevel = false
+      this.boxTypePlace = false
+      this.boxDate = false
+      this.hasOpacity = false
+    },
+    updateparent(variable) {
+      this.searchMore = variable
+    },
+    showBoxSearchMore() {
+      this.searchMore = true
+    },
+    minusAdult() {
+      if (this.adult > 1) {
+        this.adult = this.adult - 1
+      }
+    },
+    plusAdult() {
+      this.adult = this.adult + 1
+    },
+    choiseBudget(){
+
     }
   }
 }

@@ -1022,9 +1022,16 @@
           </div>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box mb-76">
         <div class="s__activity--box__title mt-80">
           <h2>Các hoạt động khác cùng địa điểm</h2>
+          <div class="s__activity--box__next-prev">
+            <div class="s__topic--slider__head">
+              <span>1/2</span>
+              <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
+              <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
+            </div>
+          </div>
         </div>
         <div class="s__activities--items">
           <div class="s__activities--items__item">
@@ -1390,7 +1397,7 @@ export default {
     showAnswer(qa) {
       this.questionAnswer.forEach((val) => {
         if (val.id === qa.id) {
-          val.active = true
+          val.active = !val.active
         } else {
           val.active = false
         }

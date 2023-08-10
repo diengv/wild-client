@@ -25,7 +25,7 @@ export default {
       this.isHome = false
     }
 
-    if (this.$route.path === '/payment') {
+    if (this.$route.path === '/payment' || this.$route.path === '/payment/notification') {
       this.isPayment = true
     } else {
       this.isPayment = false

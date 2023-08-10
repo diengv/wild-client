@@ -33,7 +33,393 @@
         </div>
       </div>
     </Modal>
+    <Modal @clearModal="updateparentDate" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'"
+           :overflow-y="'scroll'">
+      <div class="s__activity--choose-date">
+        <div class="s__activity--choose-date__category">
+          <div class="s__activity--choose-date__category--tabs">
+            <div @click="changeCategory(category)" v-for="(category, index) in categories" :key="index"
+                 class="s__activity--choose-date__category--tabs__item" :class="{'active': category.active}">
+              {{ category.name }}
+            </div>
+          </div>
+        </div>
+        <div class="s__activity--choose-date__years__months">
+          <div class="__years">
+            <div @click="changeYear(y,index)" v-for="(y, index) in listYear" :key="index" class="__years--item"
+                 :class="{'active': y.active, 'p-left': pLeft}">
+              {{ y.name }}
+            </div>
+          </div>
+          <div class="__months">
+            <div v-if="!monthRight && listMonth.length > 9" class="opacity-arrow-right-month">
+              <img src="~/assets/images/opacity-right-month.svg">
+            </div>
+            <div v-if="!monthLeft && listMonth.length > 9" class="opacity-arrow-left-month">
+              <img src="~/assets/images/opacity-left-month.svg">
+            </div>
+            <div class="s__activity--choose-date__months" :class="{'month-flex-end': monthRight}">
+              <div v-for="(month, index) in listMonth" :key="index" class="s__activity--choose-date__months--item"
+                   :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
+                {{ month.name }}
+              </div>
+              <div @click="showMonthRight()" v-if="!monthRight && listMonth.length > 9" class="btn-arrow-right-month">
+                <img src="~/assets/images/arrow-right-month.svg">
+              </div>
+              <div @click="showMonthLeft()" v-if="!monthLeft && monthRight" class="btn-arrow-left-month">
+                <img src="~/assets/images/arrow-left-month.svg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s__activity--choose-date__tables">
+          <table id="customers">
+            <tr>
+              <th width="276px">Thời gian</th>
+              <th width="250px">Giá nhóm 1-3 người</th>
+              <th width="250px">Giá nhóm 4-6 người</th>
+              <th width="250px">Giá nhóm 7-10 người</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
 
+          </table>
+        </div>
+      </div>
+    </Modal>
     <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'"
            :border-radius="'10px'"
            :height="'648px'">
@@ -109,7 +495,7 @@
                   <span>Ngày khởi hành:</span>
                   <span>02/11/2022</span>
                 </div>
-                <a class="s__payment--info-activity__info--wrap__change" href="#">Thay đổi</a>
+                <a class="s__payment--info-activity__info--wrap__change" @click="changeDate()">Thay đổi</a>
               </div>
             </div>
           </div>
@@ -130,37 +516,37 @@
                 <div class="btn-note-text">5.000.000 VND/người</div>
               </div>
             </div>
-<!--            <div class="s__payment&#45;&#45;content__form&#45;&#45;item">-->
-<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__label">-->
-<!--                Trẻ em:-->
-<!--              </div>-->
-<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__input">-->
-<!--                <div class="btn-choose-number">-->
-<!--                  <span @click="minusChildren()" class="minus"><img src="~/assets/images/minus-active.svg"></span>-->
-<!--                  <span class="number">{{ children }}</span>-->
-<!--                  <span @click="plusChildren()" class="plus"><img src="~/assets/images/plus-active.svg"></span>-->
-<!--                </div>-->
-<!--                <div class="btn-note-text">2.000.000 VND/người</div>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="s__payment&#45;&#45;content__form&#45;&#45;item">-->
+            <!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__label">-->
+            <!--                Trẻ em:-->
+            <!--              </div>-->
+            <!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__input">-->
+            <!--                <div class="btn-choose-number">-->
+            <!--                  <span @click="minusChildren()" class="minus"><img src="~/assets/images/minus-active.svg"></span>-->
+            <!--                  <span class="number">{{ children }}</span>-->
+            <!--                  <span @click="plusChildren()" class="plus"><img src="~/assets/images/plus-active.svg"></span>-->
+            <!--                </div>-->
+            <!--                <div class="btn-note-text">2.000.000 VND/người</div>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <div class="s__payment--content__form--item note-form">
               * Hoạt động cần đăng ký tối thiểu 1 khách. Giá có thể sẽ thay đổi tùy thuộc vào số lượng khách.
             </div>
-<!--            <div class="s__payment&#45;&#45;content__form&#45;&#45;item">-->
-<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__label mt&#45;&#45;30">-->
-<!--                Chọn thời gian đón:-->
-<!--              </div>-->
-<!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__input flex-column">-->
-<!--                <select id="countries" class="s__select">-->
-<!--                  <option selected>09 PM</option>-->
-<!--                  <option value="US">10 PM</option>-->
-<!--                  <option value="CA">11 PM</option>-->
-<!--                  <option value="FR">12 PM</option>-->
-<!--                  <option value="DE">13 PM</option>-->
-<!--                </select>-->
-<!--                <div class="s__select&#45;&#45;note">Thời gian phù hợp nhất để WildBuddy đón bạn</div>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="s__payment&#45;&#45;content__form&#45;&#45;item">-->
+            <!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__label mt&#45;&#45;30">-->
+            <!--                Chọn thời gian đón:-->
+            <!--              </div>-->
+            <!--              <div class="s__payment&#45;&#45;content__form&#45;&#45;item__input flex-column">-->
+            <!--                <select id="countries" class="s__select">-->
+            <!--                  <option selected>09 PM</option>-->
+            <!--                  <option value="US">10 PM</option>-->
+            <!--                  <option value="CA">11 PM</option>-->
+            <!--                  <option value="FR">12 PM</option>-->
+            <!--                  <option value="DE">13 PM</option>-->
+            <!--                </select>-->
+            <!--                <div class="s__select&#45;&#45;note">Thời gian phù hợp nhất để WildBuddy đón bạn</div>-->
+            <!--              </div>-->
+            <!--            </div>-->
           </div>
 
           <div class="s__payment--label mt-41">
@@ -173,6 +559,14 @@
               </div>
               <div class="s__payment--content__form--item__input">
                 <input class="s__input"/>
+              </div>
+            </div>
+            <div class="s__payment--content__form--item">
+              <div class="s__payment--content__form--item__label">
+                Ngày sinh:
+              </div>
+              <div class="s__payment--content__form--item__input">
+                <VueDatePicker v-model="date"></VueDatePicker>
               </div>
             </div>
             <div class="s__payment--content__form--item">
@@ -201,16 +595,8 @@
               Loại thanh toán:
             </div>
             <div class="s__radio-button">
-              <label class="container-radio">Đặt chỗ trước, thanh toán sau
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container-radio">Trả trước 50%
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container-radio">Thanh toán 100%
-                <input type="radio" name="radio">
+              <label v-for="pay in payments" class="container-radio">{{ pay.name }}
+                <input @change="choisePayment(pay)" v-model="pay.selected" type="radio" name="radio">
                 <span class="checkmark"></span>
               </label>
             </div>
@@ -219,32 +605,12 @@
               Cổng thanh toán:
             </div>
             <div class="s__payment-method">
-              <div class="s__payment-method__item">
-                <img src="~/assets/images/techcombank.png">
-                <div class="text-transfer-bank">Chuyển khoản ngân hàng</div>
+              <div v-for="pay in paymentMethod" class="s__payment-method__item" :class="{'active' : pay.licensedPay}">
+                <img :src="pay.thumbnail">
+                <div v-if="pay.note" class="text-transfer-bank">{{ pay.note }}</div>
+                <div class="s__opacity_white"></div>
               </div>
-              <div class="s__payment-method__item">
-                <img src="~/assets/images/vietcombank.png">
-                <div class="text-transfer-bank">Chuyển khoản ngân hàng</div>
-              </div>
-              <div class="s__payment-method__item">
-                <img class="mt-15" src="~/assets/images/vnpay.png">
-              </div>
-              <div class="s__payment-method__item">
-                <img class="mt-15" src="~/assets/images/visa.png">
-              </div>
-              <div class="s__payment-method__item">
-                <img class="mt-15" src="~/assets/images/napas.png">
-              </div>
-              <div class="s__payment-method__item">
-                <img src="~/assets/images/momo.png">
-              </div>
-              <div class="s__payment-method__item">
-                <img class="mt-15" src="~/assets/images/payon.png">
-              </div>
-              <div class="s__payment-method__item">
-                <img class="mt-15" src="~/assets/images/onepay.png">
-              </div>
+
             </div>
             <div class="s__payment--content__form--label-small">
               Nhập mã giảm giá:
@@ -320,7 +686,7 @@
                   <span>Loại thanh toán:</span>
                 </div>
                 <div class="s__payment--info-review__item--right">
-<!--                  Đặt chỗ trước, thanh toán sau-->
+                  <!--                  Đặt chỗ trước, thanh toán sau-->
                 </div>
               </div>
               <div class="s__line my-24"></div>
@@ -388,12 +754,18 @@
 
 <script>
 import moment from 'moment';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
   name: "index",
+  components: {
+    VueDatePicker
+  },
   data: () => ({
     timeCount: moment(60 * 10 * 1000),
     showChooseCoupon: false,
+    showChooseDate: false,
     showDetailCoupon: false,
     coupons: [
       {
@@ -450,7 +822,194 @@ export default {
     bgHeaderDetail: '#C4FDF5',
     adult: 1,
     children: 0,
-    isFixed: false
+    isFixed: false,
+    date: '01/01/2023',
+    monthLeft: false,
+    monthRight: false,
+    pLeft: false,
+    listYear: [
+      {
+        id: 1,
+        active: true,
+        name: '2022'
+      },
+      {
+        id: 2,
+        active: false,
+        name: '2023'
+      },
+      {
+        id: 3,
+        active: false,
+        name: '2024'
+      }
+    ],
+    listMonth: [
+      // {
+      //   id: 1,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 1'
+      // },
+      // {
+      //   id: 2,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 2'
+      // },
+      // {
+      //   id: 3,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 3'
+      // },
+      // {
+      //   id: 4,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 4'
+      // },
+      // {
+      //   id: 5,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 5'
+      // },
+      // {
+      //   id: 6,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 6'
+      // },
+      // {
+      //   id: 7,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 7'
+      // },
+      // {
+      //   id: 8,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 8'
+      // },
+      {
+        id: 9,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 9'
+      },
+      {
+        id: 10,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 10'
+      },
+      {
+        id: 11,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 11'
+      },
+      {
+        id: 12,
+        active: true,
+        isDisable: false,
+        name: 'Tháng 12'
+      },
+    ],
+    categories: [
+      {
+        id: 1,
+        name: 'Land tour',
+        active: true
+      },
+      {
+        id: 2,
+        name: 'JoinIN',
+        active: false
+      }
+    ],
+    paymentMethod: [
+      {
+        id: 1,
+        name: 'techcombank',
+        note: 'Chuyển khoản ngân hàng',
+        thumbnail: '/assets/images/techcombank.png',
+        licensedPay: false
+      },
+      {
+        id: 2,
+        name: 'vietcombank',
+        note: 'Chuyển khoản ngân hàng',
+        thumbnail: '/assets/images/vietcombank.png',
+        licensedPay: false
+      },
+      {
+        id: 3,
+        name: 'vnpay',
+        note: '',
+        thumbnail: '/assets/images/vnpay.png',
+        licensedPay: false
+      },
+      {
+        id: 4,
+        name: 'visa',
+        note: '',
+        thumbnail: '/assets/images/visa.png',
+        licensedPay: false
+      },
+      {
+        id: 5,
+        name: 'napas',
+        note: '',
+        thumbnail: '/assets/images/napas.png',
+        licensedPay: false
+      },
+      {
+        id: 6,
+        name: 'momo',
+        note: '',
+        thumbnail: '/assets/images/momo.png',
+        licensedPay: false
+      },
+      {
+        id: 7,
+        name: 'payon',
+        note: '',
+        thumbnail: '/assets/images/payon.png',
+        licensedPay: false
+      },
+      {
+        id: 8,
+        name: 'onepay',
+        note: '',
+        thumbnail: '/assets/images/onepay.png',
+        licensedPay: false
+      }
+    ],
+    payments: [
+      {
+        id: 1,
+        name: 'Đặt chỗ trước, thanh toán sau',
+        selected: false
+      },
+      {
+        id: 2,
+        name: 'Trả trước 50%',
+        selected: false
+      },
+      {
+        id: 3,
+        name: 'Thanh toán 100%',
+        selected: false
+      },
+      {
+        id: 4,
+        name: 'Trả góp',
+        selected: false
+      }
+    ]
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -477,6 +1036,9 @@ export default {
     },
     updateparent(variable) {
       this.showChooseCoupon = variable
+    },
+    updateparentDate(variable) {
+      this.showChooseDate = variable
     },
     updateparentDetailCoupon(variable) {
       this.showDetailCoupon = variable
@@ -513,6 +1075,53 @@ export default {
         this.isFixed = true
       } else {
         this.isFixed = false
+      }
+    },
+    changeCategory(category) {
+      this.categories.forEach((val) => {
+        if (val.id === category.id) {
+          val.active = true
+        } else {
+          val.active = false
+        }
+      })
+    },
+    changeYear(y, index) {
+      this.listYear.forEach((val) => {
+        if ((index + 1) === this.listYear.length) {
+          this.pLeft = true
+        } else {
+          this.pLeft = false
+        }
+        if (val.id === y.id) {
+          val.active = true
+        } else {
+          val.active = false
+        }
+      })
+    },
+    showMonthRight() {
+      this.monthRight = true
+      this.monthLeft = false
+    },
+    showMonthLeft() {
+      this.monthRight = false
+      this.monthLeft = true
+    },
+    changeDate() {
+      this.showChooseDate = true
+    },
+    choisePayment(pay) {
+      if (pay.id === 1) {
+        this.paymentMethod.forEach((val) => {
+          if (val.id === 1 || val.id === 2 || val.id === 3) {
+            val.licensedPay = true
+          }
+        })
+      } else {
+        this.paymentMethod.forEach((val) => {
+          val.licensedPay = false
+        })
       }
     }
   }
