@@ -4,15 +4,14 @@
       <div class="s__slider--main">
         <div class="s__slider--main__image">
           <div class="s__slider--main__image--gradient"></div>
-          <img src="~/assets/images/banner.jpg">
+          <img :class="{'animate__animated animate__fadeIn' : effectSlider }" v-if="slidersActive" :src="slidersActive.banner ?slidersActive.banner: ''">
         </div>
         <div class="s__slider--main__description">
-          <div class="s__slider--main__description--title">
-            TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC
+          <div class="s__slider--main__description--title" v-if="slidersActive">
+            {{ slidersActive.title }}
           </div>
-          <div class="s__slider--main__description--short">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur
-            enim facilisis id. Donec ut dolor a diam fringilla scelerisque.
+          <div class="s__slider--main__description--short" v-if="slidersActive">
+            {{ slidersActive.description }}
           </div>
           <div class="s__slider--main__description--button">
             <a href="#">Xem thêm</a>
@@ -1145,45 +1144,59 @@ export default {
     sliders: [
       {
         id: 1,
-        thumbnail: '/assets/images/thumbnail.png',
-        banner: '/assets/images/banner.jpg',
+        thumbnail: '/assets/images/s1.png',
+        banner: '/assets/images/b1.png',
+        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque.',
         active: false
       },
       {
         id: 2,
-        thumbnail: '/assets/images/thumbnail.png',
-        banner: '/assets/images/banner.jpg',
+        thumbnail: '/assets/images/s2.png',
+        banner: '/assets/images/b2.jfif',
+        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 2',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 2',
         active: true
       },
       {
         id: 3,
-        thumbnail: '/assets/images/thumbnail.png',
-        banner: '/assets/images/banner.jpg',
+        thumbnail: '/assets/images/s3.png',
+        banner: '/assets/images/b3.png',
+        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 3',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 3',
         active: false
       },
       {
         id: 4,
-        thumbnail: '/assets/images/thumbnail.png',
-        banner: '/assets/images/banner.jpg',
+        thumbnail: '/assets/images/s4.png',
+        banner: '/assets/images/b1.png',
+        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 4',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 4',
         active: false
       },
       {
         id: 5,
-        thumbnail: '/assets/images/thumbnail.png',
-        banner: '/assets/images/banner.jpg',
+        thumbnail: '/assets/images/s5.png',
+        banner: '/assets/images/b1.png',
+        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 5',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 5',
         active: false
       },
       {
         id: 6,
-        thumbnail: '/assets/images/thumbnail.png',
-        banner: '/assets/images/banner.jpg',
+        thumbnail: '/assets/images/s1.png',
+        banner: '/assets/images/b1.png',
+        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 6',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 6',
         active: false
       }
     ],
+    slidersActive:{},
     activeSlider: 1,
     pageHeight: 0,
     slidersShow: [],
     smallScreen: false,
+    effectSlider: false,
     experienceOne: [
       {
         id: 1,
@@ -1320,6 +1333,7 @@ export default {
     this.changer()
   },
   mounted() {
+    this.slidersActive =  this.sliders[0]
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
@@ -1399,13 +1413,21 @@ export default {
       this.activeSlider = newActive || newIndex
     },
     changer: function () {
+
       setInterval(() => {
         let newActive
         const newIndex = this.activeSlider + 1
         if (newIndex > this.slidersShow.length) newActive = 1
         if (newIndex === 0) newActive = this.slidersShow
         this.activeSlider = newActive || newIndex
+        this.sliders.forEach((val,index) => {
+          if (index === (this.activeSlider - 1)){
+            this.slidersActive = val
+            this.effectSlider = true
+          }
+        })
       }, 3000);
+
     },
     scrollToActivity() {
       setTimeout(() => this.$refs.boxActivity.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);

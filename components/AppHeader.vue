@@ -692,9 +692,27 @@ export default {
     levelList:[
       {
         id: 1,
-        thumbnailDesktop: '/assets/images/pc-nguoi-moi.png',
-        thumbnailMobile: 'https://img.freepik.com/free-photo/vivid-colored-transparent-autumn-leaf_23-2148239739.jpg?w=2000',
+        thumbnailDesktop: '/assets/images/lv1.png',
+        thumbnailMobile: '/assets/images/lv1.png',
         name: 'Người mới'
+      },
+      {
+        id: 2,
+        thumbnailDesktop: '/assets/images/lv2.png',
+        thumbnailMobile: '/assets/images/lv2.png',
+        name: 'Kinh nghiệm'
+      },
+      {
+        id: 3,
+        thumbnailDesktop: '/assets/images/lv3.png',
+        thumbnailMobile: '/assets/images/lv3.png',
+        name: 'Nhà trinh phục'
+      },
+      {
+        id: 4,
+        thumbnailDesktop: '/assets/images/lv4.png',
+        thumbnailMobile: '/assets/images/lv4.png',
+        name: 'Chuyên gia'
       }
     ],
     isMobile: false,
