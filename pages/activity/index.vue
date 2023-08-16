@@ -1023,7 +1023,7 @@
         </div>
       </div>
       <div class="s__activity--box mb-76">
-        <div class="s__activity--box__title mt-80">
+        <div class="s__activity--box__title">
           <h2>Các hoạt động khác cùng địa điểm</h2>
           <div class="s__activity--box__next-prev">
             <div class="s__topic--slider__head">
@@ -1203,6 +1203,7 @@ export default {
       }
     ],
     isFixed: false,
+    isFixedNav: false,
     showChooseDate: false,
     showLibrary: false,
     listYear: [
@@ -1345,14 +1346,10 @@ export default {
     regulationsLenght: 390,
   }),
   beforeMount() {
-    if (process.browser) {
       window.addEventListener('scroll', this.handleScroll)
-    }
   },
   beforeDestroy() {
-    if (process.browser) {
       window.removeEventListener('scroll', this.handleScroll)
-    }
   },
   mounted() {
     this.includes.forEach((val, index) => {

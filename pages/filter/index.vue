@@ -1,6 +1,6 @@
 <template>
   <div class="s__current_page">
-    <Modal @clearModal="updateparent" :show="searchMore" :width="'770px'" :top="'100px'"
+    <Modal v-click-outside="clickedParent" @clearModal="updateparent" :show="searchMore" :width="'770px'" :top="'100px'"
            :border-radius="'10px'"
            :height="'610px'">
       <div class="s__search-more-title">
@@ -126,10 +126,12 @@
           </div>
         </div>
         <div v-click-outside="clickedParent" class="s__head_filter--item__level" v-if="boxLevel">
-          <div v-for="lv in listLevel" class="filter--item-level">{{ lv.name }}</div>
-          <div class="s__line mt-5 mb-3"></div>
+          <div @click="choiseLevel(lv)" v-for="lv in listLevel" class="filter--item-level"
+               :class="{'active' : lv.active}">{{ lv.name }}
+          </div>
+          <div class="s__line mt-5 mb-3 s__line--24"></div>
           <div class="s__bottom_filter">
-            <div class="choose__again">
+            <div class="choose__again" @click="reselect('level')">
               Chọn lại
             </div>
             <div class="filter_btn-search">
@@ -138,10 +140,10 @@
           </div>
         </div>
         <div v-click-outside="clickedParent" class="s__head_filter--item__type-place" v-if="boxTypePlace">
-          <div v-for="tp in listTypePlace" class="filter--item-level">{{ tp.name }}</div>
-          <div class="s__line mt-5 mb-3"></div>
+          <div @click="choiseTypePlace(tp)" v-for="tp in listTypePlace" class="filter--item-level" :class="{'active' : tp.active}">{{ tp.name }}</div>
+          <div class="s__line mt-5 mb-3 s__line--24"></div>
           <div class="s__bottom_filter">
-            <div class="choose__again">
+            <div class="choose__again" @click="reselect('type-place')">
               Chọn lại
             </div>
             <div class="filter_btn-search">
@@ -874,12 +876,21 @@ export default {
             })
           }
         })
-      }else if(type === 'search-more'){
+      } else if (type === 'search-more') {
+        this.adult = 0;
         this.budget.forEach((val) => {
           val.selected = false
         })
         this.languages.forEach((val) => {
           val.selected = false
+        })
+      }else if(type === 'level'){
+        this.listLevel.forEach((val) => {
+          val.active = false
+        })
+      }else if(type === 'type-place'){
+        this.listTypePlace.forEach((val) => {
+          val.active = false
         })
       }
     },
@@ -890,6 +901,7 @@ export default {
       this.boxTypePlace = false
       this.boxDate = false
       this.hasOpacity = false
+      this.searchMore = false
     },
     updateparent(variable) {
       this.searchMore = variable
@@ -905,8 +917,26 @@ export default {
     plusAdult() {
       this.adult = this.adult + 1
     },
-    choiseBudget(){
+    choiseBudget() {
 
+    },
+    choiseLevel(lv) {
+      this.listLevel.forEach((val) => {
+        if (lv.id === val.id) {
+          val.active = true
+        } else {
+          val.active = false
+        }
+      })
+    },
+    choiseTypePlace(tp){
+      this.listTypePlace.forEach((val) => {
+        if (tp.id === val.id) {
+          val.active = true
+        } else {
+          val.active = false
+        }
+      })
     }
   }
 }

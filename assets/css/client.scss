@@ -2612,6 +2612,10 @@ html [id], body [id] {
   font-weight: 600;
   line-height: 24px;
   cursor: pointer;
+  &.active{
+    background: var(--greenie-pine, #03483F);
+    color: #fff;
+  }
 }
 
 .vc-container {
@@ -4497,6 +4501,7 @@ button {
   align-items: center;
   margin-bottom: 34px;
 
+
   > * {
     flex: 0 0 115px;
   }
@@ -4514,6 +4519,7 @@ button {
     height: 80px;
     cursor: not-allowed;
     position: relative;
+    justify-content: center;
     &.active{
       cursor: pointer;
       .s__opacity_white{
@@ -6333,6 +6339,28 @@ button {
   }
 }
 
+.s__line--24 {
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: #E1E1E1;
+    position: absolute;
+    left: -24px;
+  }
+
+  &:after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: #E1E1E1;
+    position: absolute;
+    right: -24px;
+  }
+}
+
 .s__line--customs {
   position: relative;
 
@@ -6422,6 +6450,39 @@ button {
 .s__payment--content__form--item__input{
   .dp__main{
     width: 270px;
+  }
+}
+.s__payment--info-activity__info--wrap__change{
+  cursor: pointer;
+}
+.s__endow--content__right{
+  .carousel__pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    line-height: 0;
+    margin: 10px 0 0;
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .carousel__pagination-button{
+    &:after{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E1E1E1;
+    }
+  }
+  .carousel__pagination-button--active{
+
+    &:after{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+    }
   }
 }
 

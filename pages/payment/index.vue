@@ -566,7 +566,7 @@
                 Ngày sinh:
               </div>
               <div class="s__payment--content__form--item__input">
-                <VueDatePicker v-model="date"></VueDatePicker>
+                <VueDatePicker v-model="date" :enableTimePicker="false"></VueDatePicker>
               </div>
             </div>
             <div class="s__payment--content__form--item">
@@ -954,34 +954,27 @@ export default {
       },
       {
         id: 4,
-        name: 'visa',
-        note: '',
-        thumbnail: '/assets/images/visa.png',
-        licensedPay: false
-      },
-      {
-        id: 5,
-        name: 'napas',
-        note: '',
-        thumbnail: '/assets/images/napas.png',
-        licensedPay: false
-      },
-      {
-        id: 6,
         name: 'momo',
         note: '',
         thumbnail: '/assets/images/momo.png',
         licensedPay: false
       },
       {
-        id: 7,
-        name: 'payon',
+        id: 5,
+        name: 'atm',
         note: '',
-        thumbnail: '/assets/images/payon.png',
+        thumbnail: '/assets/images/atm.png',
         licensedPay: false
       },
       {
-        id: 8,
+        id: 6,
+        name: 'visa',
+        note: '',
+        thumbnail: '/assets/images/visa.png',
+        licensedPay: false
+      },
+      {
+        id: 7,
         name: 'onepay',
         note: '',
         thumbnail: '/assets/images/onepay.png',
@@ -1131,5 +1124,3 @@ export default {
 <style scoped>
 
 </style>
-<script setup lang="ts">
-</script>

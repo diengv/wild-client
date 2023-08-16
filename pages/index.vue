@@ -224,10 +224,11 @@
             <div class="s__endow--content__left--item">
               <Carousel>
                 <Slide v-for="slide in 10" :key="slide">
-                  <div class="carousel__item">{{ slide }}</div>
+                  <div class="carousel__item"></div>
                 </Slide>
 
                 <template #addons>
+                  <Pagination />
                   <Navigation />
                 </template>
               </Carousel>
@@ -1127,7 +1128,7 @@
 </template>
 
 <script>
-import {Carousel, Slide, Navigation} from 'vue3-carousel'
+import {Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -1137,7 +1138,8 @@ export default {
   components: {
     Carousel,
     Slide,
-    Navigation
+    Navigation,
+    Pagination ,
   },
   data: () => ({
     currentSlide: 0,
