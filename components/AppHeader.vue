@@ -820,7 +820,7 @@ export default {
       this.bookChoosed = book
     },
     showBoxNav() {
-      this.isFixed = !this.isFixed
+      this.isFixed = true
       this.activeNav = !this.activeNav
       this.showSearch = false
       this.itemsNav[0].active = false

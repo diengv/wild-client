@@ -222,7 +222,7 @@
           </div>
           <div class="s__endow--content__right">
             <div class="s__endow--content__left--item">
-              <Carousel>
+              <Carousel :wrap-around="true" :autoplay="2000">
                 <Slide v-for="slide in 10" :key="slide">
                   <div class="carousel__item"></div>
                 </Slide>
