@@ -6485,5 +6485,20 @@ button {
     }
   }
 }
-
+.s__payment-method__item{
+  img{
+    width: 62px;
+  }
+}
+.list-activity-note-highlight__content{
+  position: relative;
+  max-height: 256px;
+  height: 256px;
+  overflow: hidden;
+  img{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
 @import "responsive";

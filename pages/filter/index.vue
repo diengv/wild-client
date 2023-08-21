@@ -905,9 +905,27 @@ export default {
     },
     updateparent(variable) {
       this.searchMore = variable
+      if (this.searchMore){
+        useHead({
+          bodyAttrs: {
+            class:  this.searchMore ? 'overflow-hidden' : ''
+          }
+        })
+      }else {
+        useHead({
+          bodyAttrs: {
+            class: ''
+          }
+        })
+      }
     },
     showBoxSearchMore() {
       this.searchMore = true
+      useHead({
+        bodyAttrs: {
+          class:  this.searchMore ? 'overflow-hidden' : ''
+        }
+      })
     },
     minusAdult() {
       if (this.adult > 1) {
