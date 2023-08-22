@@ -287,84 +287,12 @@
             </div>
           </div>
           <div v-if="rightNavTypeActivity" class="s__header--box-nav__right--type-activity">
-            <div class="s__header--box-nav__right--type-activity__item">
+            <div v-for="type in typeActivies" class="s__header--box-nav__right--type-activity__item">
               <div class="icon">
-                <img src="~/assets/images/climbing.svg">
+                <img :src="type.thumbnail">
               </div>
               <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--type-activity__item">
-              <div class="icon">
-                <img src="~/assets/images/climbing.svg">
-              </div>
-              <div class="name">
-                Rock Climbing
+                {{ type.name }}
               </div>
             </div>
           </div>
@@ -748,6 +676,38 @@ export default {
     titleNavMobileChildren: '',
     navMobileLevel: false,
     navMobileLevelChildren: false,
+    typeActivies:[
+      {
+        id: 1,
+        name: 'Rock Climbing',
+        thumbnail: '/assets/images/climbing.svg'
+      },
+      {
+        id: 2,
+        name: 'Scuba Diving',
+        thumbnail: '/assets/images/scuba-diving.svg'
+      },
+      {
+        id: 3,
+        name: 'Motobiketrip',
+        thumbnail: '/assets/images/motobiketrip.svg'
+      },
+      {
+        id: 4,
+        name: 'Snorkeling',
+        thumbnail: '/assets/images/snorkeling.svg'
+      },
+      {
+        id: 5,
+        name: 'Paragliding',
+        thumbnail: '/assets/images/paragliding.svg'
+      },
+      {
+        id: 6,
+        name: 'Abseiling',
+        thumbnail: '/assets/images/abseiling.svg'
+      }
+    ]
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)

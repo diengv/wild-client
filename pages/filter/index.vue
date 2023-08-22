@@ -665,7 +665,7 @@ export default {
       },
       {
         id: 3,
-        name: 'NKinh ',
+        name: 'Kinh nghiệm ',
         active: false
       },
       {
