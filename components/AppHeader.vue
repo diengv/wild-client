@@ -500,7 +500,65 @@
       </div>
       <div class="s__box-search-mobile__wrapper">
         <div class="s__box-search-mobile__wrapper--box">
+          <div v-if="!activeLocateSearchMobile"  @click="showBoxSearchLocateMobile()" class="s__box-search-mobile__wrapper--box__header">
+            <div class="s__box-search-mobile__wrapper--box__header--left">
+              Địa điểm
+            </div>
+            <div class="s__box-search-mobile__wrapper--box__header--right">
+              Thêm địa điểm
+            </div>
+          </div>
+          <div v-if="activeLocateSearchMobile" class="s__box-search-mobile__wrapper--box__content">
+            <div class="s__box-search-mobile__wrapper--box__content--title">
+              Bạn muốn khám phá địa điểm nào?
+            </div>
+            <div class="s__box-search-mobile__wrapper--box__content--wrap">
+              <div class="s__mobile-input-search">
+                <span><img src="~/assets/images/icon-search-mobile.svg"></span>
+                <span>Tìm kiếm địa điểm</span>
+              </div>
+              <div class="s__mobile-input-search-near">
+                <span><img src="~assets/images/icon-locate.svg"></span>
+                <span>Địa điểm ở gần bạn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s__box-search-mobile__wrapper--box">
+          <div v-if="!activeTypeActivitySearchMobile"  @click="showBoxSearchActivityMobile()" class="s__box-search-mobile__wrapper--box__header">
+            <div class="s__box-search-mobile__wrapper--box__header--left">
+              Loại hoạt động
+            </div>
+            <div class="s__box-search-mobile__wrapper--box__header--right">
+              Thêm loại hoạt động
+            </div>
+          </div>
+          <div v-if="activeTypeActivitySearchMobile" class="s__box-search-mobile__wrapper--box__content">
+            <div class="s__box-search-mobile__wrapper--box__content--title">
+              Bạn muốn khám phá địa điểm nào?
+            </div>
+            <div class="s__box-search-mobile__wrapper--box__content--wrap">
 
+            </div>
+          </div>
+        </div>
+        <div class="s__box-search-mobile__wrapper--box">
+          <div v-if="!activeTypeBookingSearchMobile"  @click="showBoxSearchBookingMobile()" class="s__box-search-mobile__wrapper--box__header">
+            <div class="s__box-search-mobile__wrapper--box__header--left">
+              Loại đặt chỗ
+            </div>
+            <div class="s__box-search-mobile__wrapper--box__header--right">
+              Thêm loại đặt chỗ
+            </div>
+          </div>
+          <div v-if="activeTypeBookingSearchMobile" class="s__box-search-mobile__wrapper--box__content">
+            <div class="s__box-search-mobile__wrapper--box__content--title">
+              Bạn muốn trải nghiệm loại hoạt động nào?<img src="~/assets/images/icon-help.svg">
+            </div>
+            <div class="s__box-search-mobile__wrapper--box__content--wrap">
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -799,7 +857,10 @@ export default {
         thumbnail: '/assets/images/cl8.png'
       }
     ],
-    boxMobileSearch: false
+    boxMobileSearch: false,
+    activeLocateSearchMobile: false,
+    activeTypeActivitySearchMobile: false,
+    activeTypeBookingSearchMobile: false
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1085,6 +1146,21 @@ export default {
           class: ''
         }
       })
+    },
+    showBoxSearchLocateMobile(){
+      this.activeLocateSearchMobile = true
+      this.activeTypeActivitySearchMobile = false
+      this.activeTypeBookingSearchMobile = false
+    },
+    showBoxSearchActivityMobile(){
+      this.activeLocateSearchMobile = false
+      this.activeTypeActivitySearchMobile = true
+      this.activeTypeBookingSearchMobile = false
+    },
+    showBoxSearchBookingMobile(){
+      this.activeLocateSearchMobile = false
+      this.activeTypeActivitySearchMobile = false
+      this.activeTypeBookingSearchMobile = true
     }
   }
 }
