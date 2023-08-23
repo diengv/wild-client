@@ -1,5 +1,30 @@
 <template>
   <div>
+    <Modal @clearModal="updateparentMobile" :show="showHelpMobile" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+           :height="'500px'">
+      <div class="s__help--modal">
+        <div class="s__help--title">
+          Các loại đặt chỗ của intoWild
+        </div>
+        <div class="s__help--description">
+          Mỗi hình thức tham gia tour sẽ có mức chi phí khác nhau. Nếu bạn là người mới, muốn được lo từ A-Z, hãy
+          cùng đồng hành với intoWild trong Full-Trip. Còn nếu bạn có nhóm đông, tự tin có thể đi tự túc và nhận hỗ
+          trợ của Wildbuddy bản địa thì hãy chọn Land-Tour để có chi phí tối ưu nhất nhé!
+        </div>
+        <div class="s__line mt-24px mb-32px"></div>
+        <div class="s__help--type-tours">
+          <div class="s__help--type-tours__button">
+            <div @click="chooseType(type)" v-for="(type, index) in typeTours" :class="{'active' : type.active}"
+                 :key="index" class="s__help--type-tours__button--item">
+              {{ type.name }}
+            </div>
+          </div>
+          <div class="s__help--type-tours__description">
+            {{ this.typeToursDescription }}
+          </div>
+        </div>
+      </div>
+    </Modal>
     <section class="s__header" :class="{'fixed animate__animated animate__fadeIn': isFixed || isHome !== true}">
       <div class="s__header--logo">
         <div>
@@ -98,10 +123,7 @@
               <span v-else>{{ activityChoosed }}</span>
             </div>
             <div v-if="activeBox" class="s__header--box-search__wrap--location__activity">
-              <div class="item" @click="activeChoose('Cycling')">Cycling</div>
-              <div class="item">Kayaking</div>
-              <div class="item">SUP</div>
-              <div class="item">Trekking</div>
+              <div  v-for="type in typeActivies" class="item" @click="activeChoose(type.name )">{{ type.name }}</div>
             </div>
           </div>
           <div class="s__header--box-search__wrap--book">
@@ -114,9 +136,7 @@
               <span v-else>{{ bookChoosed }}</span>
             </div>
             <div v-if="activeBook" class="s__header--box-search__wrap--location__book">
-              <div class="item" @click="bookChoose('Full Trip')">Full Trip</div>
-              <div class="item">Land Tour</div>
-              <div class="item">JoinIN</div>
+              <div v-for="type in typeTours" class="item" @click="bookChoose(type.name)">{{ type.name }}</div>
             </div>
           </div>
           <div class="s__header--box-search__wrap--button">
@@ -491,72 +511,100 @@
     <section v-if="boxMobileSearch" class="s__box-search-mobile">
       <div class="s__box-search-mobile__header">
         <div class="s__box-search-mobile__header--title">
-          <span>Tìm kiếm</span>
-          <span class="has-color-yellow">Trải nghiệm</span>
+          <span v-if="!showBoxLocationMobile">Tìm kiếm</span>
+          <span v-if="!showBoxLocationMobile" class="has-color-yellow">Trải nghiệm</span>
+          <span @click="backSearchLocation()" class="icon-back-mobile" v-if="showBoxLocationMobile"><img src="~/assets/images/icon-arrow-back.svg"></span>
+          <span @click="backSearchLocation()" class="text-back" v-if="showBoxLocationMobile">Quay lại</span>
         </div>
-        <div class="s__box-search-mobile__header--button">
+        <div v-if="!showBoxLocationMobile" class="s__box-search-mobile__header--button">
           <img @click="closeBoxSearchMobile()" src="~/assets/images/icon-close.svg">
         </div>
       </div>
       <div class="s__box-search-mobile__wrapper">
-        <div class="s__box-search-mobile__wrapper--box">
-          <div v-if="!activeLocateSearchMobile"  @click="showBoxSearchLocateMobile()" class="s__box-search-mobile__wrapper--box__header">
-            <div class="s__box-search-mobile__wrapper--box__header--left">
-              Địa điểm
+        <div v-if="!showBoxLocationMobile">
+          <div class="s__box-search-mobile__wrapper--box">
+            <div v-if="!activeLocateSearchMobile"  @click="showBoxSearchLocateMobile()" class="s__box-search-mobile__wrapper--box__header">
+              <div class="s__box-search-mobile__wrapper--box__header--left">
+                Địa điểm
+              </div>
+              <div class="s__box-search-mobile__wrapper--box__header--right">
+                Thêm địa điểm
+              </div>
             </div>
-            <div class="s__box-search-mobile__wrapper--box__header--right">
-              Thêm địa điểm
+            <div v-if="activeLocateSearchMobile" class="s__box-search-mobile__wrapper--box__content">
+              <div class="s__box-search-mobile__wrapper--box__content--title">
+                Bạn muốn khám phá địa điểm nào?
+              </div>
+              <div class="s__box-search-mobile__wrapper--box__content--wrap">
+                <div @click="searchLocationMobile()" class="s__mobile-input-search">
+                  <span><img src="~/assets/images/icon-search-mobile.svg"></span>
+                  <span>Tìm kiếm địa điểm</span>
+                </div>
+                <div class="s__mobile-input-search-near">
+                  <span><img src="~assets/images/icon-locate.svg"></span>
+                  <span>Địa điểm ở gần bạn</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div v-if="activeLocateSearchMobile" class="s__box-search-mobile__wrapper--box__content">
-            <div class="s__box-search-mobile__wrapper--box__content--title">
-              Bạn muốn khám phá địa điểm nào?
-            </div>
-            <div class="s__box-search-mobile__wrapper--box__content--wrap">
-              <div class="s__mobile-input-search">
-                <span><img src="~/assets/images/icon-search-mobile.svg"></span>
-                <span>Tìm kiếm địa điểm</span>
+          <div class="s__box-search-mobile__wrapper--box">
+            <div v-if="!activeTypeActivitySearchMobile"  @click="showBoxSearchActivityMobile()" class="s__box-search-mobile__wrapper--box__header">
+              <div class="s__box-search-mobile__wrapper--box__header--left">
+                Loại hoạt động
               </div>
-              <div class="s__mobile-input-search-near">
-                <span><img src="~assets/images/icon-locate.svg"></span>
-                <span>Địa điểm ở gần bạn</span>
+              <div class="s__box-search-mobile__wrapper--box__header--right">
+                Thêm loại hoạt động
+              </div>
+            </div>
+            <div v-if="activeTypeActivitySearchMobile" class="s__box-search-mobile__wrapper--box__content">
+              <div class="s__box-search-mobile__wrapper--box__content--title">
+                Bạn muốn khám phá địa điểm nào?
+              </div>
+              <div class="s__box-search-mobile__wrapper--box__content--wrap">
+                <div v-for="type in typeActivies" class="type_activity-search-item">
+                  {{ type.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="s__box-search-mobile__wrapper--box">
+            <div v-if="!activeTypeBookingSearchMobile"  @click="showBoxSearchBookingMobile()" class="s__box-search-mobile__wrapper--box__header">
+              <div class="s__box-search-mobile__wrapper--box__header--left">
+                Loại đặt chỗ
+              </div>
+              <div class="s__box-search-mobile__wrapper--box__header--right">
+                Thêm loại đặt chỗ
+              </div>
+            </div>
+            <div v-if="activeTypeBookingSearchMobile" class="s__box-search-mobile__wrapper--box__content">
+              <div class="s__box-search-mobile__wrapper--box__content--title">
+                Bạn muốn trải nghiệm loại hoạt động nào?<img @click="modalHelpMobile()" class="icon-helf-mobile" src="~/assets/images/icon-help.svg">
+              </div>
+              <div class="s__box-search-mobile__wrapper--box__content--wrap">
+                <div v-for="type in typeTours" class="type_activity-search-item">
+                  {{ type.name }}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="s__box-search-mobile__wrapper--box">
-          <div v-if="!activeTypeActivitySearchMobile"  @click="showBoxSearchActivityMobile()" class="s__box-search-mobile__wrapper--box__header">
-            <div class="s__box-search-mobile__wrapper--box__header--left">
-              Loại hoạt động
+        <div v-else>
+          <div class="s__box-search-mobile__wrapper--location-detail">
+            <div class="s__box-search-mobile__wrapper--location-detail__title">
+              Bạn muốn đi đâu?
             </div>
-            <div class="s__box-search-mobile__wrapper--box__header--right">
-              Thêm loại hoạt động
-            </div>
-          </div>
-          <div v-if="activeTypeActivitySearchMobile" class="s__box-search-mobile__wrapper--box__content">
-            <div class="s__box-search-mobile__wrapper--box__content--title">
-              Bạn muốn khám phá địa điểm nào?
-            </div>
-            <div class="s__box-search-mobile__wrapper--box__content--wrap">
-
-            </div>
-          </div>
-        </div>
-        <div class="s__box-search-mobile__wrapper--box">
-          <div v-if="!activeTypeBookingSearchMobile"  @click="showBoxSearchBookingMobile()" class="s__box-search-mobile__wrapper--box__header">
-            <div class="s__box-search-mobile__wrapper--box__header--left">
-              Loại đặt chỗ
-            </div>
-            <div class="s__box-search-mobile__wrapper--box__header--right">
-              Thêm loại đặt chỗ
-            </div>
-          </div>
-          <div v-if="activeTypeBookingSearchMobile" class="s__box-search-mobile__wrapper--box__content">
-            <div class="s__box-search-mobile__wrapper--box__content--title">
-              Bạn muốn trải nghiệm loại hoạt động nào?<img src="~/assets/images/icon-help.svg">
-            </div>
-            <div class="s__box-search-mobile__wrapper--box__content--wrap">
-
+            <div class="s__box-search-mobile__wrapper--location-detail__content">
+              <div class="s__nav-mobile--items px-0">
+                <div @click="goToPageDetailChildMobile('location')" v-if="locationCountries.length > 0"
+                     v-for="country in locationCountries" class="s__nav-mobile--items__item">
+                  <div class="s__nav-mobile--items__item--image">
+                    <img :src="country.thumbnail">
+                  </div>
+                  <div class="s__nav-mobile--items__item--title">
+                    {{ country.name }}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -860,7 +908,9 @@ export default {
     boxMobileSearch: false,
     activeLocateSearchMobile: false,
     activeTypeActivitySearchMobile: false,
-    activeTypeBookingSearchMobile: false
+    activeTypeBookingSearchMobile: false,
+    showHelpMobile: false,
+    showBoxLocationMobile: false,
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1025,8 +1075,14 @@ export default {
     modalHelp() {
       this.showHelp = true
     },
+    modalHelpMobile() {
+      this.showHelpMobile = true
+    },
     updateparent(variable) {
       this.showHelp = variable
+    },
+    updateparentMobile(variable) {
+      this.showHelpMobile = variable
     },
     chooseType(type) {
       this.typeTours.forEach((val) => {
@@ -1161,6 +1217,12 @@ export default {
       this.activeLocateSearchMobile = false
       this.activeTypeActivitySearchMobile = false
       this.activeTypeBookingSearchMobile = true
+    },
+    searchLocationMobile(){
+      this.showBoxLocationMobile = true
+    },
+    backSearchLocation(){
+      this.showBoxLocationMobile = false
     }
   }
 }
