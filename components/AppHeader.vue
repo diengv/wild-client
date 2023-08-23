@@ -26,7 +26,7 @@
         </div>
       </div>
       <div v-if="isMobile && !navMobile" class="s__header--search" :class="{'s__header--search__active': showSearch}">
-        <div class="s__header--search__wraps">
+        <div class="s__header--search__wraps" @click="showBoxSearchMobile()">
           <span class="is-desktop" v-if="!showSearch && !activeNav">Tìm kiếm trải nghiệm...</span>
           <span v-if="!showSearch && !activeNav"><img src="~/assets/images/icon-search.svg"></span>
         </div>
@@ -421,6 +421,36 @@
             </div>
           </div>
         </div>
+        <div v-if="navMobileType" class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items__type">
+            <div v-if="typeActivies.length > 0" v-for="type in typeActivies" class="s__nav-mobile--items__type__item">
+              <div class="s__nav-mobile--items__type__item--image">
+                <img :src="type.thumbnail">
+              </div>
+              <div class="s__nav-mobile--items__type__item--title">
+                {{ type.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="navMobileCollection" class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items">
+            <div v-if="collections.length > 0" v-for="cl in collections" class="s__nav-mobile--items__item">
+              <div class="s__nav-mobile--items__item--image">
+                <img :src="cl.thumbnail">
+              </div>
+              <div class="s__nav-mobile--items__item--title">
+                {{ cl.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="navMobileCoupon" class="s__nav-mobile--detail__content--wrap">
+          <div class="s__nav-mobile--items__coupons">
+            <div v-if="collections.length > 0" v-for="cl in collections" class="s__nav-mobile--items__coupons__item">
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section v-if="navMobileDetailChild" class="s__nav-mobile--detail--child">
@@ -455,6 +485,22 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section v-if="boxMobileSearch" class="s__box-search-mobile">
+      <div class="s__box-search-mobile__header">
+        <div class="s__box-search-mobile__header--title">
+          <span>Tìm kiếm</span>
+          <span class="has-color-yellow">Trải nghiệm</span>
+        </div>
+        <div class="s__box-search-mobile__header--button">
+          <img @click="closeBoxSearchMobile()" src="~/assets/images/icon-close.svg">
+        </div>
+      </div>
+      <div class="s__box-search-mobile__wrapper">
+        <div class="s__box-search-mobile__wrapper--box">
+
         </div>
       </div>
     </section>
@@ -617,7 +663,7 @@ export default {
         name: "Miền nam",
       },
     ],
-    levelList:[
+    levelList: [
       {
         id: 1,
         thumbnailDesktop: '/assets/images/lv1.png',
@@ -675,8 +721,11 @@ export default {
     titleNavMobileParent: '',
     titleNavMobileChildren: '',
     navMobileLevel: false,
+    navMobileType: false,
+    navMobileCollection: false,
+    navMobileCoupon: false,
     navMobileLevelChildren: false,
-    typeActivies:[
+    typeActivies: [
       {
         id: 1,
         name: 'Rock Climbing',
@@ -707,7 +756,50 @@ export default {
         name: 'Abseiling',
         thumbnail: '/assets/images/abseiling.svg'
       }
-    ]
+    ],
+    collections: [
+      {
+        id: 1,
+        name: 'Weekend Getway',
+        thumbnail: '/assets/images/cl1.png'
+      },
+      {
+        id: 2,
+        name: 'Adventure Trips',
+        thumbnail: '/assets/images/cl2.png'
+      },
+      {
+        id: 3,
+        name: 'Hộ chiếu mạo hiểm',
+        thumbnail: '/assets/images/cl3.png'
+      },
+      {
+        id: 4,
+        name: 'Wild Camping',
+        thumbnail: '/assets/images/cl4.png'
+      },
+      {
+        id: 5,
+        name: 'Weekend Getway',
+        thumbnail: '/assets/images/cl5.png'
+      },
+      {
+        id: 6,
+        name: 'Adventure Trips',
+        thumbnail: '/assets/images/cl6.png'
+      },
+      {
+        id: 7,
+        name: 'Hộ chiếu mạo hiểm',
+        thumbnail: '/assets/images/cl7.png'
+      },
+      {
+        id: 8,
+        name: 'Wild Camping',
+        thumbnail: '/assets/images/cl8.png'
+      }
+    ],
+    boxMobileSearch: false
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -909,18 +1001,45 @@ export default {
       this.rightNavLocationItemDetail = false
     },
     goToPageDetailMobile(nav) {
-      if(nav.id === 1){
+      if (nav.id === 1) {
         window.location = '/'
-      }else {
+      } else {
         this.navMobileDetail = true
-        if (nav.id === 2){
+        if (nav.id === 2) {
           this.navMobileLocation = true
           this.navMobileLevel = false
+          this.navMobileType = false
+          this.navMobileCollection = false
+          this.navMobileCoupon = false
           this.titleNavMobileParent = 'Địa điểm'
-        }else if (nav.id === 3){
-          this.navMobileLevel = true
+        } else if (nav.id === 3) {
           this.navMobileLocation = false
+          this.navMobileLevel = true
+          this.navMobileType = false
+          this.navMobileCollection = false
+          this.navMobileCoupon = false
           this.titleNavMobileParent = 'Cấp độ'
+        } else if (nav.id === 4) {
+          this.navMobileLocation = false
+          this.navMobileLevel = false
+          this.navMobileType = true
+          this.navMobileCollection = false
+          this.navMobileCoupon = false
+          this.titleNavMobileParent = 'Loại hoạt động'
+        } else if (nav.id === 5) {
+          this.navMobileLocation = false
+          this.navMobileLevel = false
+          this.navMobileType = false
+          this.navMobileCollection = true
+          this.navMobileCoupon = false
+          this.titleNavMobileParent = 'Bộ sưu tập'
+        } else if (nav.id === 6) {
+          this.navMobileLocation = false
+          this.navMobileLevel = false
+          this.navMobileType = false
+          this.navMobileCollection = false
+          this.navMobileCoupon = true
+          this.titleNavMobileParent = 'Mã giảm giá'
         }
 
         useHead({
@@ -935,13 +1054,37 @@ export default {
     },
     goToPageDetailChildMobile(type) {
       this.navMobileDetailChild = true
-      if (type === 'location'){
+      if (type === 'location') {
         this.navMobileLocationChildren = true
         this.titleNavMobileParent = 'Địa điểm/Việt Nam'
       }
     },
     backToNavParent() {
       this.navMobileDetailChild = false
+    },
+    showBoxSearchMobile() {
+      this.boxMobileSearch = !this.boxMobileSearch
+      if (this.boxMobileSearch) {
+        useHead({
+          bodyAttrs: {
+            class: 'overflow-hidden'
+          }
+        })
+      } else {
+        useHead({
+          bodyAttrs: {
+            class: ''
+          }
+        })
+      }
+    },
+    closeBoxSearchMobile() {
+      this.boxMobileSearch = false
+      useHead({
+        bodyAttrs: {
+          class: ''
+        }
+      })
     }
   }
 }

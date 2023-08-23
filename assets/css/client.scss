@@ -735,7 +735,7 @@ div {
         gap: 16px;
         margin-bottom: 32px;
         padding: 48px 80px 48px 100px;
-        justify-content: center;
+        justify-content: flex-start;
 
         > * {
           flex: 0 1 230px;
