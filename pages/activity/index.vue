@@ -913,6 +913,67 @@
           <h2><span>12  </span>đánh giá từ khách hàng</h2>
         </div>
         <div class="s__activity--box__content--rate">
+          <div v-if="isMobile" class="s__activity--box__content--rate__right">
+            <div class="m_rate_left">
+              <div class="s__activity--box__content--rate__right--total">
+                4.6
+              </div>
+              <div class="s__activity--box__content--rate__right--star">
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+              </div>
+              <div class="s__activity--box__content--rate__right--link-rate">
+                <a href="#">Gửi đánh giá của bạn</a>
+              </div>
+            </div>
+            <div class="m_rate_right">
+              <div class="s__activity--box__content--rate__right--list-rate">
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
+                </div>
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
+                </div>
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
+                </div>
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
+                </div>
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="s__activity--box__content--rate__left">
             <div v-for="cus in customersSaid" class="s__activity--box__content--rate__left--item">
               <div class="s__activity--box__content--rate__left--item__head">
@@ -937,7 +998,7 @@
               <p @click="moreRegulations(cus)" v-if="cus.said.length > cus.lenghtTxt" class="more__cus"><span>Xem thêm</span></p>
             </div>
           </div>
-          <div class="s__activity--box__content--rate__right">
+          <div v-if="!isMobile" class="s__activity--box__content--rate__right">
             <div class="s__activity--box__content--rate__right--total">
               4.6
             </div>
@@ -1115,6 +1176,17 @@
               </div>
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="isMobile" class="s__info-activity-mobile">
+      <div class="s__info-activity-mobile__less">
+        <div class="s__info-activity-mobile__less--left">
+          <div class="s__info-activity-mobile__less--left__price">7.526.000 VND/người</div>
+          <div class="s__info-activity-mobile__less--left__des">Đăng ký trước, thanh toán sau</div>
+        </div>
+        <div class="s__info-activity-mobile__less--right">
+          <button class="btn-choose-date-activity">Chọn ngày</button>
         </div>
       </div>
     </div>
@@ -1374,6 +1446,12 @@ export default {
 
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
+    })
+
+    useHead({
+      bodyAttrs: {
+        class: 'is-page-activities'
+      }
     })
   },
   methods: {
