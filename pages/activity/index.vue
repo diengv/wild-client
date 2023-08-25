@@ -482,7 +482,7 @@
               </li>
             </ul>
           </div>
-          <div class="s__header--activity__right">
+          <div v-if="!isMobile" class="s__header--activity__right">
             <div class="s__header--activity__right--info">
               <div class="price">
                 <span>Giá từ:</span>
@@ -499,7 +499,7 @@
       </div>
     </div>
     <div class="s__container">
-      <div class="s__activity--breadcrumb">
+      <div v-if="!isMobile" class="s__activity--breadcrumb">
         <a class="s__activity--breadcrumb__item" href="#">Trang chủ</a>
         <a class="s__activity--breadcrumb__item" href="#">Người mới</a>
         <span
@@ -531,10 +531,10 @@
         <span class="s__activity--level__it">Người mới</span>
         <!--        <span class="s__activity&#45;&#45;level__help"><img src="~/assets/images/icon-helps.svg"></span>-->
       </div>
-      <div class="s__activity--view__all">
+      <div v-if="!isMobile" class="s__activity--view__all">
         <a @click="showLibraryModal()">Xem tất cả hình ảnh</a>
       </div>
-      <div class="s__activity--view__images">
+      <div v-if="!isMobile" class="s__activity--view__images">
         <div class="s__activity--view__images--left position-relative">
           <div class="s__activity--view__images--item">
             <img src="~/assets/images/im-1.png">
@@ -617,7 +617,7 @@
             </div>
           </div>
         </div>
-        <div class="s__activity--info__right">
+        <div v-if="!isMobile" class="s__activity--info__right">
           <div class="s__activity--info__right--head">
             <div class="s__activity--info__right--head__item">
               <div class="s__activity--info__right--head__item--top">
@@ -681,7 +681,7 @@
           <h2>Trải nghiệm nổi bật</h2>
         </div>
         <div class="s__activity--box__content mb-104">
-          <Carousel :items-to-show="3">
+          <Carousel :items-to-show="itemSlider">
             <Slide v-for="slide in 10" :key="slide">
               <div class="carousel__item">
                 <div class="s__activity--experience">
@@ -1344,12 +1344,12 @@ export default {
       }
     ],
     regulationsLenght: 390,
+    pageWidth: 0,
+    isMobile: false,
+    itemSlider: 3,
   }),
   beforeMount() {
       window.addEventListener('scroll', this.handleScroll)
-  },
-  beforeDestroy() {
-      window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
     this.includes.forEach((val, index) => {
@@ -1362,6 +1362,18 @@ export default {
       if (index < 3) {
         this.notIncludedShow.push(val)
       }
+    })
+
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768) {
+      this.isMobile = true
+      this.itemSlider = 1.8
+    } else {
+      this.isMobile = false
+    }
+
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
     })
   },
   methods: {
@@ -1407,9 +1419,21 @@ export default {
       } else {
         this.isFixed = false
       }
+      let activity = this.$refs.activity.scrollTop
+      let schedule = this.$refs.schedule.scrollTop
+      let important = this.$refs.important.scrollTop
+      let review = this.$refs.review.scrollTop
+      if (window.scrollY >= activity){
+        this.activeScroll = 'activity'
+      }else if (window.scrollY >= schedule){
+        this.activeScroll = 'schedule'
+      }else if (window.scrollY >= important){
+        this.activeScroll = 'important'
+      }else if (window.scrollY >= review){
+        this.activeScroll = 'review'
+      }
     },
     chooseDate() {
-      console.log(1212, this.showChooseDate)
       this.showChooseDate = true
     },
     updateparent(variable) {
@@ -1483,7 +1507,15 @@ export default {
           cus.lenghtTxt = val.said.length
         }
       })
-    }
+    },
+    onResize() {
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    },
   }
 }
 </script>

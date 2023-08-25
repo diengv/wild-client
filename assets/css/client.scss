@@ -18,9 +18,11 @@ body {
 html [id], body [id] {
   scroll-margin: 150px !important;
 }
+
 div {
   scroll-margin-top: 85px;
 }
+
 .s__header--search__active {
   .s__header--search__wraps {
     background: none;
@@ -2613,7 +2615,8 @@ div {
   font-weight: 600;
   line-height: 24px;
   cursor: pointer;
-  &.active{
+
+  &.active {
     background: var(--greenie-pine, #03483F);
     color: #fff;
   }
@@ -3189,7 +3192,14 @@ button {
 .w-100-percent {
   width: 100%;
 }
-
+.s__activity--box__content {
+  .carousel__track{
+    gap: 5px;
+  }
+  .carousel__slide {
+    width: 33% !important;
+  }
+}
 .btn-choose-date {
   border-radius: 5px;
   background: var(--greenie-pine, #03483F);
@@ -3263,11 +3273,12 @@ button {
   }
 
 
+
   .carousel__slide {
     border-radius: 5px;
 
     .carousel__item {
-      margin: 8px;
+
       padding: 24px 32px 32px 32px;
       background: #FEF9E9;
     }
@@ -3515,7 +3526,7 @@ button {
 }
 
 .s__activity--wild-buddy {
-  width: 100;
+  width: 100%;
   display: flex;
   margin-top: 72px;
 
@@ -4521,9 +4532,11 @@ button {
     cursor: not-allowed;
     position: relative;
     justify-content: center;
-    &.active{
+
+    &.active {
       cursor: pointer;
-      .s__opacity_white{
+
+      .s__opacity_white {
         width: 100%;
         height: 100%;
         background: none;
@@ -4535,7 +4548,8 @@ button {
     }
   }
 }
-.s__opacity_white{
+
+.s__opacity_white {
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.5);
@@ -4544,6 +4558,7 @@ button {
   top: 0;
   left: 0;
 }
+
 .text-transfer-bank {
   color: #000;
   text-align: center;
@@ -4602,13 +4617,16 @@ button {
 .no-border-radius {
   border-radius: 0;
 }
-.w-630--left-noti{
+
+.w-630--left-noti {
   width: 630px;
   margin-right: 70px;
 }
-.mt-40px{
+
+.mt-40px {
   margin-top: 40px;
 }
+
 .s__payment--info-review {
   width: 100%;
   border-radius: 0px 0px 10px 10px;
@@ -6420,9 +6438,11 @@ button {
   border-bottom: #E1E1E1 1px solid;
 
   margin-top: 10px;
-  .s__item_checkbox{
+
+  .s__item_checkbox {
     width: 300px;
   }
+
   &__title {
     color: #000;
     text-align: left;
@@ -6440,23 +6460,28 @@ button {
     margin-top: 15px;
   }
 }
-.mt-30{
+
+.mt-30 {
   margin-top: 30px;
 }
-.s__search-more-bottom{
+
+.s__search-more-bottom {
   width: 100%;
   display: flex;
   padding: 10px 0;
 }
-.s__payment--content__form--item__input{
-  .dp__main{
+
+.s__payment--content__form--item__input {
+  .dp__main {
     width: 270px;
   }
 }
-.s__payment--info-activity__info--wrap__change{
+
+.s__payment--info-activity__info--wrap__change {
   cursor: pointer;
 }
-.s__endow--content__right{
+
+.s__endow--content__right {
   .carousel__pagination {
     display: flex;
     justify-content: center;
@@ -6468,17 +6493,19 @@ button {
     left: 50%;
     transform: translateX(-50%);
   }
-  .carousel__pagination-button{
-    &:after{
+
+  .carousel__pagination-button {
+    &:after {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: #E1E1E1;
     }
   }
-  .carousel__pagination-button--active{
 
-    &:after{
+  .carousel__pagination-button--active {
+
+    &:after {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -6486,21 +6513,25 @@ button {
     }
   }
 }
-.s__payment-method__item{
-  img{
+
+.s__payment-method__item {
+  img {
     width: 62px;
   }
 }
-.list-activity-note-highlight__content{
+
+.list-activity-note-highlight__content {
   position: relative;
   max-height: 256px;
   height: 256px;
   overflow: hidden;
-  border-radius: 15px !important;
-  img{
+  border-radius: 5px !important;
+
+  img {
     position: absolute;
     top: 0;
     left: 0;
   }
 }
+
 @import "responsive";
