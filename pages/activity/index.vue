@@ -1180,13 +1180,80 @@
       </div>
     </div>
     <div v-if="isMobile" class="s__info-activity-mobile">
-      <div class="s__info-activity-mobile__less">
-        <div class="s__info-activity-mobile__less--left">
-          <div class="s__info-activity-mobile__less--left__price">7.526.000 VND/người</div>
-          <div class="s__info-activity-mobile__less--left__des">Đăng ký trước, thanh toán sau</div>
+      <div class="s__info-activity-mobile-wrapper">
+        <div @click="showMoreInfoActivity()" class="s__info-activity-mobile__head">
+          <div class="s__info-activity-mobile__head--wrap">
+            <img :class="{'active-more-activity' : activeMoreActivity}" src="~/assets/images/icon-open-info.svg">
+          </div>
         </div>
-        <div class="s__info-activity-mobile__less--right">
-          <button class="btn-choose-date-activity">Chọn ngày</button>
+        <div v-if="!activeMoreActivity" class="s__info-activity-mobile__less">
+          <div class="s__info-activity-mobile__less--left">
+            <div class="s__info-activity-mobile__less--left__price">7.526.000 VND/người</div>
+            <div class="s__info-activity-mobile__less--left__des">Đăng ký trước, thanh toán sau</div>
+          </div>
+          <div class="s__info-activity-mobile__less--right">
+            <button class="btn-choose-date-activity">Chọn ngày</button>
+          </div>
+        </div>
+        <div v-if="activeMoreActivity" class="s__info-activity-mobile__more">
+          <div v-if="isMobile" class="s__activity--info__right">
+            <div class="s__activity--info__right--head">
+              <div class="s__activity--info__right--head__item">
+                <div class="s__activity--info__right--head__item--top">
+                  <div class="s__activity--info__right--head__item--top__icon">
+                    <img src="~/assets/images/icon-security.svg">
+                  </div>
+                  <div class="s__activity--info__right--head__item--top__label">
+                    HOÀN HỦY
+                    LINH HOẠT
+                  </div>
+                </div>
+                <div class="s__activity--info__right--head__item--content">
+                  Bạn sẽ nhận lại 100% giá trị cọc nếu thông báo huỷ trước ngày khởi hành theo quy định
+                </div>
+              </div>
+              <div class="s__activity--info__right--head__item">
+                <div class="s__activity--info__right--head__item--top">
+                  <div class="s__activity--info__right--head__item--top__icon">
+                    <img src="~/assets/images/icon-safety.svg">
+                  </div>
+                  <div class="s__activity--info__right--head__item--top__label">
+                    THANH TOÁN AN TOÀN
+                  </div>
+                </div>
+                <div class="s__activity--info__right--head__item--content">
+                  Hỗ trợ đổi ngày đăng ký và thông tin của bạn được bảo mật ở tất cả các phương thức thanh toán
+                </div>
+              </div>
+            </div>
+            <div class="s__activity--info__right--bottom">
+              <div class="s__activity--info__right--bottom__price-old">
+                4.600.000 VND/người
+              </div>
+              <div class="s__activity--info__right--bottom__price-sale">
+                <span>Giá từ</span>
+                <span>4.400.000 VND/người</span>
+              </div>
+              <div class="s__activity--info__right--bottom__description">Đăng ký trước, thanh toán sau</div>
+              <div class="s__activity--info__right--bottom__choose-date">
+                <button class="btn btn-choose-date" @click="chooseDate()">Chọn ngày</button>
+              </div>
+              <div class="s__line"></div>
+              <div class="s__activity--info__right--bottom__coupons">
+                <div class="s__activity--info__right--bottom__coupons--label">
+                  2 mã giảm giá:
+                </div>
+                <div class="s__activity--info__right--bottom__coupons--items">
+                  <div class="coupon-item" @click="detailCoupon()">
+                    Giảm 10%
+                  </div>
+                  <div class="coupon-item" @click="detailCoupon()">
+                    Giảm 200K
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1419,6 +1486,7 @@ export default {
     pageWidth: 0,
     isMobile: false,
     itemSlider: 3,
+    activeMoreActivity: false,
   }),
   beforeMount() {
       window.addEventListener('scroll', this.handleScroll)
@@ -1594,6 +1662,9 @@ export default {
         this.isMobile = false
       }
     },
+    showMoreInfoActivity(){
+      this.activeMoreActivity = !this.activeMoreActivity
+    }
   }
 }
 </script>
