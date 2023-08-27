@@ -29,6 +29,12 @@
             <img src="~/assets/images/sl-next.svg">
           </div>
         </div>
+        <div class="s__slider--main__dots">
+          <div v-if="isMobile" v-for="(slider, index) in slidersShow" :key="index"
+               class="s__slider--main__thumbnail--item"
+               :class="{'active': (index + 1) === activeSlider}">
+          </div>
+        </div>
       </div>
     </section>
     <section class="s__topic" id="boxActivity" ref="boxActivity">
@@ -1374,14 +1380,24 @@ export default {
     onResize() {
       this.pageHeight = window.innerHeight
       if (this.pageHeight <= 768) {
-        this.slidersShow = []
-        this.sliders.forEach((val, index) => {
-          if (index <= 3) {
-            this.slidersShow.push(val)
-          }
-        })
+        if (this.isMobile){
+          this.slidersShow = []
+          this.sliders.forEach((val, index) => {
+            if (index <= 3) {
+              this.slidersShow.push(val)
+            }
+          })
 
-        this.smallScreen = true
+          this.smallScreen = true
+        }else {
+          this.smallScreen = false
+          this.slidersShow = []
+          this.sliders.forEach((val, index) => {
+            if (index <= 5) {
+              this.slidersShow.push(val)
+            }
+          })
+        }
       } else {
         this.smallScreen = false
         this.slidersShow = []

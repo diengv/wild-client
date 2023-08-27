@@ -1757,4 +1757,23 @@
   .active-more-activity{
     transform: rotate(-180deg);
   }
+  .s__slider--main__dots{
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
+    gap: 5px;
+    .s__slider--main__thumbnail--item{
+      height: 2px;
+      border-radius: 5px;
+      background: var(--back-5, rgba(225, 225, 225, 0.30));
+      z-index: 99;
+      &.active{
+        background: #fff;
+        border: #fff 1px solid;
+      }
+    }
+  }
 }
