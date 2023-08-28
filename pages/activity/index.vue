@@ -505,7 +505,14 @@
           <img :class="{'animate__animated animate__fadeIn' : effectSlider }" v-if="slidersActive"
                :src="slidersActive.banner ?slidersActive.banner: ''">
         </div>
-
+        <div class="s__slider--main__nav">
+          <div class="s__slider--main__nav--left">
+            <img src="~/assets/images/icon-pre-slider.svg">
+          </div>
+          <div class="s__slider--main__nav--right">
+            <img src="~/assets/images/icon-next-slider.svg">
+          </div>
+        </div>
         <div class="s__slider--main__dots">
           <div v-if="isMobile" v-for="(slider, index) in slidersShow" :key="index"
                class="s__slider--main__thumbnail--item"

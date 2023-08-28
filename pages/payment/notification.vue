@@ -1,16 +1,16 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
  <div class="s__payment--notification">
    <div class="s__header_payment">
-     <div class="s__header_payment--logo">
+     <div v-if="!isMobile" class="s__header_payment--logo">
        <a href="#">
          <img src="~/assets/images/wild-logo.svg">
        </a>
      </div>
-     <div class="s__header_payment--phone">+84 988 111 645</div>
+     <div v-if="!isMobile" class="s__header_payment--phone">+84 988 111 645</div>
+     <div v-if="isMobile" class="s__header_payment--back-home">
+       <span><img src="~/assets/images/icon-home.svg"></span>
+       <span>Trở về trang chủ</span>
+     </div>
    </div>
    <div class="s__container">
      <div class="s__payment--content">
@@ -52,7 +52,7 @@
            </div>
          </div>
        </div>
-       <div class="s__payment--content__right mt-80">
+       <div v-if="!isMobile" class="s__payment--content__right mt-80">
          <div class="s__activity--info__right--head no-border-radius">
            <div class="s__activity--info__right--head__item">
              <div class="s__activity--info__right--head__item--top">
@@ -82,7 +82,7 @@
              </div>
            </div>
          </div>
-         <div class="s__payment--info-review">
+         <div v-if="!isMobile" class="s__payment--info-review">
            <div class="s__payment--info-review__item">
              <div class="s__payment--info-review__item--left">
                <span><img src="~/assets/images/icon-time.svg"></span>
@@ -149,7 +149,7 @@
              <div class="s__payment--info-review__calculate--right">6.800.000 VND</div>
            </div>
          </div>
-         <div class="s__payment--info_button">
+         <div v-if="!isMobile" class="s__payment--info_button">
             <button class="btn-back-home">Trở về trang chủ</button>
          </div>
        </div>
@@ -157,7 +157,37 @@
    </div>
  </div>
 </template>
-
+<script>
+export default {
+  name: "notification",
+  data: () => ({
+    isMobile: false,
+    pageWidth: 0,
+  }),
+  mounted() {
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768) {
+      this.isMobile = true
+      this.itemSlider = 1.8
+    } else {
+      this.isMobile = false
+    }
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
+  methods: {
+    onResize() {
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    },
+  }
+}
+</script>
 <style scoped>
 
 </style>

@@ -33,9 +33,30 @@
         </div>
       </div>
     </Modal>
+    <Modal @clearModal="updateparentDateMobile" class="m__choise_date" :show="showChooseDateMobile" :width="'314px'" :top="'100px'" :border-radius="'10px'"
+           :height="'648px'">
+      <div class="box-choise-header">
+        2022
+      </div>
+      <div class="box-choise-month">
+        <div class="box-choise-month__item">Tháng 1</div>
+        <div class="box-choise-month__item">Tháng 2</div>
+        <div class="box-choise-month__item">Tháng 3</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+        <div class="box-choise-month__item">Tháng 4</div>
+      </div>
+    </Modal>
     <Modal @clearModal="updateparentDate" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'"
            :overflow-y="'scroll'">
       <div class="s__activity--choose-date">
+        <div v-if="isMobile" class="s__activity--choose-date__title_modal">Thời gian & Giá</div>
         <div class="s__activity--choose-date__category">
           <div class="s__activity--choose-date__category--tabs">
             <div @click="changeCategory(category)" v-for="(category, index) in categories" :key="index"
@@ -44,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="s__activity--choose-date__years__months">
+        <div v-if="!isMobile" class="s__activity--choose-date__years__months">
           <div class="__years">
             <div @click="changeYear(y,index)" v-for="(y, index) in listYear" :key="index" class="__years--item"
                  :class="{'active': y.active, 'p-left': pLeft}">
@@ -72,7 +93,11 @@
             </div>
           </div>
         </div>
-        <div class="s__activity--choose-date__tables">
+        <div @click="showBoxChoiseDateMobile()" v-if="isMobile" class="s__activity--choose-date__years__months s__activity--choose-date__years__months--mobile">
+            <span>2022</span>
+            <span>Tháng 11</span>
+        </div>
+        <div v-if="!isMobile" class="s__activity--choose-date__tables">
           <table id="customers">
             <tr>
               <th width="276px">Thời gian</th>
@@ -418,6 +443,41 @@
 
           </table>
         </div>
+        <div v-if="isMobile" class="s__activity--choose-date__tables">
+          <table id="customers">
+            <tr>
+              <th width="276px">Thời gian</th>
+              <th width="250px">
+                <div @click="boxChoiseGroup()" class="select-box-form-activity">
+                  Giá nhóm 1-3 người
+                  <div v-if="isBoxChoiseGroup" class="select-box-form-activity-wrap">
+                    <ul>
+                      <li>Giá nhóm 1-3 người</li>
+                      <li>Giá nhóm 4-6 người</li>
+                      <li>Giá nhóm 7-10 người</li>
+                    </ul>
+                  </div>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND</span>
+                  <span>5.000.000 VND  <small>/người</small></span>
+                  <div class="btn-book-mobile">Đặt chỗ</div>
+                </div>
+              </td>
+            </tr>
+
+          </table>
+        </div>
       </div>
     </Modal>
     <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'"
@@ -457,7 +517,7 @@
       </div>
     </Modal>
     <div class="s__header_payment">
-      <div class="s__header_payment--logo">
+      <div v-if="!isMobile" class="s__header_payment--logo">
         <a href="#">
           <img src="~/assets/images/wild-logo.svg">
         </a>
@@ -470,11 +530,12 @@
         <span class="minute-remaining">{{ second }}</span>
         <span>giây</span>
       </div>
-      <div class="s__header_payment--phone">+84 988 111 645</div>
+      <div v-if="!isMobile" class="s__header_payment--phone">+84 988 111 645</div>
     </div>
     <div class="s__container">
       <div class="s__payment--title">
-        Xác nhận và thanh toán
+        <span v-if="!isMobile">Xác nhận và thanh toán</span>
+        <span v-if="isMobile">Bước 2: Xác nhận và Thanh toán</span>
       </div>
       <div class="s__line"></div>
       <div class="s__payment--content">
@@ -490,7 +551,7 @@
               <div class="s__payment--info-activity__info--note">
                 3 ngày 2 đêm | Diving | Nha Trang
               </div>
-              <div class="s__payment--info-activity__info--wrap">
+              <div v-if="!isMobile" class="s__payment--info-activity__info--wrap">
                 <div class="s__payment--info-activity__info--wrap__departure--day">
                   <span>Ngày khởi hành:</span>
                   <span>02/11/2022</span>
@@ -498,6 +559,13 @@
                 <a class="s__payment--info-activity__info--wrap__change" @click="changeDate()">Thay đổi</a>
               </div>
             </div>
+          </div>
+          <div class="s__payment--info-activity__info--wrap">
+            <div class="s__payment--info-activity__info--wrap__departure--day">
+              <span>Ngày khởi hành:</span>
+              <span>02/11/2022</span>
+            </div>
+            <a class="s__payment--info-activity__info--wrap__change" @click="changeDate()">Thay đổi</a>
           </div>
           <div class="s__payment--label">
             Tùy chọn <span class="note__required">*</span>
@@ -552,7 +620,7 @@
           <div class="s__payment--label mt-41">
             Thông tin liên lạc <span class="note__required">*</span>
           </div>
-          <div class="s__payment--content__form">
+          <div class="s__payment--content__form" :class="{'form-mobile' : isMobile}">
             <div class="s__payment--content__form--item">
               <div class="s__payment--content__form--item__label">
                 Tên của bạn:
@@ -616,7 +684,7 @@
               Nhập mã giảm giá:
             </div>
             <div class="s__payment--coupon">
-              <input class="s__input"/>
+              <input class="s__input" :class="{'input-coupon-mobile' : isMobile}"/>
               <button class="btn-add-coupon">Áp dụng</button>
             </div>
             <div class="s__payment--coupon__search" @click="showCoupon()">
@@ -628,9 +696,12 @@
             <div class="s__payment--textarea">
               <textarea class="s__payment--note"></textarea>
             </div>
+            <div class="s__payment--coupon__search" @click="showCoupon()">
+              <span>Quy định về Thanh toán và hoàn hủy</span>
+            </div>
           </div>
         </div>
-        <div class="s__payment--content__right">
+        <div v-if="!isMobile" class="s__payment--content__right">
           <div :class="{'is-scroll': isFixed}">
             <div class="s__activity--info__right--head no-border-radius">
               <div class="s__activity--info__right--head__item">
@@ -749,6 +820,129 @@
         </div>
       </div>
     </div>
+    <div v-if="isMobile" class="s__info-activity-mobile s__info-activity-mobile-payment">
+      <div class="s__info-activity-mobile-wrapper">
+        <div @click="showMoreInfoActivity()" class="s__info-activity-mobile__head">
+          <div class="s__info-activity-mobile__head--wrap">
+            <img :class="{'active-more-activity' : activeMoreActivity}" src="~/assets/images/icon-open-info.svg">
+          </div>
+        </div>
+        <div v-if="!activeMoreActivity" class="s__info-activity-mobile__less">
+          <div class="s__info-activity-mobile__less--left">
+            <div class="s__info-activity-mobile__less--left__des">CẦN THANH TOÁN</div>
+            <div class="s__info-activity-mobile__less--left__price">7.526.000 VND/người</div>
+          </div>
+          <div class="s__info-activity-mobile__less--right">
+            <button class="btn-choose-date-activity">Chọn ngày</button>
+          </div>
+        </div>
+        <div v-if="activeMoreActivity" class="s__info-activity-mobile__more s__info-activity-mobile__more--payment">
+          <div v-if="isMobile" class="s__payment--content__right s__payment--content__right-mobile">
+            <div>
+              <div class="s__activity--info__right--head no-border-radius">
+                <div class="s__activity--info__right--head__item">
+                  <div class="s__activity--info__right--head__item--top">
+                    <div class="s__activity--info__right--head__item--top__icon">
+                      <img src="~/assets/images/icon-security.svg">
+                    </div>
+                    <div class="s__activity--info__right--head__item--top__label">
+                      HOÀN HỦY
+                      LINH HOẠT
+                    </div>
+                  </div>
+                  <div class="s__activity--info__right--head__item--content">
+                    Bạn sẽ nhận lại 100% giá trị cọc nếu thông báo huỷ trước ngày khởi hành theo quy định
+                  </div>
+                </div>
+                <div class="s__activity--info__right--head__item">
+                  <div class="s__activity--info__right--head__item--top">
+                    <div class="s__activity--info__right--head__item--top__icon">
+                      <img src="~/assets/images/icon-safety.svg">
+                    </div>
+                    <div class="s__activity--info__right--head__item--top__label">
+                      THANH TOÁN AN TOÀN
+                    </div>
+                  </div>
+                  <div class="s__activity--info__right--head__item--content">
+                    Hỗ trợ đổi ngày đăng ký và thông tin của bạn được bảo mật ở tất cả các phương thức thanh toán
+                  </div>
+                </div>
+              </div>
+              <div class="s__payment--info-review">
+                <div class="s__payment--info-review__item">
+                  <div class="s__payment--info-review__item--left">
+                    <span><img src="~/assets/images/icon-time.svg"></span>
+                    <span>Ngày khởi hành:</span>
+                  </div>
+                  <div class="s__payment--info-review__item--right">
+                    02/11/2022
+                  </div>
+                </div>
+                <div class="s__payment--info-review__item">
+                  <div class="s__payment--info-review__item--left">
+                    <span><img src="~/assets/images/icon-person.svg"></span>
+                    <span>Số thành viên:</span>
+                  </div>
+                  <div class="s__payment--info-review__item--right">
+                    01 người lớn, 1 trẻ em
+                  </div>
+                </div>
+                <div class="s__payment--info-review__item">
+                  <div class="s__payment--info-review__item--left">
+                    <span><img src="~/assets/images/type-payment.svg"></span>
+                    <span>Loại thanh toán:</span>
+                  </div>
+                  <div class="s__payment--info-review__item--right">
+                    <!--                  Đặt chỗ trước, thanh toán sau-->
+                  </div>
+                </div>
+                <div class="s__line my-24"></div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left">Giá người lớn:</div>
+                  <div class="s__payment--info-review__calculate--right">1 x 5.000.000 VND</div>
+                </div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left">Giá trẻ em:</div>
+                  <div class="s__payment--info-review__calculate--right">1 x 2.000.000 VND</div>
+                </div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left">Tạm tính:</div>
+                  <div class="s__payment--info-review__calculate--right">7.000.000 VND</div>
+                </div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left">Phí tiện lợi:</div>
+                  <div class="s__payment--info-review__calculate--right">0 VND</div>
+                </div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left">Giảm giá</div>
+                  <div class="s__payment--info-review__calculate--right">200.000 VND</div>
+                </div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left">Voucher giảm giá</div>
+                  <div class="s__payment--info-review__calculate--right">0 VND</div>
+                </div>
+                <div class="s__line my-24"></div>
+                <div class="s__payment--info-review__total">
+                  <div class="s__payment--info-review__total--left">CẦN THANH TOÁN:</div>
+                  <div class="s__payment--info-review__total--right">0 VND</div>
+                </div>
+                <div class="s__line my-24"></div>
+                <div class="s__payment--info-review__calculate">
+                  <div class="s__payment--info-review__calculate--left flex-column-custom">
+                    <span>Còn lại:</span>
+                    <span class="note-payment">(Thanh toán khi tham gia hoạt động)</span>
+                  </div>
+                  <div class="s__payment--info-review__calculate--right">6.800.000 VND</div>
+                </div>
+                <div class="s__payment--info_button__right">
+                  <button class="btn-payment btn-payment-review">Thanh toán</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -766,6 +960,7 @@ export default {
     timeCount: moment(60 * 10 * 1000),
     showChooseCoupon: false,
     showChooseDate: false,
+    showChooseDateMobile: false,
     showDetailCoupon: false,
     coupons: [
       {
@@ -1002,7 +1197,10 @@ export default {
         name: 'Trả góp',
         selected: false
       }
-    ]
+    ],
+    isMobile: false,
+    activeMoreActivity: false,
+    isBoxChoiseGroup: false
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1019,9 +1217,20 @@ export default {
     }
   },
   mounted() {
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768) {
+      this.isMobile = true
+      this.itemSlider = 1.8
+    } else {
+      this.isMobile = false
+    }
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
     setInterval(() => {
       this.timeCount = moment(this.timeCount.subtract(1, 'seconds'))
     }, 1000);
+    console.log(6666,this.isMobile)
   },
   methods: {
     showCoupon() {
@@ -1032,6 +1241,9 @@ export default {
     },
     updateparentDate(variable) {
       this.showChooseDate = variable
+    },
+    updateparentDateMobile(variable) {
+      this.showChooseDateMobile = variable
     },
     updateparentDetailCoupon(variable) {
       this.showDetailCoupon = variable
@@ -1116,6 +1328,23 @@ export default {
           val.licensedPay = false
         })
       }
+    },
+    onResize() {
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    },
+    showMoreInfoActivity() {
+      this.activeMoreActivity = !this.activeMoreActivity
+    },
+    boxChoiseGroup(){
+      this.isBoxChoiseGroup = !this.isBoxChoiseGroup
+    },
+    showBoxChoiseDateMobile(){
+      this.showChooseDateMobile = !this.showChooseDateMobile
     }
   }
 }
