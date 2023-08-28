@@ -448,7 +448,6 @@ export default {
       })
     },
     onResize() {
-      console.log('contac')
       this.pageWidth = window.innerWidth
       if (this.pageWidth <= 768) {
         this.isMobile = true

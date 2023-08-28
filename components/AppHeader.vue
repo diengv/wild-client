@@ -939,7 +939,6 @@ export default {
         this.isMobile = false
         this.navMobile = false
       }
-      console.log(1212, this.isMobile)
     },
     hasBoxSearch() {
 
@@ -1054,7 +1053,6 @@ export default {
     },
     handleScroll() {
       // Your scroll handling here
-      console.log(1234, window.scrollY)
       if (window.scrollY > 90) {
         this.isFixed = true
       } else {

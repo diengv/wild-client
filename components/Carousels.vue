@@ -40,7 +40,6 @@ export default {
     transitioning: false
   }),
   mounted () {
-    console.log(12121, this.slidersData)
     this.cards = this.slidersData
     this.setStep()
     this.resetTranslate()

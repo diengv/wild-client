@@ -1,5 +1,5 @@
 <template>
-  <div class="s__current_page">
+  <div class="s__current_page" :class="{'is-more-mobile' : isBoxMoreMobile}">
     <Modal v-click-outside="clickedParent" @clearModal="updateparent" :show="searchMore" :width="'770px'" :top="'100px'"
            :border-radius="'10px'"
            :height="'610px'">
@@ -75,8 +75,50 @@
         </div>
       </div>
     </Modal>
+    <Modal @clearModal="updateparentBoxSearchMobile" :show="boxSearchMobile" :width="'770px'" :top="'100px'">
+      <div class="title-box-search-more-mobile">
+        <span v-if="typeSearchMore === 'type-activity'">Loại hoạt động</span>
+      </div>
+      <div class="content-box-search-more-mobile">
+        <div class="content-box-search-more-mobile__title">
+          <span v-if="typeSearchMore === 'type-activity'">Bạn muốn chinh phục loại hoạt động nào?</span>
+        </div>
+        <div v-if="typeSearchMore === 'type-activity'" class="content-box-search-more-mobile__wrap">
+
+        </div>
+      </div>
+    </Modal>
+    <section v-if="isMobile" class="s__head_filter--mobile">
+      <div class="s__head_filter--mobile__left">
+        <div class="s__head_filter--mobile__type-activity">
+          <span @click="showBoxSearchMoreMobile('type-activity')">Loại hoạt động</span>
+        </div>
+      </div>
+      <div class="s__head_filter--mobile__right">
+        <span v-if="!isBoxMoreMobile" @click="showBoxMoreMobile()">Các bộ lọc khác</span>
+      </div>
+      <div v-click-outside="clickedParent" v-if="isBoxMoreMobile" class="s__head_filter--mobile__more">
+        <div class="s__nothing">
+          <div :class="{'active': boxLocation}" class="s__head_filter--item">
+            <span>Địa điểm</span>
+          </div>
+          <div :class="{'active': boxLevel}" class="s__head_filter--item">
+            <span>Cấp độ hoạt động</span>
+          </div>
+          <div :class="{'active': boxDate}" class="s__head_filter--item">
+            <span>Ngày khởi hành</span>
+          </div>
+          <div :class="{'active': boxTypePlace}" class="s__head_filter--item">
+            <span>Loại đặt chỗ</span>
+          </div>
+          <div class="s__head_filter--item add-filter">
+            <span><img src="~/assets/images/filter.svg"></span> <span>Thêm bộ lọc: </span><span>1</span>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="s__container">
-      <section class="s__head_filter">
+      <section v-if="!isMobile" class="s__head_filter">
         <div @click="showBoxLocation()" :class="{'active': boxLocation}" class="s__head_filter--item">
           <span>Địa điểm</span>
         </div>
@@ -140,7 +182,9 @@
           </div>
         </div>
         <div v-click-outside="clickedParent" class="s__head_filter--item__type-place" v-if="boxTypePlace">
-          <div @click="choiseTypePlace(tp)" v-for="tp in listTypePlace" class="filter--item-level" :class="{'active' : tp.active}">{{ tp.name }}</div>
+          <div @click="choiseTypePlace(tp)" v-for="tp in listTypePlace" class="filter--item-level"
+               :class="{'active' : tp.active}">{{ tp.name }}
+          </div>
           <div class="s__line mt-5 mb-3 s__line--24"></div>
           <div class="s__bottom_filter">
             <div class="choose__again" @click="reselect('type-place')">
@@ -158,7 +202,7 @@
         </div>
         <div v-if="hasOpacity" class="opacity__bg"></div>
       </section>
-      <section class="s__categories_filter">
+      <section v-if="!isMobile" class="s__categories_filter">
         <div class="s__categories_filter--item">
           <span><img src="~/assets/images/icon-trekking.svg"></span>
           <span>Trekking</span>
@@ -824,8 +868,24 @@ export default {
         name: 'Tiếng Pháp',
         selected: false
       }
-    ]
+    ],
+    isMobile: false,
+    isBoxMoreMobile: false,
+    boxSearchMobile: false,
+    pageHeight: 0,
+    typeSearchMore: ''
   }),
+  mounted() {
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768) {
+      this.isMobile = true
+    } else {
+      this.isMobile = false
+    }
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
   methods: {
     showBoxLocation() {
       this.boxLocation = !this.boxLocation
@@ -860,11 +920,9 @@ export default {
       }
     },
     checkedVietNam() {
-      console.log(1212)
       this.checkVietNam = !this.checkVietNam
     },
     testSelected() {
-      console.log(1234, this.location)
     },
     reselect(type) {
       if (type === 'location') {
@@ -884,11 +942,11 @@ export default {
         this.languages.forEach((val) => {
           val.selected = false
         })
-      }else if(type === 'level'){
+      } else if (type === 'level') {
         this.listLevel.forEach((val) => {
           val.active = false
         })
-      }else if(type === 'type-place'){
+      } else if (type === 'type-place') {
         this.listTypePlace.forEach((val) => {
           val.active = false
         })
@@ -902,16 +960,33 @@ export default {
       this.boxDate = false
       this.hasOpacity = false
       this.searchMore = false
+      this.isBoxMoreMobile = false
     },
     updateparent(variable) {
       this.searchMore = variable
-      if (this.searchMore){
+      if (this.searchMore) {
         useHead({
           bodyAttrs: {
-            class:  this.searchMore ? 'overflow-hidden' : ''
+            class: this.searchMore ? 'overflow-hidden' : ''
           }
         })
-      }else {
+      } else {
+        useHead({
+          bodyAttrs: {
+            class: ''
+          }
+        })
+      }
+    },
+    updateparentBoxSearchMobile(variable) {
+      this.boxSearchMobile = variable
+      if (this.boxSearchMobile) {
+        useHead({
+          bodyAttrs: {
+            class: this.boxSearchMobile ? 'overflow-hidden' : ''
+          }
+        })
+      } else {
         useHead({
           bodyAttrs: {
             class: ''
@@ -923,7 +998,7 @@ export default {
       this.searchMore = true
       useHead({
         bodyAttrs: {
-          class:  this.searchMore ? 'overflow-hidden' : ''
+          class: this.searchMore ? 'overflow-hidden' : ''
         }
       })
     },
@@ -947,12 +1022,32 @@ export default {
         }
       })
     },
-    choiseTypePlace(tp){
+    choiseTypePlace(tp) {
       this.listTypePlace.forEach((val) => {
         if (tp.id === val.id) {
           val.active = true
         } else {
           val.active = false
+        }
+      })
+    },
+    onResize() {
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    },
+    showBoxMoreMobile() {
+      this.isBoxMoreMobile = !this.isBoxMoreMobile
+    },
+    showBoxSearchMoreMobile(type) {
+      this.boxSearchMobile = true
+      this.typeSearchMore = type
+      useHead({
+        bodyAttrs: {
+          class: this.boxSearchMobile ? 'overflow-hidden' : ''
         }
       })
     }

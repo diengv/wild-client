@@ -36,7 +36,6 @@ export default {
   methods:{
     updateparent(variable) {
       this.isFixed = variable
-      console.log(1234, variable)
     },
 
   },

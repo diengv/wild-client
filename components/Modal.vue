@@ -16,7 +16,6 @@ export default {
   props: ['show','width','top','borderRadius','overflowY','height'],
   setup(props) {
     // setup() receives props as the first argument.
-    console.log(555, props.show)
   },
   watch: {
     show: function (value) {

@@ -33,9 +33,13 @@
         </div>
       </div>
     </Modal>
-    <Modal @clearModal="updateparentDateMobile" class="m__choise_date" :show="showChooseDateMobile" :width="'314px'" :top="'100px'" :border-radius="'10px'"
+    <Modal  @clearModal="updateparentDateMobile" class="m__choise_date" :show="showChooseDateMobile" :width="'314px'" :top="'100px'" :border-radius="'10px'"
            :height="'648px'">
-      <div class="box-choise-header">
+      <div v-click-outside="clickedParent" class="box-choise-header">
+        <div class="box-choise-header-nav">
+          <span class="box-choise-header-nav__prev disabled"><img src="~/assets/images/icon-vector.svg"></span>
+          <span class="box-choise-header-nav__next"><img src="~/assets/images/icon-vector.svg"></span>
+        </div>
         2022
       </div>
       <div class="box-choise-month">
@@ -475,7 +479,51 @@
                 </div>
               </td>
             </tr>
-
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND</span>
+                  <span>5.000.000 VND  <small>/người</small></span>
+                  <div class="btn-book-mobile">Đặt chỗ</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND</span>
+                  <span>5.000.000 VND  <small>/người</small></span>
+                  <div class="btn-book-mobile">Đặt chỗ</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND</span>
+                  <span>5.000.000 VND  <small>/người</small></span>
+                  <div class="btn-book-mobile">Đặt chỗ</div>
+                </div>
+              </td>
+            </tr>
           </table>
         </div>
       </div>
@@ -1199,8 +1247,10 @@ export default {
       }
     ],
     isMobile: false,
+    pageHeight: 0,
     activeMoreActivity: false,
-    isBoxChoiseGroup: false
+    isBoxChoiseGroup: false,
+
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1230,7 +1280,6 @@ export default {
     setInterval(() => {
       this.timeCount = moment(this.timeCount.subtract(1, 'seconds'))
     }, 1000);
-    console.log(6666,this.isMobile)
   },
   methods: {
     showCoupon() {
@@ -1345,7 +1394,11 @@ export default {
     },
     showBoxChoiseDateMobile(){
       this.showChooseDateMobile = !this.showChooseDateMobile
-    }
+    },
+    async clickedParent() {
+      await new Promise((resolve, reject) => setTimeout(resolve, 1));
+      this.showChooseDateMobile = false
+    },
   }
 }
 </script>
