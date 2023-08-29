@@ -78,14 +78,178 @@
     <Modal @clearModal="updateparentBoxSearchMobile" :show="boxSearchMobile" :width="'770px'" :top="'100px'">
       <div class="title-box-search-more-mobile">
         <span v-if="typeSearchMore === 'type-activity'">Loại hoạt động</span>
+        <span v-if="typeSearchMore === 'location'">Địa điểm</span>
+        <span v-if="typeSearchMore === 'level'">Cấp độ</span>
+        <span v-if="typeSearchMore === 'date-schedule'">Ngày khởi hành</span>
+        <span v-if="typeSearchMore === 'type-booking'">Loại đặt chỗ</span>
+        <span v-if="typeSearchMore === 'filter-other'">Bộ lọc khác</span>
       </div>
       <div class="content-box-search-more-mobile">
-        <div class="content-box-search-more-mobile__title">
-          <span v-if="typeSearchMore === 'type-activity'">Bạn muốn chinh phục loại hoạt động nào?</span>
+        <div class="content-box-search-more-mobile__title" v-if="typeSearchMore === 'type-activity'">
+          <span>Bạn muốn chinh phục loại hoạt động nào?</span>
         </div>
-        <div v-if="typeSearchMore === 'type-activity'" class="content-box-search-more-mobile__wrap">
+        <div v-if="typeSearchMore === 'type-activity'" class="content-box-search-more-mobile__wrap type-activity">
+          <div class="s__categories_filter--item active">
+            <span><img src="~/assets/images/icon-trekking.svg"></span>
+            <span>Trekking</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-biking.svg"></span>
+            <span>Cycling</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-diving.svg"></span>
+            <span>Diving</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-camping.svg"></span>
+            <span>Camping</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-kayaking.svg"></span>
+            <span>Kayaking</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-surfing.svg"></span>
+            <span>Surfing</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-sup.svg"></span>
+            <span>SUP</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-free-diving.svg"></span>
+            <span>Snorkeling</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-paragliding.svg"></span>
+            <span>Paragdiling</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-spear-fishing.svg"></span>
+            <span>Spearfishing</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-driving-1.svg"></span>
+            <span>Motorbiking</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-climbing.svg"></span>
+            <span>Canyoning</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-rappelling.svg"></span>
+            <span>Abseiling</span>
+          </div>
+          <div class="s__categories_filter--item">
+            <span><img src="~/assets/images/icon-diving.svg"></span>
+            <span>DiveRaid</span>
+          </div>
+        </div>
+        <div v-if="typeSearchMore === 'location'" class="content-box-search-more-mobile__wrap type-activity">
+          <div class="position-relative box-location-filter">
+            <div class="d-flex-wrap">
+              <div v-for="loc in location" class="s__item_checkbox">
+                <label class="container--checkbox" :class="{'active': loc.selected}">
+                  <span>{{ loc.name }}</span> <span v-if="loc.children && loc.children.length > 0"
+                                                    class="icon-down-location"><img src="~/assets/images/icon-down.svg"></span>
+                  <input @change="testSelected()" v-model="loc.selected" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
 
+                <div v-if="loc.children && loc.children.length > 0 && loc.selected" class="s__checkbox--vietnam">
+                  <div v-for="child in loc.children" class="s__item_checkbox">
+                    <label class="container--checkbox">{{ child.name }}
+                      <input v-model="child.selected" type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
+        <div v-if="typeSearchMore === 'level'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+          <div @click="choiseLevel(lv)" v-for="lv in listLevel" class="filter--item-level"
+               :class="{'active' : lv.active}">{{ lv.name }}
+          </div>
+        </div>
+        <div v-if="typeSearchMore === 'date-schedule'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+          <Calendar :initial-page="{ month: 4, year: 2019 }"
+                    :color="selectedColor"
+                    :attributes="attrs"/>
+        </div>
+        <div v-if="typeSearchMore === 'type-booking'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+          <div @click="choiseTypePlace(tp)" v-for="tp in listTypePlace" class="filter--item-level"
+               :class="{'active' : tp.active}">{{ tp.name }}
+          </div>
+        </div>
+        <div v-if="typeSearchMore === 'filter-other'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+          <div class="s__search-more-wrap">
+            <div class="s__search-more-box">
+              <div class="s__search-more-box__title">
+                Số thành viên
+              </div>
+              <div class="s__search-more-box__content">
+                <div class="s__payment--content__form">
+                  <div class="s__payment--content__form--item">
+                    <div class="s__payment--content__form--item__label w-110">
+                      Người lớn:
+                    </div>
+                    <div class="s__payment--content__form--item__input">
+                      <div class="btn-choose-number">
+                        <span @click="minusAdult()" class="minus"><img src="~/assets/images/minus-active.svg"></span>
+                        <span class="number">{{ adult }}</span>
+                        <span @click="plusAdult()" class="plus"><img src="~/assets/images/plus-active.svg"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="s__search-more-box">
+              <div class="s__search-more-box__title">
+                Ngân sách
+              </div>
+              <div class="s__search-more-box__content mt-30">
+                <div class="d-flex-wrap">
+                  <div v-for="bud in budget" class="s__item_checkbox">
+                    <label class="container--checkbox" :class="{'active': bud.selected}">
+                      <span>{{ bud.name }}</span>
+                      <input @change="choiseBudget()" v-model="bud.selected" type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="s__search-more-box">
+              <div class="s__search-more-box__title">
+                Ngôn ngữ
+              </div>
+              <div class="s__search-more-box__content mt-30">
+                <div class="d-flex-wrap">
+                  <div v-for="lang in languages" class="s__item_checkbox">
+                    <label class="container--checkbox" :class="{'active': lang.selected}">
+                      <span>{{ lang.name }}</span>
+                      <input v-model="lang.selected" type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-box-search-more-mobile">
+        <span class="unchoise-search">Bỏ chọn tất cả</span>
+        <span class="btn-search-mobile">
+          <button>Tìm kiếm</button>
+        </span>
       </div>
     </Modal>
     <section v-if="isMobile" class="s__head_filter--mobile">
@@ -99,19 +263,19 @@
       </div>
       <div v-click-outside="clickedParent" v-if="isBoxMoreMobile" class="s__head_filter--mobile__more">
         <div class="s__nothing">
-          <div :class="{'active': boxLocation}" class="s__head_filter--item">
+          <div @click="showBoxSearchMoreMobile('location')" :class="{'active': boxLocation}" class="s__head_filter--item">
             <span>Địa điểm</span>
           </div>
-          <div :class="{'active': boxLevel}" class="s__head_filter--item">
+          <div  @click="showBoxSearchMoreMobile('level')" :class="{'active': boxLevel}" class="s__head_filter--item">
             <span>Cấp độ hoạt động</span>
           </div>
-          <div :class="{'active': boxDate}" class="s__head_filter--item">
+          <div  @click="showBoxSearchMoreMobile('date-schedule')" :class="{'active': boxDate}" class="s__head_filter--item">
             <span>Ngày khởi hành</span>
           </div>
-          <div :class="{'active': boxTypePlace}" class="s__head_filter--item">
+          <div  @click="showBoxSearchMoreMobile('type-booking')" :class="{'active': boxTypePlace}" class="s__head_filter--item">
             <span>Loại đặt chỗ</span>
           </div>
-          <div class="s__head_filter--item add-filter">
+          <div @click="showBoxSearchMoreMobile('filter-other')" class="s__head_filter--item add-filter">
             <span><img src="~/assets/images/filter.svg"></span> <span>Thêm bộ lọc: </span><span>1</span>
           </div>
         </div>
