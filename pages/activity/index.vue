@@ -1,5 +1,6 @@
 <template>
   <div class="s__activity">
+    <div v-if="isMobile" :class="{'opacity-box' : activeMoreActivity}"></div>
     <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'"
            :overflow-y="'scroll'">
       <div class="s__activity--choose-date">
@@ -501,7 +502,6 @@
     <div v-if="isMobile" class="s__slider">
       <div class="s__slider--main">
         <div class="s__slider--main__image">
-          <div class="s__slider--main__image--gradient"></div>
           <img :class="{'animate__animated animate__fadeIn' : effectSlider }" v-if="slidersActive"
                :src="slidersActive.banner ?slidersActive.banner: ''">
         </div>
@@ -518,6 +518,9 @@
                class="s__slider--main__thumbnail--item"
                :class="{'active': (index + 1) === activeSlider}">
           </div>
+        </div>
+        <div class="icon-trip-local">
+          <img src="~/assets/images/local.jpg">
         </div>
       </div>
     </div>
@@ -777,17 +780,34 @@
                     <span class="strong-text">Hoạt động chính: </span>
                     <span>Diving</span>
                   </div>
+                  <div v-if="isMobile" class="list-activity-note-highlight">
+                    <div class="list-activity-note-highlight__head">
+                      <div class="list-activity-note-highlight__head--title">
+                        HIGHLIGHT
+                      </div>
+                      <div class="list-activity-note-highlight__head--button">
+                        <div class="s__topic--slider__head" :class="{'is-show' : isMobile}">
+                          <span>1/2</span>
+                          <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
+                          <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-activity-note-highlight__content">
+                      <img src="~/assets/images/highline.png">
+                    </div>
+                  </div>
                   <div class="list-activity-note__content">
                     {{ date.content }}
                   </div>
                 </div>
-                <div class="list-activity-note-highlight">
+                <div v-if="!isMobile" class="list-activity-note-highlight">
                   <div class="list-activity-note-highlight__head">
                     <div class="list-activity-note-highlight__head--title">
                       HIGHLIGHT
                     </div>
                     <div class="list-activity-note-highlight__head--button">
-                      <div class="s__topic--slider__head">
+                      <div class="s__topic--slider__head" :class="{'is-show' : isMobile}">
                         <span>1/2</span>
                         <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
                         <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
@@ -795,7 +815,7 @@
                     </div>
                   </div>
                   <div class="list-activity-note-highlight__content">
-                    <img src="~/assets/images/thumbnail-activity.png">
+                    <img src="~/assets/images/highline.png">
                   </div>
                 </div>
               </div>
@@ -1203,8 +1223,8 @@
         </div>
       </div>
     </div>
-    <div v-if="isMobile" class="s__info-activity-mobile">
-      <div class="s__info-activity-mobile-wrapper">
+    <div v-click-outside="clickedParent" v-if="isMobile" class="s__info-activity-mobile" :class="{'active': activeMoreActivity}">
+      <div class="s__info-activity-mobile-wrapper" >
         <div @click="showMoreInfoActivity()" class="s__info-activity-mobile__head">
           <div class="s__info-activity-mobile__head--wrap">
             <img :class="{'active-more-activity' : activeMoreActivity}" src="~/assets/images/icon-open-info.svg">
@@ -1769,6 +1789,10 @@ export default {
         })
       }, 3000);
 
+    },
+    async clickedParent() {
+      await new Promise((resolve, reject) => setTimeout(resolve, 1));
+      this.activeMoreActivity = false
     },
   }
 }

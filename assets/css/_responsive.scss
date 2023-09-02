@@ -1,6 +1,6 @@
 @media all and (max-width: 1440px) {
   .s__header--text-nav {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -75,7 +75,7 @@
   }
   .s__slider--main__description--title {
     color: var(--white, #FFF);
-    font-size: 29px;
+    font-size: 31px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 600;
@@ -85,7 +85,7 @@
   }
   .s__slider--main__description--short {
     color: var(--white, #FFF);
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 400;
@@ -98,7 +98,7 @@
   .s__slider--main__description--button {
     a {
       color: var(--white, #FFF);
-      font-size: 16px;
+      font-size: 18px;
       font-family: Source Sans Pro;
       font-style: normal;
       font-weight: 600;
@@ -127,7 +127,7 @@
   .s__box_label {
     h2 {
       color: #000;
-      font-size: 29px;
+      font-size: 31px;
       font-family: Source Sans Pro;
       font-style: normal;
       font-weight: 600;
@@ -155,7 +155,7 @@
     h3 {
       color: var(--white, #FFF);
       text-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.50);
-      font-size: 22px;
+      font-size: 24px;
       font-family: Source Sans Pro;
       font-style: normal;
       font-weight: 600;
@@ -165,7 +165,7 @@
   .s__topic--top__item--info__description {
     color: #FFF;
     text-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.50);
-    font-size: 14px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 400;
@@ -192,7 +192,7 @@
       .s__topic--top__item--info__title {
         color: var(--white, #FFF);
         text-shadow: 2px 2px 7px 0px rgba(18, 18, 18, 0.50);
-        font-size: 22px;
+        font-size: 24px;
         font-family: Source Sans Pro;
         font-style: normal;
         font-weight: 600;
@@ -223,7 +223,7 @@
   }
   .s__experience--head__title {
     color: #FFF;
-    font-size: 29px;
+    font-size: 31px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 600;
@@ -237,7 +237,7 @@
   }
   .s__experience--head__description {
     color: var(--white, #FFF);
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 400;
@@ -277,8 +277,8 @@
           position: absolute;
           right: 20px;
           top: 20px;
-          width: 80px;
-          height: 80px;
+          width: 48px;
+          height: 48px;
           background: #fff;
           border-radius: 5px;
         }
@@ -298,7 +298,7 @@
           width: 50%;
           font-style: normal;
           font-weight: 400;
-          font-size: 14px;
+          font-size: 18px;
           line-height: 22px;
           /* identical to box height, or 157% */
 
@@ -314,7 +314,7 @@
           width: 50%;
           font-style: normal;
           font-weight: 400;
-          font-size: 14px;
+          font-size: 18px;
           line-height: 18px;
           /* identical to box height */
 
@@ -345,7 +345,7 @@
         h3 {
           font-style: normal;
           font-weight: 600;
-          font-size: 16px;
+          font-size: 18px;
           line-height: 20px;
 
           /* White */
@@ -358,7 +358,7 @@
       &--price {
         font-style: normal;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 20px;
 
         /* White */
@@ -402,7 +402,7 @@
   .s__customers--title {
     color: #000;
     text-align: center;
-    font-size: 29px;
+    font-size: 31px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 600;
@@ -414,7 +414,7 @@
   .s__footer.register-info__description {
     color: var(--white, #FFF);
     text-align: center;
-    font-size: 22px;
+    font-size: 24px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 600;
@@ -479,6 +479,12 @@
           list-style: none;
           padding: 12px 0;
           position: relative;
+          color: #000;
+          font-family: Source Sans Pro;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
 
           &:after {
             content: url("/assets/images/icon-arrow-nav.svg");
@@ -514,7 +520,7 @@
       padding: 16px 20px;
       color: #FFFDFD;
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -542,7 +548,7 @@
         padding: 30px 0 12px 20px;
         color: #000;
         font-family: Source Sans Pro;
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
@@ -589,7 +595,7 @@
       padding: 16px 20px;
       color: #FFFDFD;
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -617,7 +623,7 @@
         padding: 30px 0 12px 20px;
         color: #000;
         font-family: Source Sans Pro;
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
@@ -681,7 +687,7 @@
         border-radius: 0 0 5px 5px;
         color: var(--rick-back, #121212);
         font-family: Source Sans Pro;
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
@@ -727,7 +733,7 @@
         color: var(--black-1, #888);
         text-align: center;
         font-family: Source Sans Pro;
-        font-size: 14px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 22px; /* 157.143% */
@@ -851,7 +857,7 @@
           color: var(--greenie-pine, #03483F);
           text-align: right;
           font-family: Source Sans Pro;
-          font-size: 14px;
+          font-size: 16px;
           font-style: normal;
           font-weight: 700;
           line-height: normal;
@@ -902,7 +908,7 @@
     span {
       color: var(--back-1, #E1E1E1);
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 400;
       line-height: 24px; /* 150% */
@@ -926,7 +932,7 @@
     align-items: center;
     color: #2D4C3F;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -955,7 +961,7 @@
     align-items: center;
     color: var(--greenie-pine, #03483F);
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: 24px; /* 150% */
@@ -1028,7 +1034,7 @@
   .text-back {
     color: #FFFDFD;
     font-family: Source Sans Pro !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-style: normal !important;
     font-weight: 400 !important;
     line-height: normal !important;
@@ -1092,7 +1098,7 @@
     &__title {
       color: var(--rick-back, #121212);
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -1102,7 +1108,7 @@
     &__item {
       color: var(--rick-back, #121212);
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 400;
       line-height: 24px; /* 150% */
@@ -1128,7 +1134,7 @@
       display: flex;
       color: var(--rick-back, #121212);
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -1175,7 +1181,7 @@
     width: 335px;
     color: var(--rick-back, #121212);
     font-family: Source Sans Pro;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 22px; /* 157.143% */
@@ -1213,6 +1219,7 @@
   }
   .s__activity--dates__item--content .list-activity-note-highlight {
     width: 100%;
+    margin-top: 22px;
   }
   .s__activity--dates__item--content {
     width: 100%;
@@ -1283,7 +1290,7 @@
     width: 100%;
     display: flex;
     color: #000;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     line-height: 24px;
     margin-top: 16px;
@@ -1305,7 +1312,7 @@
   .s__activity--register-group__right--description {
     width: 100%;
     color: #000;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     line-height: 24px;
   }
@@ -1316,7 +1323,7 @@
     a {
       color: #000;
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -1355,7 +1362,7 @@
     margin-bottom: 9px;
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 29px;
+    font-size: 31px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1377,7 +1384,7 @@
     margin-bottom: 21px;
   }
   .s__activity--box__content .carousel__slide {
-    width: 100% !important;
+    width: 270px !important;
   }
   .s__activity--dates__item--title {
     width: 100%;
@@ -1411,7 +1418,7 @@
   .s__activity--wild-buddy__left--head__info span:first-child {
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1419,7 +1426,7 @@
   .s__activity--wild-buddy__left--head__info span:last-child {
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 29px;
+    font-size: 31px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1429,12 +1436,12 @@
     display: flex;
     margin-top: 21px;
     color: #000;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     line-height: 24px;
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
@@ -1473,7 +1480,7 @@
   .s__activity--box__title h2 {
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 29px;
+    font-size: 31px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1488,7 +1495,7 @@
   .s__take-away__wrap--title {
     color: #FFFDFD;
     font-family: Source Sans Pro;
-    font-size: 29px;
+    font-size: 31px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1515,14 +1522,14 @@
     margin-top: 14px;
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
   }
   .s__activity--box__content--rate__right {
     margin-bottom: 24px;
-    padding: 25px;
+    padding: 25px 20px;
     display: flex;
     flex-direction: unset;
   }
@@ -1558,7 +1565,7 @@
   .s__activity--box__content--rate__right--link-rate {
     color: #0D4C3F;
     font-family: Source Sans Pro;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -1588,7 +1595,7 @@
   .s__activity--register-group__right--title {
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 29px;
+    font-size: 31px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1599,7 +1606,7 @@
   .s__activity--register-group {
     width: 100%;
     display: flex;
-    margin-bottom: 64px;
+    margin-bottom: 50px;
   }
   .s__activities--items > * {
     flex: 0 1 100%;
@@ -1616,8 +1623,10 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 9999;
-
+    z-index: 999999;
+    &.active{
+      padding-bottom: 0;
+    }
     &__less {
       width: 100%;
       display: flex;
@@ -1787,6 +1796,7 @@
   }
   .s__activity--info__right--bottom__price-sale span:first-child {
     margin-left: 0;
+    font-size: 14px;
   }
   .s__activity {
     .s__slider {
@@ -1892,7 +1902,7 @@
   .s__payment--info-activity__info--note {
     color: var(--black-1, #888);
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
@@ -1923,7 +1933,7 @@
     display: flex;
     align-items: center;
     color: #000;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     font-weight: 600;
   }
@@ -1941,7 +1951,7 @@
         display: flex;
         align-items: center;
         color: #000;
-        font-size: 16px;
+        font-size: 18px;
         font-family: Source Sans Pro;
         font-weight: 600;
         margin-bottom: 12px;
@@ -1983,7 +1993,7 @@
   }
   .btn-add-coupon {
     color: #E1E1E1;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     font-weight: 600;
     text-transform: uppercase;
@@ -2060,7 +2070,7 @@
   .s__payment--notification__name {
     width: 100%;
     color: #000;
-    font-size: 29px;
+    font-size: 31px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 600;
@@ -2075,7 +2085,7 @@
   .s__header_payment--back-home {
     color: #FFFDFD;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -2117,7 +2127,7 @@
     color: var(--greenie-pine, #03483F);
     text-align: center;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -2148,7 +2158,7 @@
   .btn-book-mobile {
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
@@ -2174,7 +2184,7 @@
   .select-box-form-activity {
     color: #000;
     font-family: Source Sans Pro;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 22px; /* 157.143% */
@@ -2191,7 +2201,7 @@
     background-color: #fff;
     color: white;
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 400;
@@ -2250,7 +2260,7 @@
         color: var(--white, #FFF);
         text-align: center;
         font-family: Source Sans Pro;
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
@@ -2265,7 +2275,7 @@
         color: var(--greenie-pine, #03483F);
         text-align: center;
         font-family: Source Sans Pro;
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
@@ -2327,7 +2337,7 @@
     width: 100%;
     color: #FFF;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 600;
@@ -2382,7 +2392,7 @@
     &__item {
       color: var(--greenie-pine, #03483F);
       font-family: Source Sans Pro;
-      font-size: 14px;
+      font-size: 16px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -2430,7 +2440,7 @@
     h1 {
       color: #000;
       font-family: Source Sans Pro;
-      font-size: 29px;
+      font-size: 31px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -2459,7 +2469,7 @@
         color: #121212;
         text-align: right;
         font-family: Source Sans Pro;
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -2471,7 +2481,7 @@
   .s__head_filter--mobile__type-activity {
     color: #0D4C3F;
     font-family: Source Sans Pro;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -2531,7 +2541,7 @@
     &__title {
       color: #000;
       font-family: Source Sans Pro;
-      font-size: 29px;
+      font-size: 31px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -2589,7 +2599,7 @@
   .unchoise-search{
     color: #121212;
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -2600,7 +2610,7 @@
       color: #FFFDFD;
       text-align: center;
       font-family: Source Sans Pro;
-      font-size: 16px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -2612,5 +2622,140 @@
       min-width: 160px;
       cursor: pointer;
     }
+  }
+  .s__experience {
+    background: #000;
+    width: 100%;
+    padding: 40px 0 31px 0;
+    background-image: url('assets/images/bg-bc.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .btn-more-experience-mobile{
+    width: 100%;
+    display: flex;
+    .btn-experience-mobile{
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: Source Sans Pro;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      text-transform: uppercase;
+      border-radius: 5px;
+      border: 1px solid var(--White, #FFF);
+      padding: 10px 20px;
+      width: 100%;
+    }
+  }
+  .slider-topic{
+    .carousel__prev{
+      background: rgba(255,255,255, 0.8);
+      border-radius: 50%;
+    }
+    .carousel__next{
+      background: rgba(255,255,255, 0.8);
+      border-radius: 50%;
+    }
+  }
+  .icon-trip-local{
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+    img{
+      width: 48px;
+      height: 48px;
+    }
+  }
+  .s__activity--box__content--rate__right--list-rate__item span.text-rate {
+    color: #121212;
+    font-size: 13px;
+    font-family: Source Sans Pro;
+    font-weight: 600;
+    margin-left: 5.43px;
+  }
+  .mb-76 {
+    margin-bottom: 34px;
+  }
+  .s__wrap--important {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 36px;
+  }
+  .s__activity--wild-buddy {
+    width: 100%;
+    display: flex;
+    margin-top: 24px;
+  }
+  .s__activity--info {
+    width: 100%;
+    display: flex;
+    margin-top: 32px;
+    margin-bottom: 0px;
+  }
+  .mb-104 {
+    margin-bottom: 30px;
+  }
+  .s__activity--info-travel__left {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+  }
+  .s__activity--info-travel__right {
+    width: 100%;
+    display: flex;
+    margin-top: 21px;
+  }
+  .s__activity--info-travel {
+    width: 100%;
+    display: flex;
+    margin-bottom: 32px;
+    flex-direction: column;
+  }
+  .is-show{
+    display: flex;
+  }
+  .list-activity-note-highlight__content {
+    position: relative;
+    max-height: 210px;
+    height: 210px;
+    border-radius: 5px !important;
+    margin-bottom: 16px;
+  }
+  .opacity-box{
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+  }
+  .is-disable{
+    cursor: not-allowed;
+    pointer-events: none;
+    border-radius: 5px;
+    background: #E1E1E1;
+    color: #fff;
+  }
+  .s__header.fixed {
+    background: var(--primary);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+  }
+  .s__nav-mobile {
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99900;
   }
 }

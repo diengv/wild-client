@@ -170,9 +170,7 @@
               <span @click="activeRegulations()">Các quy định cần lưu ý:</span>
             </div>
             <div v-if="mobileActiveRegulations" class="s__regulations--description">
-              {{ regulations.slice(0, regulationsLenght) }}
-              <span><strong @click="moreRegulations()" class="regulations__more"><span
-                  v-if="!regulationsMore">Xem thêm</span> <span v-else>Ẩn bớt</span></strong> </span>
+              {{ regulations }}
             </div>
           </div>
           <div class="s__line"></div>

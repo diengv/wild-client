@@ -983,7 +983,7 @@
                   <div class="s__payment--info-review__calculate--right">6.800.000 VND</div>
                 </div>
                 <div class="s__payment--info_button__right">
-                  <button class="btn-payment btn-payment-review">Thanh toán</button>
+                  <button class="btn-payment btn-payment-review" :class="{'is-disable' : !hasSend}">Thanh toán</button>
                 </div>
               </div>
             </div>
@@ -1250,7 +1250,7 @@ export default {
     pageHeight: 0,
     activeMoreActivity: false,
     isBoxChoiseGroup: false,
-
+    hasSend: false,
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)

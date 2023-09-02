@@ -50,6 +50,7 @@
         <div class="s__topic--top">
           <div class="s__topic--top__left">
             <div class="s__topic--top__item">
+              <div class="s__opacity-item"></div>
               <div class="s__topic--top__item--image">
                 <img src="~/assets/images/t-1.jpg">
               </div>
@@ -186,7 +187,6 @@
               <a href="#">
                 <div class="s__topic--slider__content--item">
                   <div class="s__topic--top__item">
-                    <div class="s__opacity-item"></div>
                     <div class="s__topic--top__item--image">
                       <img src="~/assets/images/t-1.jpg">
                     </div>
@@ -451,7 +451,9 @@
             <div class="carousel__item--price">từ 7.526.000 VND/người</div>
           </a>
         </div>
-
+        <div class="btn-more-experience-mobile">
+          <button class="btn-experience-mobile">Hiển thị thêm</button>
+        </div>
       </div>
     </section>
     <section class="s__activities">
@@ -876,7 +878,7 @@
         <div class="s__customers--title">
           Cảm nhận của khách hàng
         </div>
-        <div class="s__customers--items">
+        <div v-if="!isMobile" class="s__customers--items">
           <div class="s__customers--items__item">
             <div class="h-176">
               <div class="item-customer">
