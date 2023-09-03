@@ -1037,7 +1037,15 @@ export default {
     isBoxMoreMobile: false,
     boxSearchMobile: false,
     pageHeight: 0,
-    typeSearchMore: ''
+    typeSearchMore: '',
+    locationSelected:[],
+    levelSelected:'',
+    dateSelected:'',
+    typeBookingSelected:'',
+    typeActivitySelected:'',
+    number_of_member: '',
+    budget: '',
+    language: '',
   }),
   mounted() {
     this.pageWidth = window.innerWidth
@@ -1117,6 +1125,7 @@ export default {
       }
     },
     async clickedParent() {
+      console.log(121212,'test')
       await new Promise((resolve, reject) => setTimeout(resolve, 1));
       this.boxLocation = false
       this.boxLevel = false
