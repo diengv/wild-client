@@ -6533,5 +6533,14 @@ button {
     left: 0;
   }
 }
-
+.btn-search{
+  cursor: pointer;
+}
+.s__categories_filter--item{
+  &.active{
+    border-radius: 5px;
+    background: var(--Greenie-Pine, #03483F);
+    color: #fff;
+  }
+}
 @import "responsive";

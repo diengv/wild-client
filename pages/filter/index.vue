@@ -37,7 +37,7 @@
               <div v-for="bud in budget" class="s__item_checkbox">
                 <label class="container--checkbox" :class="{'active': bud.selected}">
                   <span>{{ bud.name }}</span>
-                  <input @change="choiseBudget()" v-model="bud.selected" type="checkbox">
+                  <input @change="choiseBudget(bud)" v-model="bud.selected" type="checkbox">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -69,7 +69,7 @@
               Chọn lại
             </div>
             <div class="filter_btn-search">
-              <a class="btn-search" href="#">Tìm kiếm</a>
+              <a @click="fSearch()" class="btn-search">Tìm kiếm</a>
             </div>
           </div>
         </div>
@@ -170,22 +170,26 @@
             </div>
           </div>
         </div>
-        <div v-if="typeSearchMore === 'level'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+        <div v-if="typeSearchMore === 'level'"
+             class="content-box-search-more-mobile__wrap type-activity type-activity-level">
           <div @click="choiseLevel(lv)" v-for="lv in listLevel" class="filter--item-level"
                :class="{'active' : lv.active}">{{ lv.name }}
           </div>
         </div>
-        <div v-if="typeSearchMore === 'date-schedule'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+        <div v-if="typeSearchMore === 'date-schedule'"
+             class="content-box-search-more-mobile__wrap type-activity type-activity-level">
           <Calendar :initial-page="{ month: 4, year: 2019 }"
                     :color="selectedColor"
                     :attributes="attrs"/>
         </div>
-        <div v-if="typeSearchMore === 'type-booking'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+        <div v-if="typeSearchMore === 'type-booking'"
+             class="content-box-search-more-mobile__wrap type-activity type-activity-level">
           <div @click="choiseTypePlace(tp)" v-for="tp in listTypePlace" class="filter--item-level"
                :class="{'active' : tp.active}">{{ tp.name }}
           </div>
         </div>
-        <div v-if="typeSearchMore === 'filter-other'" class="content-box-search-more-mobile__wrap type-activity type-activity-level">
+        <div v-if="typeSearchMore === 'filter-other'"
+             class="content-box-search-more-mobile__wrap type-activity type-activity-level">
           <div class="s__search-more-wrap">
             <div class="s__search-more-box">
               <div class="s__search-more-box__title">
@@ -217,7 +221,7 @@
                   <div v-for="bud in budget" class="s__item_checkbox">
                     <label class="container--checkbox" :class="{'active': bud.selected}">
                       <span>{{ bud.name }}</span>
-                      <input @change="choiseBudget()" v-model="bud.selected" type="checkbox">
+                      <input @change="choiseBudget(bud)" v-model="bud.selected" type="radio">
                       <span class="checkmark"></span>
                     </label>
                   </div>
@@ -246,9 +250,9 @@
         </div>
       </div>
       <div class="bottom-box-search-more-mobile">
-        <span class="unchoise-search">Bỏ chọn tất cả</span>
+        <span @click="reselect('search-more')" class="unchoise-search">Bỏ chọn tất cả</span>
         <span class="btn-search-mobile">
-          <button>Tìm kiếm</button>
+          <button @click="fSearch()">Tìm kiếm</button>
         </span>
       </div>
     </Modal>
@@ -263,16 +267,20 @@
       </div>
       <div v-click-outside="clickedParent" v-if="isBoxMoreMobile" class="s__head_filter--mobile__more">
         <div class="s__nothing">
-          <div @click="showBoxSearchMoreMobile('location')" :class="{'active': boxLocation}" class="s__head_filter--item">
+          <div @click="showBoxSearchMoreMobile('location')"
+               :class="{'active': boxLocation || locationSelected.length > 0}"
+               class="s__head_filter--item">
             <span>Địa điểm</span>
           </div>
-          <div  @click="showBoxSearchMoreMobile('level')" :class="{'active': boxLevel}" class="s__head_filter--item">
+          <div @click="showBoxSearchMoreMobile('level')" :class="{'active': boxLevel}" class="s__head_filter--item">
             <span>Cấp độ hoạt động</span>
           </div>
-          <div  @click="showBoxSearchMoreMobile('date-schedule')" :class="{'active': boxDate}" class="s__head_filter--item">
+          <div @click="showBoxSearchMoreMobile('date-schedule')" :class="{'active': boxDate}"
+               class="s__head_filter--item">
             <span>Ngày khởi hành</span>
           </div>
-          <div  @click="showBoxSearchMoreMobile('type-booking')" :class="{'active': boxTypePlace}" class="s__head_filter--item">
+          <div @click="showBoxSearchMoreMobile('type-booking')" :class="{'active': boxTypePlace}"
+               class="s__head_filter--item">
             <span>Loại đặt chỗ</span>
           </div>
           <div @click="showBoxSearchMoreMobile('filter-other')" class="s__head_filter--item add-filter">
@@ -283,20 +291,25 @@
     </section>
     <div class="s__container">
       <section v-if="!isMobile" class="s__head_filter">
-        <div @click="showBoxLocation()" :class="{'active': boxLocation}" class="s__head_filter--item">
-          <span>Địa điểm</span>
+        <div @click="showBoxLocation()" :class="{'active': boxLocation || locationSelected.length > 0}"
+             class="s__head_filter--item">
+          <span v-if="locationSelected.length <= 0">Địa điểm</span>
+          <span v-if="locationSelected.length > 0">{{ locationSelected.length }} Lựa chọn</span>
         </div>
-        <div @click="showBoxLevel()" :class="{'active': boxLevel}" class="s__head_filter--item">
-          <span>Cấp độ hoạt động</span>
+        <div @click="showBoxLevel()" :class="{'active': boxLevel || levelSelected !== ''}" class="s__head_filter--item">
+          <span v-if="levelSelected === ''">Cấp độ hoạt động</span>
+          <span v-if="levelSelected !== ''">{{ levelSelected }}</span>
         </div>
         <div @click="showBoxDate()" :class="{'active': boxDate}" class="s__head_filter--item">
           <span>Ngày khởi hành</span>
         </div>
-        <div @click="showBoxTypePlace()" :class="{'active': boxTypePlace}" class="s__head_filter--item">
-          <span>Loại đặt chỗ</span>
+        <div @click="showBoxTypePlace()" :class="{'active': boxTypePlace || typeBookingSelected !== ''}"
+             class="s__head_filter--item">
+          <span v-if="typeBookingSelected === ''">Loại đặt chỗ</span>
+          <span v-if="typeBookingSelected !== ''">{{ typeBookingSelected }}</span>
         </div>
         <div @click="showBoxSearchMore()" class="s__head_filter--item add-filter">
-          <span><img src="~/assets/images/filter.svg"></span> <span>Thêm bộ lọc: </span><span>1</span>
+          <span><img src="~/assets/images/filter.svg"></span> <span>Thêm bộ lọc: </span><span>{{ moreFilter }}</span>
         </div>
         <div v-click-outside="clickedParent" class="s__head_filter--item__location" v-if="boxLocation">
           <div class="position-relative box-location-filter">
@@ -305,14 +318,14 @@
                 <label class="container--checkbox" :class="{'active': loc.selected}">
                   <span>{{ loc.name }}</span> <span v-if="loc.children && loc.children.length > 0"
                                                     class="icon-down-location"><img src="~/assets/images/icon-down.svg"></span>
-                  <input @change="testSelected()" v-model="loc.selected" type="checkbox">
+                  <input @change="fLoacationSelected()" v-model="loc.selected" type="checkbox">
                   <span class="checkmark"></span>
                 </label>
 
                 <div v-if="loc.children && loc.children.length > 0 && loc.selected" class="s__checkbox--vietnam">
                   <div v-for="child in loc.children" class="s__item_checkbox">
                     <label class="container--checkbox">{{ child.name }}
-                      <input v-model="child.selected" type="checkbox">
+                      <input @change="fLoacationSelected()" v-model="child.selected" type="checkbox">
                       <span class="checkmark"></span>
                     </label>
                   </div>
@@ -327,7 +340,7 @@
               Chọn lại
             </div>
             <div class="filter_btn-search">
-              <a class="btn-search" href="#">Tìm kiếm</a>
+              <a @click="fSearch()" class="btn-search">Tìm kiếm</a>
             </div>
           </div>
         </div>
@@ -341,7 +354,7 @@
               Chọn lại
             </div>
             <div class="filter_btn-search">
-              <a class="btn-search" href="#">Tìm kiếm</a>
+              <a @click="fSearch()" class="btn-search">Tìm kiếm</a>
             </div>
           </div>
         </div>
@@ -355,74 +368,23 @@
               Chọn lại
             </div>
             <div class="filter_btn-search">
-              <a class="btn-search" href="#">Tìm kiếm</a>
+              <a @click="fSearch()" class="btn-search">Tìm kiếm</a>
             </div>
           </div>
         </div>
         <div v-click-outside="clickedParent" class="s__head_filter--item__date" v-if="boxDate">
-          <Calendar :initial-page="{ month: 4, year: 2019 }"
-                    :color="selectedColor"
-                    :attributes="attrs"/>
+          <Calendar @input="fChangeDate()" mode="dateTime"
+                    v-model.range="range"/>
         </div>
         <div v-if="hasOpacity" class="opacity__bg"></div>
       </section>
       <section v-if="!isMobile" class="s__categories_filter">
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-trekking.svg"></span>
-          <span>Trekking</span>
+
+        <div @click="fChangeTypeActivity(type_activity)" v-for="type_activity in listTypeActivities" class="s__categories_filter--item" :class="{'active': type_activity.active}">
+          <span><img :src="type_activity.thumbnail"></span>
+          <span>{{ type_activity.name }}</span>
         </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-biking.svg"></span>
-          <span>Cycling</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-diving.svg"></span>
-          <span>Diving</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-camping.svg"></span>
-          <span>Camping</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-kayaking.svg"></span>
-          <span>Kayaking</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-surfing.svg"></span>
-          <span>Surfing</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-sup.svg"></span>
-          <span>SUP</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-free-diving.svg"></span>
-          <span>Snorkeling</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-paragliding.svg"></span>
-          <span>Paragdiling</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-spear-fishing.svg"></span>
-          <span>Spearfishing</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-driving-1.svg"></span>
-          <span>Motorbiking</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-climbing.svg"></span>
-          <span>Canyoning</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-rappelling.svg"></span>
-          <span>Abseiling</span>
-        </div>
-        <div class="s__categories_filter--item">
-          <span><img src="~/assets/images/icon-diving.svg"></span>
-          <span>DiveRaid</span>
-        </div>
+
       </section>
       <section class="s__items_filter">
         <div class="s__items_filter--head">
@@ -883,13 +845,10 @@ export default {
       }
     ],
     selectedColor: ref('blue'),
-    attrs: ref([
-      {
-        key: 'test',
-        highlight: true,
-        dates: {start: new Date(2019, 3, 15), end: new Date(2019, 3, 19)},
-      }
-    ]),
+    range: ref({
+      start: new Date(2023, 9, 6),
+      end: new Date(2023, 9, 10),
+    }),
     listTypePlace: [
       {
         id: 1,
@@ -987,30 +946,30 @@ export default {
       },
       {
         id: 2,
-        name: '0 - 500.000 VND',
-        priceMin: 0,
-        priceMax: 500000,
+        name: '500.000 - 1.500.000 VND',
+        priceMin: 500000,
+        priceMax: 1500000,
         selected: false,
       },
       {
         id: 3,
-        name: '0 - 500.000 VND',
-        priceMin: 0,
-        priceMax: 500000,
+        name: '1.500.000 - 2.500.000 VND',
+        priceMin: 1500000,
+        priceMax: 2500000,
         selected: false,
       },
       {
         id: 4,
-        name: '0 - 500.000 VND',
-        priceMin: 0,
-        priceMax: 500000,
+        name: '2.500.000 - 5.000.000 VND',
+        priceMin: 2500000,
+        priceMax: 5000000,
         selected: false,
       },
       {
         id: 5,
-        name: '0 - 500.000 VND',
-        priceMin: 0,
-        priceMax: 500000,
+        name: 'Trên 500.000 VND',
+        priceMin: 500000,
+        priceMax: 50000000,
         selected: false,
       },
       {
@@ -1038,14 +997,115 @@ export default {
     boxSearchMobile: false,
     pageHeight: 0,
     typeSearchMore: '',
-    locationSelected:[],
-    levelSelected:'',
-    dateSelected:'',
-    typeBookingSelected:'',
-    typeActivitySelected:'',
-    number_of_member: '',
-    budget: '',
+    locationSelected: [],
+    levelSelected: '',
+    dateSelected: '',
+    typeBookingSelected: '',
+    typeActivitySelected: '',
+    number_of_member: 0,
+    budgetSelected: '',
     language: '',
+    moreFilter: 0,
+    listTypeActivities:[
+      {
+        id: 1,
+        name: 'Trekking',
+        active: false,
+        thumbnail : '/assets/images/icon-trekking.svg',
+        thumbnail_active : '/assets/images/icon-trekking.svg'
+      },
+      {
+        id: 2,
+        name: 'Cycling',
+        active: false,
+        thumbnail : '/assets/images/icon-biking.svg',
+        thumbnail_active : '/assets/images/icon-biking.svg'
+      },
+      {
+        id: 3,
+        name: 'Diving',
+        active: false,
+        thumbnail : '/assets/images/icon-diving.svg',
+        thumbnail_active : '/assets/images/icon-diving.svg'
+      },
+      {
+        id: 4,
+        name: 'Camping',
+        active: false,
+        thumbnail : '/assets/images/icon-camping.svg',
+        thumbnail_active : '/assets/images/icon-camping.svg'
+      },
+      {
+        id: 5,
+        name: 'Kayaking',
+        active: false,
+        thumbnail : '/assets/images/icon-kayaking.svg',
+        thumbnail_active : '/assets/images/icon-kayaking.svg'
+      },
+      {
+        id: 6,
+        name: 'Surfing',
+        active: false,
+        thumbnail : '/assets/images/icon-surfing.svg',
+        thumbnail_active : '/assets/images/icon-surfing.svg'
+      },
+      {
+        id: 7,
+        name: 'SUP',
+        active: false,
+        thumbnail : '/assets/images/icon-sup.svg',
+        thumbnail_active : '/assets/images/icon-sup.svg'
+      },
+      {
+        id: 8,
+        name: 'Snorkeling',
+        active: false,
+        thumbnail : '/assets/images/icon-free-diving.svg',
+        thumbnail_active : '/assets/images/icon-free-diving.svg'
+      },
+      {
+        id: 9,
+        name: 'Paragdiling',
+        active: false,
+        thumbnail : '/assets/images/icon-paragliding.svg',
+        thumbnail_active : '/assets/images/icon-paragliding.svg'
+      },
+      {
+        id: 10,
+        name: 'Spearfishing',
+        active: false,
+        thumbnail : '/assets/images/icon-spear-fishing.svg',
+        thumbnail_active : '/assets/images/icon-spear-fishing.svg'
+      },
+      {
+        id: 11,
+        name: 'Motorbiking',
+        active: false,
+        thumbnail : '/assets/images/icon-driving-1.svg',
+        thumbnail_active : '/assets/images/icon-driving-1.svg'
+      },
+      {
+        id: 12,
+        name: 'Canyoning',
+        active: false,
+        thumbnail : '/assets/images/icon-climbing.svg',
+        thumbnail_active : '/assets/images/icon-climbing.svg'
+      },
+      {
+        id: 13,
+        name: 'Abseiling',
+        active: false,
+        thumbnail : '/assets/images/icon-rappelling.svg',
+        thumbnail_active : '/assets/images/icon-rappelling.svg'
+      },
+      {
+        id: 14,
+        name: 'DiveRaid',
+        active: false,
+        thumbnail : '/assets/images/icon-diving.svg',
+        thumbnail_active : '/assets/images/icon-diving.svg'
+      },
+    ]
   }),
   mounted() {
     this.pageWidth = window.innerWidth
@@ -1098,6 +1158,7 @@ export default {
     },
     reselect(type) {
       if (type === 'location') {
+        this.locationSelected = []
         this.location.forEach((val) => {
           val.selected = false
           if (val.children && val.children.length > 0) {
@@ -1108,6 +1169,8 @@ export default {
         })
       } else if (type === 'search-more') {
         this.adult = 0;
+        this.number_of_member = '';
+        this.budgetSelected = '';
         this.budget.forEach((val) => {
           val.selected = false
         })
@@ -1115,17 +1178,19 @@ export default {
           val.selected = false
         })
       } else if (type === 'level') {
+        this.levelSelected = ''
         this.listLevel.forEach((val) => {
           val.active = false
         })
       } else if (type === 'type-place') {
+        this.typeBookingSelected = ''
         this.listTypePlace.forEach((val) => {
           val.active = false
         })
       }
     },
     async clickedParent() {
-      console.log(121212,'test')
+      console.log(121212, 'test')
       await new Promise((resolve, reject) => setTimeout(resolve, 1));
       this.boxLocation = false
       this.boxLevel = false
@@ -1183,8 +1248,18 @@ export default {
     plusAdult() {
       this.adult = this.adult + 1
     },
-    choiseBudget() {
-
+    choiseBudget(bud) {
+      this.budgetSelected = ''
+      if (this.budget.length > 0) {
+        this.budget.forEach((val) => {
+          if (val.id === bud.id) {
+            val.selected = true
+            this.budgetSelected = val.priceMin + ',' + val.priceMax
+          } else {
+            val.selected = false
+          }
+        })
+      }
     },
     choiseLevel(lv) {
       this.listLevel.forEach((val) => {
@@ -1223,6 +1298,146 @@ export default {
           class: this.boxSearchMobile ? 'overflow-hidden' : ''
         }
       })
+    },
+    fLoacationSelected() {
+      this.locationSelected = []
+
+      if (this.location.length > 0) {
+        this.location.forEach((val) => {
+          if (val.selected) {
+            this.locationSelected.push(val.name)
+            if (val.children && val.children.length > 0) {
+              val.children.forEach((v) => {
+                if (v.selected) {
+                  this.locationSelected.push(v.name)
+                }
+              })
+            }
+          }
+        })
+      }
+    },
+    fSearch() {
+
+      let typeActivitiesSelected = []
+      this.listTypeActivities.forEach((val) => {
+        if (val.active){
+          typeActivitiesSelected.push(val.name)
+        }
+      })
+
+      let typeActivitiesSelectedJoin = ''
+      if (typeActivitiesSelected.length > 0){
+        typeActivitiesSelectedJoin = typeActivitiesSelected.join(',')
+      }
+
+      let location = ''
+      if (this.locationSelected.length > 0) {
+        location = this.locationSelected.join(',')
+      }
+
+      if (this.listLevel.length > 0) {
+        this.listLevel.forEach((val) => {
+          if (val.active) {
+            this.levelSelected = val.name
+          }
+        })
+      }
+
+      if (this.listTypePlace.length > 0) {
+        this.listTypePlace.forEach((val) => {
+          if (val.active) {
+            this.typeBookingSelected = val.name
+          }
+        })
+      }
+      if (this.budgetSelected !== '' && this.adult <= 0) {
+        this.moreFilter = 1
+      } else if (this.adult > 0 && this.budgetSelected === '') {
+        this.moreFilter = 1
+      } else if (this.budgetSelected !== '' && this.adult > 0) {
+        this.moreFilter = 2
+      } else {
+        this.moreFilter = 0
+      }
+
+      this.$router.push({path: '/filter',
+        query: {
+          location: location,
+          level: this.levelSelected,
+          typePlace: this.typeBookingSelected,
+          budget: this.budgetSelected,
+          number_of_member: this.adult,
+          type_activities : typeActivitiesSelectedJoin
+        }
+      });
+      this.boxLocation = false
+      this.boxLevel = false
+      this.boxTypePlace = false
+      this.boxDate = false
+      this.hasOpacity = false
+      this.searchMore = false
+      this.isBoxMoreMobile = false
+    },
+    fChangeDate() {
+
+    },
+    fChangeTypeActivity(activity){
+      let typeActivitiesSelected = []
+      this.listTypeActivities.forEach((val) => {
+        if (val.id === activity.id){
+          val.active = !val.active
+        }
+        if (val.active){
+          typeActivitiesSelected.push(val.name)
+        }
+      })
+
+      let typeActivitiesSelectedJoin = ''
+      if (typeActivitiesSelected.length > 0){
+        typeActivitiesSelectedJoin = typeActivitiesSelected.join(',')
+      }
+
+      let location = ''
+      if (this.locationSelected.length > 0) {
+        location = this.locationSelected.join(',')
+      }
+
+      if (this.listLevel.length > 0) {
+        this.listLevel.forEach((val) => {
+          if (val.active) {
+            this.levelSelected = val.name
+          }
+        })
+      }
+
+      if (this.listTypePlace.length > 0) {
+        this.listTypePlace.forEach((val) => {
+          if (val.active) {
+            this.typeBookingSelected = val.name
+          }
+        })
+      }
+      if (this.budgetSelected !== '' && this.adult <= 0) {
+        this.moreFilter = 1
+      } else if (this.adult > 0 && this.budgetSelected === '') {
+        this.moreFilter = 1
+      } else if (this.budgetSelected !== '' && this.adult > 0) {
+        this.moreFilter = 2
+      } else {
+        this.moreFilter = 0
+      }
+
+      this.$router.push({path: '/filter',
+        query: {
+          location: location,
+          level: this.levelSelected,
+          typePlace: this.typeBookingSelected,
+          budget: this.budgetSelected,
+          number_of_member: this.adult,
+          type_activities : typeActivitiesSelectedJoin
+        }
+      });
     }
   }
 }
