@@ -381,7 +381,8 @@
       <section v-if="!isMobile" class="s__categories_filter">
 
         <div @click="fChangeTypeActivity(type_activity)" v-for="type_activity in listTypeActivities" class="s__categories_filter--item" :class="{'active': type_activity.active}">
-          <span><img :src="type_activity.thumbnail"></span>
+          <span v-if="!type_activity.active"><img :src="type_activity.thumbnail"></span>
+          <span class="img-active-activity" v-if="type_activity.active"><img :src="type_activity.thumbnail_active"></span>
           <span>{{ type_activity.name }}</span>
         </div>
 
@@ -1012,63 +1013,63 @@ export default {
         name: 'Trekking',
         active: false,
         thumbnail : '/assets/images/icon-trekking.svg',
-        thumbnail_active : '/assets/images/icon-trekking.svg'
+        thumbnail_active : '/assets/images/icon-white-trekking.svg'
       },
       {
         id: 2,
         name: 'Cycling',
         active: false,
         thumbnail : '/assets/images/icon-biking.svg',
-        thumbnail_active : '/assets/images/icon-biking.svg'
+        thumbnail_active : '/assets/images/icon-white-cycling.svg'
       },
       {
         id: 3,
         name: 'Diving',
         active: false,
         thumbnail : '/assets/images/icon-diving.svg',
-        thumbnail_active : '/assets/images/icon-diving.svg'
+        thumbnail_active : '/assets/images/icon-white-scuba-diving.svg'
       },
       {
         id: 4,
         name: 'Camping',
         active: false,
         thumbnail : '/assets/images/icon-camping.svg',
-        thumbnail_active : '/assets/images/icon-camping.svg'
+        thumbnail_active : '/assets/images/icon-white-camping.svg'
       },
       {
         id: 5,
         name: 'Kayaking',
         active: false,
         thumbnail : '/assets/images/icon-kayaking.svg',
-        thumbnail_active : '/assets/images/icon-kayaking.svg'
+        thumbnail_active : '/assets/images/icon-white-kayaking.svg'
       },
       {
         id: 6,
         name: 'Surfing',
         active: false,
         thumbnail : '/assets/images/icon-surfing.svg',
-        thumbnail_active : '/assets/images/icon-surfing.svg'
+        thumbnail_active : '/assets/images/icon-white-surfing.svg'
       },
       {
         id: 7,
         name: 'SUP',
         active: false,
         thumbnail : '/assets/images/icon-sup.svg',
-        thumbnail_active : '/assets/images/icon-sup.svg'
+        thumbnail_active : '/assets/images/icon-white-sup.svg'
       },
       {
         id: 8,
         name: 'Snorkeling',
         active: false,
         thumbnail : '/assets/images/icon-free-diving.svg',
-        thumbnail_active : '/assets/images/icon-free-diving.svg'
+        thumbnail_active : '/assets/images/icon-white-snorkeling.svg'
       },
       {
         id: 9,
         name: 'Paragdiling',
         active: false,
         thumbnail : '/assets/images/icon-paragliding.svg',
-        thumbnail_active : '/assets/images/icon-paragliding.svg'
+        thumbnail_active : '/assets/images/icon-white-paragliding.svg'
       },
       {
         id: 10,
@@ -1438,6 +1439,8 @@ export default {
           type_activities : typeActivitiesSelectedJoin
         }
       });
+
+
     }
   }
 }
