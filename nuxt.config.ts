@@ -37,5 +37,11 @@ export default defineNuxtConfig({
     plugins: [
         {src: '~/plugins/clickOutside'}
     ],
+    runtimeConfig: {
 
+        // Config within public will be also exposed to the client
+        public: {
+            baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+        }
+    },
 })

@@ -1,7 +1,531 @@
 <template>
   <div class="s__activity">
+    <div v-if="isMobile" :class="{'opacity-box' : activeMoreActivity}"></div>
+    <Modal @clearModal="updateparent" :show="showChooseDate" :width="'1290px'" :top="'0px'" :border-radius="'0px'"
+           :overflow-y="'scroll'">
+      <div class="s__activity--choose-date">
+        <div class="s__activity--choose-date__category">
+          <div class="s__activity--choose-date__category--tabs">
+            <div @click="changeCategory(category)" v-for="(category, index) in categories" :key="index"
+                 class="s__activity--choose-date__category--tabs__item" :class="{'active': category.active}">
+              {{ category.name }}
+            </div>
+          </div>
+        </div>
+        <div class="s__activity--choose-date__years__months">
+          <div class="__years">
+            <div @click="changeYear(y,index)" v-for="(y, index) in listYear" :key="index" class="__years--item"
+                 :class="{'active': y.active, 'p-left': pLeft}">
+              {{ y.name }}
+            </div>
+          </div>
+          <div class="__months">
+            <div v-if="!monthRight && listMonth.length > 9" class="opacity-arrow-right-month">
+              <img src="~/assets/images/opacity-right-month.svg">
+            </div>
+            <div v-if="!monthLeft && listMonth.length > 9" class="opacity-arrow-left-month">
+              <img src="~/assets/images/opacity-left-month.svg">
+            </div>
+            <div class="s__activity--choose-date__months" :class="{'month-flex-end': monthRight}">
+              <div v-for="(month, index) in listMonth" :key="index" class="s__activity--choose-date__months--item"
+                   :class="{'month-disable': month.isDisable, 'month-active': month.active && !month.isDisable}">
+                {{ month.name }}
+              </div>
+              <div @click="showMonthRight()" v-if="!monthRight && listMonth.length > 9" class="btn-arrow-right-month">
+                <img src="~/assets/images/arrow-right-month.svg">
+              </div>
+              <div @click="showMonthLeft()" v-if="!monthLeft && monthRight" class="btn-arrow-left-month">
+                <img src="~/assets/images/arrow-left-month.svg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s__activity--choose-date__tables">
+          <table id="customers">
+            <tr>
+              <th width="276px">Thời gian</th>
+              <th width="250px">Giá nhóm 1-3 người</th>
+              <th width="250px">Giá nhóm 4-6 người</th>
+              <th width="250px">Giá nhóm 7-10 người</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span>5.000.000 VND</span>
+                </div>
+              </td>
+              <td>
+                <button class="btn-book">Đặt chỗ</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-time">
+                  <span>02 - 04/11</span>
+                  <span>Thứ 4 - Thứ 6</span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td>
+                <div class="table-price">
+                  <span class="price-large">4.800.000 VND <small>/người</small></span>
+                  <span></span>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+    </Modal>
+    <LibraryImage @clearLibrary="updateparentLibrary" :show="showLibrary">
+      <div class="s__library--content">
+        <div class="s__library--content__count">
+          1/6
+        </div>
+        <div class="s__library--content__image">
+          <div class="s__library--content__image--wrap">
+            <img class="img-main-lib" src="assets/images/banner.jpg">
+          </div>
+          <div class="s__library--content__image--pre">
+            <img src="~/assets/images/arrow-left-month.svg">
+          </div>
+          <div class="s__library--content__image--next">
+            <img src="~/assets/images/arrow-right-month.svg">
+          </div>
+        </div>
+        <div class="s__library--content__thumnails">
+          <div class="s__library--content__thumnails--item active">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+          <div class="s__library--content__thumnails--item">
+            <img src="~/assets/images/banner.jpg">
+            <div class="s__opacity-item-bg"></div>
+          </div>
+        </div>
+      </div>
+    </LibraryImage>
+    <Modal @clearModal="updateparentDetailCoupon" :show="showDetailCoupon" :width="'624px'" :top="'100px'"
+           :border-radius="'10px'"
+           :height="'648px'">
+      <div class="s__coupon--wrapper__detail">
+        <div class="s__coupon--wrapper__detail--header" :style="{'background': bgHeaderDetail}">
+          <div class="net"><img src="~/assets/images/luoi.svg"></div>
+          <div class="s__coupon--wrapper__detail--header__stamp">
+            <span>Giảm</span>
+            <span>100k</span>
+          </div>
+        </div>
+        <div class="s__coupon--wrapper__detail--content">
+          <div class="s__coupon--wrapper__detail--content__title">
+            COVIDEND2021
+          </div>
+          <div class="s__coupon--wrapper__detail--content__description">
+            Giảm 200K cho 20 đơn hàng đầu tiên
+          </div>
+          <p><strong>Điều kiện sử dụng:</strong></p>
+          <p>- Áp dụng cho một số sản phẩm thuộc chủ đề <strong>Camping in the Wilderness.</strong></p>
+          <p>- Mã <strong>COVIDEND2022</strong> giảm <strong>200K</strong> cho đơn hàng có giá trị trên <strong>2.000.000
+            VND</strong>.</p>
+          <p>- Mã có <strong>20</strong> lần sử dụng.</p>
+          <p>- Mã chỉ áp dụng khi thanh toán bằng phương thức <strong>Thanh toán 100%</strong> và theo cổng thanh toán
+            <strong>Chuyển
+              khoản.</strong></p>
+          <p>- Mã giảm giá áp dụng cho đặt chỗ từ ngày <strong>01/04/2022</strong> đến ngày <strong>30/04/2022.</strong>
+          </p>
+          <p>- Mã không được khôi phục vì bất cứ lý do nào</p>
+          <p>- Mã sẽ hết hạn khi giá trị sử dụng bằng hoặc vượt quá <strong>4.000.000 VND.</strong></p>
+          <div class="s__coupon--wrapper__detail--content__btn">
+            <button>Sử dụng mã</button>
+          </div>
+        </div>
+      </div>
+    </Modal>
+    <div v-if="isFixed" class="s__header--activity">
+      <div class="s__container">
+        <div class="s__header--activity__wrap">
+          <div class="s__header--activity__left">
+            <ul>
+              <li :class="{'active' : activeScroll === 'activity'}">
+                <a @click="toScroll('activity')">Về hoạt động</a>
+              </li>
+              <li :class="{'active' : activeScroll === 'schedule'}">
+                <a @click="toScroll('schedule')">Lịch trình</a>
+              </li>
+              <li :class="{'active' : activeScroll === 'important'}">
+                <a @click="toScroll('important')">Thông tin quan trọng</a>
+              </li>
+              <li :class="{'active' : activeScroll === 'review'}">
+                <a @click="toScroll('review')">Review</a>
+              </li>
+            </ul>
+          </div>
+          <div v-if="!isMobile" class="s__header--activity__right">
+            <div class="s__header--activity__right--info">
+              <div class="price">
+                <span>Giá từ:</span>
+                <span class="text-price">4.400.000 VND</span>
+                <span>/người</span>
+              </div>
+              <div class="note">Đặt chỗ trước, thanh toán sau</div>
+            </div>
+            <div class="s__header--activity__right--button">
+              <a @click="chooseDate()">chọn ngày</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="isMobile" class="s__slider">
+      <div class="s__slider--main">
+        <div class="s__slider--main__image">
+          <img :class="{'animate__animated animate__fadeIn' : effectSlider }" v-if="slidersActive"
+               :src="slidersActive.banner ?slidersActive.banner: ''">
+        </div>
+        <div class="s__slider--main__nav">
+          <div class="s__slider--main__nav--left">
+            <img src="~/assets/images/icon-pre-slider.svg">
+          </div>
+          <div class="s__slider--main__nav--right">
+            <img src="~/assets/images/icon-next-slider.svg">
+          </div>
+        </div>
+        <div class="s__slider--main__dots">
+          <div v-if="isMobile" v-for="(slider, index) in slidersShow" :key="index"
+               class="s__slider--main__thumbnail--item"
+               :class="{'active': (index + 1) === activeSlider}">
+          </div>
+        </div>
+        <div class="icon-trip-local">
+          <img src="~/assets/images/local.jpg">
+        </div>
+      </div>
+    </div>
     <div class="s__container">
-      <div class="s__activity--breadcrumb">
+      <div v-if="!isMobile" class="s__activity--breadcrumb">
         <a class="s__activity--breadcrumb__item" href="#">Trang chủ</a>
         <a class="s__activity--breadcrumb__item" href="#">Người mới</a>
         <span
@@ -31,15 +555,18 @@
           Cấp độ trải nghiệm:
         </span>
         <span class="s__activity--level__it">Người mới</span>
-        <span class="s__activity--level__help"><img src="~/assets/images/icon-helps.svg"></span>
+        <!--        <span class="s__activity&#45;&#45;level__help"><img src="~/assets/images/icon-helps.svg"></span>-->
       </div>
-      <div class="s__activity--view__all">
-        <a href="#">Xem tất cả hình ảnh</a>
+      <div v-if="!isMobile" class="s__activity--view__all">
+        <a @click="showLibraryModal()">Xem tất cả hình ảnh</a>
       </div>
-      <div class="s__activity--view__images">
-        <div class="s__activity--view__images--left">
+      <div v-if="!isMobile" class="s__activity--view__images">
+        <div class="s__activity--view__images--left position-relative">
           <div class="s__activity--view__images--item">
             <img src="~/assets/images/im-1.png">
+          </div>
+          <div class="s__icon_local">
+            <img src="~/assets/images/local.jpg">
           </div>
         </div>
         <div class="s__activity--view__images--right">
@@ -116,7 +643,7 @@
             </div>
           </div>
         </div>
-        <div class="s__activity--info__right">
+        <div v-if="!isMobile" class="s__activity--info__right">
           <div class="s__activity--info__right--head">
             <div class="s__activity--info__right--head__item">
               <div class="s__activity--info__right--head__item--top">
@@ -156,7 +683,7 @@
             </div>
             <div class="s__activity--info__right--bottom__description">Đăng ký trước, thanh toán sau</div>
             <div class="s__activity--info__right--bottom__choose-date">
-              <button class="btn btn-choose-date">Chọn ngày</button>
+              <button class="btn btn-choose-date" @click="chooseDate()">Chọn ngày</button>
             </div>
             <div class="s__line"></div>
             <div class="s__activity--info__right--bottom__coupons">
@@ -164,10 +691,10 @@
                 2 mã giảm giá:
               </div>
               <div class="s__activity--info__right--bottom__coupons--items">
-                <div class="coupon-item">
+                <div class="coupon-item" @click="detailCoupon()">
                   Giảm 10%
                 </div>
-                <div class="coupon-item">
+                <div class="coupon-item" @click="detailCoupon()">
                   Giảm 200K
                 </div>
               </div>
@@ -180,7 +707,7 @@
           <h2>Trải nghiệm nổi bật</h2>
         </div>
         <div class="s__activity--box__content mb-104">
-          <Carousel :items-to-show="3">
+          <Carousel :items-to-show="itemSlider">
             <Slide v-for="slide in 10" :key="slide">
               <div class="carousel__item">
                 <div class="s__activity--experience">
@@ -202,7 +729,7 @@
           </Carousel>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box" ref="activity">
         <div class="s__activity--box__title">
           <h2>Thông tin chuyến đi</h2>
         </div>
@@ -230,7 +757,7 @@
               <img src="~/assets/images/im-map.png">
             </div>
           </div>
-          <div class="s__activity--dates">
+          <div class="s__activity--dates" ref="schedule">
             <div @click="showContentDate(date)" v-for="date in listDates" class="s__activity--dates__item"
                  :class="{'active' : date.active}">
               <div class="s__activity--dates__item--title">
@@ -253,8 +780,42 @@
                     <span class="strong-text">Hoạt động chính: </span>
                     <span>Diving</span>
                   </div>
+                  <div v-if="isMobile" class="list-activity-note-highlight">
+                    <div class="list-activity-note-highlight__head">
+                      <div class="list-activity-note-highlight__head--title">
+                        HIGHLIGHT
+                      </div>
+                      <div class="list-activity-note-highlight__head--button">
+                        <div class="s__topic--slider__head" :class="{'is-show' : isMobile}">
+                          <span>1/2</span>
+                          <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
+                          <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-activity-note-highlight__content">
+                      <img src="~/assets/images/highline.png">
+                    </div>
+                  </div>
                   <div class="list-activity-note__content">
                     {{ date.content }}
+                  </div>
+                </div>
+                <div v-if="!isMobile" class="list-activity-note-highlight">
+                  <div class="list-activity-note-highlight__head">
+                    <div class="list-activity-note-highlight__head--title">
+                      HIGHLIGHT
+                    </div>
+                    <div class="list-activity-note-highlight__head--button">
+                      <div class="s__topic--slider__head" :class="{'is-show' : isMobile}">
+                        <span>1/2</span>
+                        <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
+                        <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-activity-note-highlight__content">
+                    <img src="~/assets/images/highline.png">
                   </div>
                 </div>
               </div>
@@ -297,7 +858,7 @@
           </div>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box" ref="important">
         <div class="s__activity--box__title">
           <h2>Thông tin quan trọng</h2>
         </div>
@@ -390,129 +951,98 @@
           </div>
         </div>
       </div>
-      <div class="s__activity--box">
+      <div class="s__activity--box" ref="review">
         <div class="s__activity--box__title mt-80">
           <h2><span>12  </span>đánh giá từ khách hàng</h2>
         </div>
         <div class="s__activity--box__content--rate">
-          <div class="s__activity--box__content--rate__left">
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
-                </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
+          <div v-if="isMobile" class="s__activity--box__content--rate__right">
+            <div class="m_rate_left">
+              <div class="s__activity--box__content--rate__right--total">
+                4.6
               </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
+              <div class="s__activity--box__content--rate__right--star">
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+                <span><img src="~/assets/images/star.svg"></span>
+              </div>
+              <div class="s__activity--box__content--rate__right--link-rate">
+                <a href="#">Gửi đánh giá của bạn</a>
               </div>
             </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
+            <div class="m_rate_right">
+              <div class="s__activity--box__content--rate__right--list-rate">
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
                 </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
                 </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
                 </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
                 </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
+                <div class="s__activity--box__content--rate__right--list-rate__item">
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="start"><img src="~/assets/images/star.svg"></span>
+                  <span class="text-rate">5 đánh giá</span>
                 </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
-              </div>
-            </div>
-            <div class="s__activity--box__content--rate__left--item">
-              <div class="s__activity--box__content--rate__left--item__head">
-                <div class="s__activity--box__content--rate__left--item__head--avatar">
-                  <img src="~/assets/images/avatar-dh.png">
-                </div>
-                <div class="s__activity--box__content--rate__left--item__head--info">
-                  <div class="name">Drifter</div>
-                  <div class="date">Tháng 01/2018</div>
-                  <div class="star">
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                    <span><img src="~/assets/images/star.svg"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="s__activity--box__content--rate__left--item__bottom">
-                Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the
-                terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the
-                beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.
               </div>
             </div>
           </div>
-          <div class="s__activity--box__content--rate__right">
+          <div class="s__activity--box__content--rate__left">
+            <div v-for="cus in customersSaid" class="s__activity--box__content--rate__left--item">
+              <div class="s__activity--box__content--rate__left--item__head">
+                <div class="s__activity--box__content--rate__left--item__head--avatar">
+                  <img src="~/assets/images/avatar-dh.png">
+                </div>
+                <div class="s__activity--box__content--rate__left--item__head--info">
+                  <div class="name">{{ cus.name }}</div>
+                  <div class="date">{{ cus.dateSaid }}</div>
+                  <div class="star">
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                    <span><img src="~/assets/images/star.svg"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="s__activity--box__content--rate__left--item__bottom">
+                {{ cus.said.slice(0, cus.lenghtTxt) }}
+              </div>
+              <p @click="moreRegulations(cus)" v-if="cus.said.length > cus.lenghtTxt" class="more__cus">
+                <span>Xem thêm</span></p>
+            </div>
+          </div>
+          <div v-if="!isMobile" class="s__activity--box__content--rate__right">
             <div class="s__activity--box__content--rate__right--total">
               4.6
             </div>
@@ -582,7 +1112,7 @@
       </div>
       <div class="s__activity--register-group">
         <div class="s__activity--register-group__left">
-            <img src="~/assets/images/reg.png">
+          <img src="~/assets/images/reg.png">
         </div>
         <div class="s__activity--register-group__right">
           <div class="s__activity--register-group__right--title">
@@ -593,13 +1123,20 @@
             Bạn có thể gửi yêu cầu đăng ký nhóm riêng bất kể số lượng thành viên.
           </div>
           <div class="s__activity--register-group__right--button">
-              <a href="#">gửi yêu cầu</a>
+            <a href="#">gửi yêu cầu</a>
           </div>
         </div>
       </div>
-      <div class="s__activity--box">
-        <div class="s__activity--box__title mt-80">
+      <div class="s__activity--box mb-76">
+        <div class="s__activity--box__title">
           <h2>Các hoạt động khác cùng địa điểm</h2>
+          <div class="s__activity--box__next-prev">
+            <div class="s__topic--slider__head">
+              <span>1/2</span>
+              <span class="icon-slider"><img src="~/assets/images/arrow-white.svg"></span>
+              <span class="icon-slider next active"><img src="~/assets/images/arrow-white.svg"></span>
+            </div>
+          </div>
         </div>
         <div class="s__activities--items">
           <div class="s__activities--items__item">
@@ -686,6 +1223,84 @@
         </div>
       </div>
     </div>
+    <div v-click-outside="clickedParent" v-if="isMobile" class="s__info-activity-mobile" :class="{'active': activeMoreActivity}">
+      <div class="s__info-activity-mobile-wrapper" >
+        <div @click="showMoreInfoActivity()" class="s__info-activity-mobile__head">
+          <div class="s__info-activity-mobile__head--wrap">
+            <img :class="{'active-more-activity' : activeMoreActivity}" src="~/assets/images/icon-open-info.svg">
+          </div>
+        </div>
+        <div v-if="!activeMoreActivity" class="s__info-activity-mobile__less">
+          <div class="s__info-activity-mobile__less--left">
+            <div class="s__info-activity-mobile__less--left__price">7.526.000 VND/người</div>
+            <div class="s__info-activity-mobile__less--left__des">Đăng ký trước, thanh toán sau</div>
+          </div>
+          <div class="s__info-activity-mobile__less--right">
+            <button class="btn-choose-date-activity">Chọn ngày</button>
+          </div>
+        </div>
+        <div v-if="activeMoreActivity" class="s__info-activity-mobile__more">
+          <div v-if="isMobile" class="s__activity--info__right">
+            <div class="s__activity--info__right--head">
+              <div class="s__activity--info__right--head__item">
+                <div class="s__activity--info__right--head__item--top">
+                  <div class="s__activity--info__right--head__item--top__icon">
+                    <img src="~/assets/images/icon-security.svg">
+                  </div>
+                  <div class="s__activity--info__right--head__item--top__label">
+                    HOÀN HỦY
+                    LINH HOẠT
+                  </div>
+                </div>
+                <div class="s__activity--info__right--head__item--content">
+                  Bạn sẽ nhận lại 100% giá trị cọc nếu thông báo huỷ trước ngày khởi hành theo quy định
+                </div>
+              </div>
+              <div class="s__activity--info__right--head__item">
+                <div class="s__activity--info__right--head__item--top">
+                  <div class="s__activity--info__right--head__item--top__icon">
+                    <img src="~/assets/images/icon-safety.svg">
+                  </div>
+                  <div class="s__activity--info__right--head__item--top__label">
+                    THANH TOÁN AN TOÀN
+                  </div>
+                </div>
+                <div class="s__activity--info__right--head__item--content">
+                  Hỗ trợ đổi ngày đăng ký và thông tin của bạn được bảo mật ở tất cả các phương thức thanh toán
+                </div>
+              </div>
+            </div>
+            <div class="s__activity--info__right--bottom">
+              <div class="s__activity--info__right--bottom__price-old">
+                4.600.000 VND/người
+              </div>
+              <div class="s__activity--info__right--bottom__price-sale">
+                <span>Giá từ</span>
+                <span>4.400.000 VND/người</span>
+              </div>
+              <div class="s__activity--info__right--bottom__description">Đăng ký trước, thanh toán sau</div>
+              <div class="s__activity--info__right--bottom__choose-date">
+                <button class="btn btn-choose-date" @click="chooseDate()">Chọn ngày</button>
+              </div>
+              <div class="s__line"></div>
+              <div class="s__activity--info__right--bottom__coupons">
+                <div class="s__activity--info__right--bottom__coupons--label">
+                  2 mã giảm giá:
+                </div>
+                <div class="s__activity--info__right--bottom__coupons--items">
+                  <div class="coupon-item" @click="detailCoupon()">
+                    Giảm 10%
+                  </div>
+                  <div class="coupon-item" @click="detailCoupon()">
+                    Giảm 200K
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -693,10 +1308,13 @@
 import {Carousel, Slide, Navigation} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
+import LibraryImage from "../../components/LibraryImage";
+
 
 export default {
   name: "index",
   components: {
+    LibraryImage,
     Carousel,
     Slide,
     Navigation
@@ -766,8 +1384,213 @@ export default {
         question: 'Tôi có thể mang theo fly cam không?',
         answer: 'There are plenty of kayaks available, with a mix of single and doubles, depending on your preference.',
       }
-    ]
+    ],
+    isFixed: false,
+    isFixedNav: false,
+    showChooseDate: false,
+    showLibrary: false,
+    listYear: [
+      {
+        id: 1,
+        active: true,
+        name: '2022'
+      },
+      {
+        id: 2,
+        active: false,
+        name: '2023'
+      },
+      {
+        id: 3,
+        active: false,
+        name: '2024'
+      }
+    ],
+    listMonth: [
+      // {
+      //   id: 1,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 1'
+      // },
+      // {
+      //   id: 2,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 2'
+      // },
+      // {
+      //   id: 3,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 3'
+      // },
+      // {
+      //   id: 4,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 4'
+      // },
+      // {
+      //   id: 5,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 5'
+      // },
+      // {
+      //   id: 6,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 6'
+      // },
+      // {
+      //   id: 7,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 7'
+      // },
+      // {
+      //   id: 8,
+      //   active: false,
+      //   isDisable: true,
+      //   name: 'Tháng 8'
+      // },
+      {
+        id: 9,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 9'
+      },
+      {
+        id: 10,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 10'
+      },
+      {
+        id: 11,
+        active: false,
+        isDisable: false,
+        name: 'Tháng 11'
+      },
+      {
+        id: 12,
+        active: true,
+        isDisable: false,
+        name: 'Tháng 12'
+      },
+    ],
+    categories: [
+      {
+        id: 1,
+        name: 'Land tour',
+        active: true
+      },
+      {
+        id: 2,
+        name: 'JoinIN',
+        active: false
+      }
+    ],
+    pLeft: false,
+    monthLeft: false,
+    monthRight: false,
+    showDetailCoupon: false,
+    activeScroll: '',
+    customersSaid: [
+      {
+        id: 1,
+        name: 'Drifter',
+        thumbnail: '',
+        dateSaid: 'Tháng 01/2018',
+        starRate: 5,
+        lenghtTxt: 390,
+        said: 'Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.',
+      },
+      {
+        id: 2,
+        name: 'Hùng',
+        thumbnail: '',
+        dateSaid: 'Tháng 01/2018',
+        starRate: 5,
+        lenghtTxt: 390,
+        said: 'Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize. The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.',
+      },
+      {
+        id: 2,
+        name: 'Hùng',
+        thumbnail: '',
+        dateSaid: 'Tháng 01/2018',
+        starRate: 5,
+        lenghtTxt: 390,
+        said: 'Bucketlist item ticked, this January! Its an indescribable experience in harsh subzero conditions, the terrain is what keeps you going....The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize. The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.The walk on the frozen river is an adventure of a lifetime, the beauty of the ice sheets and the deep blue river flowing in between is a mesmerize.',
+      }
+    ],
+    regulationsLenght: 390,
+    pageWidth: 0,
+    isMobile: false,
+    itemSlider: 3,
+    activeMoreActivity: false,
+    effectSlider: false,
+    smallScreen: false,
+    slidersActive: {},
+    activeSlider: 1,
+    slidersShow: [],
+    sliders: [
+      {
+        id: 1,
+        thumbnail: '/assets/images/s1.png',
+        banner: '/assets/images/b1.png',
+        title: 'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque.',
+        active: false
+      },
+      {
+        id: 2,
+        thumbnail: '/assets/images/s2.png',
+        banner: '/assets/images/b2.jfif',
+        title: 'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 2',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 2',
+        active: true
+      },
+      {
+        id: 3,
+        thumbnail: '/assets/images/s3.png',
+        banner: '/assets/images/b3.png',
+        title: 'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 3',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 3',
+        active: false
+      },
+      {
+        id: 4,
+        thumbnail: '/assets/images/s4.png',
+        banner: '/assets/images/b1.png',
+        title: 'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 4',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 4',
+        active: false
+      },
+      {
+        id: 5,
+        thumbnail: '/assets/images/s5.png',
+        banner: '/assets/images/b1.png',
+        title: 'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 5',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 5',
+        active: false
+      },
+      {
+        id: 6,
+        thumbnail: '/assets/images/s1.png',
+        banner: '/assets/images/b1.png',
+        title: 'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 6',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 6',
+        active: false
+      }
+    ],
   }),
+  beforeMount() {
+    window.addEventListener('scroll', this.handleScroll)
+    this.changer()
+  },
   mounted() {
     this.includes.forEach((val, index) => {
       if (index < 3) {
@@ -780,8 +1603,37 @@ export default {
         this.notIncludedShow.push(val)
       }
     })
+
+    this.pageWidth = window.innerWidth
+    if (this.pageWidth <= 768) {
+      this.isMobile = true
+      this.itemSlider = 1.8
+    } else {
+      this.isMobile = false
+    }
+
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+
+    useHead({
+      bodyAttrs: {
+        class: 'is-page-activities'
+      }
+    })
+
+    this.smallScreen = false
+    this.slidersShow = []
+    this.sliders.forEach((val, index) => {
+      if (index <= 5) {
+        this.slidersShow.push(val)
+      }
+    })
   },
   methods: {
+    updateparentDetailCoupon(variable) {
+      this.showDetailCoupon = variable
+    },
     showContentDate(date) {
       this.listDates.forEach((val) => {
         if (val.id === date.id) {
@@ -808,12 +1660,140 @@ export default {
     showAnswer(qa) {
       this.questionAnswer.forEach((val) => {
         if (val.id === qa.id) {
+          val.active = !val.active
+        } else {
+          val.active = false
+        }
+      })
+    },
+    handleScroll() {
+      // Your scroll handling here
+      if (window.scrollY > 95) {
+        this.isFixed = true
+      } else {
+        this.isFixed = false
+      }
+      let activity = this.$refs.activity.scrollTop
+      let schedule = this.$refs.schedule.scrollTop
+      let important = this.$refs.important.scrollTop
+      let review = this.$refs.review.scrollTop
+      if (window.scrollY >= activity) {
+        this.activeScroll = 'activity'
+      } else if (window.scrollY >= schedule) {
+        this.activeScroll = 'schedule'
+      } else if (window.scrollY >= important) {
+        this.activeScroll = 'important'
+      } else if (window.scrollY >= review) {
+        this.activeScroll = 'review'
+      }
+    },
+    chooseDate() {
+      this.showChooseDate = true
+    },
+    updateparent(variable) {
+      this.showChooseDate = variable
+    },
+    updateparentLibrary(variable) {
+      this.showLibrary = variable
+    },
+    changeCategory(category) {
+      this.categories.forEach((val) => {
+        if (val.id === category.id) {
           val.active = true
         } else {
           val.active = false
         }
       })
-    }
+    },
+    changeYear(y, index) {
+      this.listYear.forEach((val) => {
+        if ((index + 1) === this.listYear.length) {
+          this.pLeft = true
+        } else {
+          this.pLeft = false
+        }
+        if (val.id === y.id) {
+          val.active = true
+        } else {
+          val.active = false
+        }
+      })
+    },
+    showMonthRight() {
+      this.monthRight = true
+      this.monthLeft = false
+    },
+    showMonthLeft() {
+      this.monthRight = false
+      this.monthLeft = true
+    },
+    showLibraryModal() {
+      this.showLibrary = true
+    },
+    detailCoupon(coupon) {
+      this.showDetailCoupon = true
+    },
+    toScroll(into) {
+      if (into === 'activity') {
+        this.activeScroll = 'activity'
+        setTimeout(() => this.$refs.activity.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+      if (into === 'schedule') {
+        this.activeScroll = 'schedule'
+        setTimeout(() => this.$refs.schedule.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+      if (into === 'important') {
+        this.activeScroll = 'important'
+        setTimeout(() => this.$refs.important.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+      if (into === 'review') {
+        this.activeScroll = 'review'
+        setTimeout(() => this.$refs.review.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
+        window.scrollBy(0, 73);
+      }
+    },
+    moreRegulations(cus) {
+      this.customersSaid.forEach((val) => {
+        if (val.id === cus.id) {
+          cus.lenghtTxt = val.said.length
+        }
+      })
+    },
+    onResize() {
+      this.pageWidth = window.innerWidth
+      if (this.pageWidth <= 768) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    },
+    showMoreInfoActivity() {
+      this.activeMoreActivity = !this.activeMoreActivity
+    },
+    changer: function () {
+
+      setInterval(() => {
+        let newActive
+        const newIndex = this.activeSlider + 1
+        if (newIndex > this.slidersShow.length) newActive = 1
+        if (newIndex === 0) newActive = this.slidersShow
+        this.activeSlider = newActive || newIndex
+        this.sliders.forEach((val,index) => {
+          if (index === (this.activeSlider - 1)){
+            this.slidersActive = val
+            this.effectSlider = true
+          }
+        })
+      }, 3000);
+
+    },
+    async clickedParent() {
+      await new Promise((resolve, reject) => setTimeout(resolve, 1));
+      this.activeMoreActivity = false
+    },
   }
 }
 </script>
