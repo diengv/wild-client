@@ -4,14 +4,15 @@
       <div class="s__slider--main">
         <div class="s__slider--main__image">
           <div class="s__slider--main__image--gradient"></div>
-          <img :class="{'animate__animated animate__fadeIn' : effectSlider }" v-if="slidersActive" :src="slidersActive.banner ?slidersActive.banner: ''">
+          <img :class="{'animate__animated animate__fadeIn' : effectSlider }" v-if="slidersActive"
+               :src="slidersActive.banner ?slidersActive.banner: ''">
         </div>
         <div class="s__slider--main__description">
           <div class="s__slider--main__description--title" v-if="slidersActive">
             {{ slidersActive.title }}
           </div>
-          <div class="s__slider--main__description--short" v-if="slidersActive">
-            {{ slidersActive.description }}
+          <div class="s__slider--main__description--short" v-if="slidersActive" v-html="slidersActive.description">
+
           </div>
           <div class="s__slider--main__description--button">
             <a href="#">Xem thêm</a>
@@ -222,9 +223,9 @@
         <div class="s__endow--content">
           <div class="s__endow--content__left">
             <div class="s__endow--content__left--item"></div>
-<!--            <div class="s__endow&#45;&#45;content__left&#45;&#45;button">-->
-<!--              <a href="#">Xem thêm</a>-->
-<!--            </div>-->
+            <!--            <div class="s__endow&#45;&#45;content__left&#45;&#45;button">-->
+            <!--              <a href="#">Xem thêm</a>-->
+            <!--            </div>-->
           </div>
           <div class="s__endow--content__right">
             <div class="s__endow--content__left--item">
@@ -234,14 +235,14 @@
                 </Slide>
 
                 <template #addons>
-                  <Pagination />
-                  <Navigation />
+                  <Pagination/>
+                  <Navigation/>
                 </template>
               </Carousel>
             </div>
-<!--            <div class="s__endow&#45;&#45;content__left&#45;&#45;button">-->
-<!--              <a href="#">Xem thêm</a>-->
-<!--            </div>-->
+            <!--            <div class="s__endow&#45;&#45;content__left&#45;&#45;button">-->
+            <!--              <a href="#">Xem thêm</a>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
@@ -1136,9 +1137,10 @@
 </template>
 
 <script>
-import {Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
+import {Carousel, Slide, Navigation, Pagination} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
+import axios from "axios";
 
 export default {
   name: "index",
@@ -1147,61 +1149,13 @@ export default {
     Carousel,
     Slide,
     Navigation,
-    Pagination ,
+    Pagination,
   },
   data: () => ({
+    config: useRuntimeConfig(),
     currentSlide: 0,
-    sliders: [
-      {
-        id: 1,
-        thumbnail: '/assets/images/s1.png',
-        banner: '/assets/images/b1.png',
-        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque.',
-        active: false
-      },
-      {
-        id: 2,
-        thumbnail: '/assets/images/s2.png',
-        banner: '/assets/images/b2.jfif',
-        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 2',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 2',
-        active: true
-      },
-      {
-        id: 3,
-        thumbnail: '/assets/images/s3.png',
-        banner: '/assets/images/b3.png',
-        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 3',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 3',
-        active: false
-      },
-      {
-        id: 4,
-        thumbnail: '/assets/images/s4.png',
-        banner: '/assets/images/b1.png',
-        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 4',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 4',
-        active: false
-      },
-      {
-        id: 5,
-        thumbnail: '/assets/images/s5.png',
-        banner: '/assets/images/b1.png',
-        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 5',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 5',
-        active: false
-      },
-      {
-        id: 6,
-        thumbnail: '/assets/images/s1.png',
-        banner: '/assets/images/b1.png',
-        title:'TRẢI NGHIỆM LẶN BIỂN NGẮM SAN HÔ TẠI PHÚ QUỐC 6',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur tristique felis, eget consectetur enim facilisis id. Donec ut dolor a diam fringilla scelerisque. 6',
-        active: false
-      }
-    ],
-    slidersActive:{},
+    sliders: [],
+    slidersActive: {},
     activeSlider: 1,
     pageHeight: 0,
     slidersShow: [],
@@ -1343,7 +1297,8 @@ export default {
     this.changer()
   },
   mounted() {
-    this.slidersActive =  this.sliders[0]
+    this.getSlider()
+    this.slidersActive = this.sliders[0]
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
@@ -1358,15 +1313,8 @@ export default {
       })
 
       this.smallScreen = true
-    } else {
-      this.smallScreen = false
-      this.slidersShow = []
-      this.sliders.forEach((val, index) => {
-        if (index <= 5) {
-          this.slidersShow.push(val)
-        }
-      })
     }
+
     this.pageWidth = window.innerWidth
     if (this.pageWidth <= 768) {
       this.isMobile = true
@@ -1378,11 +1326,38 @@ export default {
     })
   },
   methods: {
+    async getSlider() {
+      await axios.get(this.config.public.baseUrl + '/theme/slider')
+          .then((res) => {
+            if (res.data[0].images && res.data[0].images.length > 0) {
+              res.data[0].images.forEach((val) => {
+                this.sliders.push({
+                  id: val.slide_id,
+                  thumbnail: val.image[0].preview_thumbnail,
+                  banner: val.image[0].original_url,
+                  title: val.title,
+                  description: val.description,
+                  active: false,
+                  url: val.url,
+                })
+              })
+              this.smallScreen = false
+              this.slidersShow = []
+              this.sliders.forEach((val, index) => {
+                if (index <= 5) {
+                  this.slidersShow.push(val)
+                }
+              })
+            }
+          })
+          .catch((error) => {
 
+          });
+    },
     onResize() {
       this.pageHeight = window.innerHeight
       if (this.pageHeight <= 768) {
-        if (this.isMobile){
+        if (this.isMobile) {
           this.slidersShow = []
           this.sliders.forEach((val, index) => {
             if (index <= 3) {
@@ -1391,7 +1366,7 @@ export default {
           })
 
           this.smallScreen = true
-        }else {
+        } else {
           this.smallScreen = false
           this.slidersShow = []
           this.sliders.forEach((val, index) => {
@@ -1440,8 +1415,8 @@ export default {
         if (newIndex > this.slidersShow.length) newActive = 1
         if (newIndex === 0) newActive = this.slidersShow
         this.activeSlider = newActive || newIndex
-        this.sliders.forEach((val,index) => {
-          if (index === (this.activeSlider - 1)){
+        this.sliders.forEach((val, index) => {
+          if (index === (this.activeSlider - 1)) {
             this.slidersActive = val
             this.effectSlider = true
           }

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Modal @clearModal="updateparentMobile" :show="showHelpMobile" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+    <Modal @clearModal="updateparentMobile" :show="showHelpMobile" :width="'624px'" :top="'100px'"
+           :border-radius="'10px'"
            :height="'500px'">
       <div class="s__help--modal">
         <div class="s__help--title">
@@ -123,7 +124,7 @@
               <span v-else>{{ activityChoosed }}</span>
             </div>
             <div v-if="activeBox" class="s__header--box-search__wrap--location__activity">
-              <div  v-for="type in typeActivies" class="item" @click="activeChoose(type.name )">{{ type.name }}</div>
+              <div v-for="type in typeActivies" class="item" @click="activeChoose(type.name )">{{ type.name }}</div>
             </div>
           </div>
           <div class="s__header--box-search__wrap--book">
@@ -513,7 +514,8 @@
         <div class="s__box-search-mobile__header--title">
           <span v-if="!showBoxLocationMobile">Tìm kiếm</span>
           <span v-if="!showBoxLocationMobile" class="has-color-yellow">Trải nghiệm</span>
-          <span @click="backSearchLocation()" class="icon-back-mobile" v-if="showBoxLocationMobile"><img src="~/assets/images/icon-arrow-back.svg"></span>
+          <span @click="backSearchLocation()" class="icon-back-mobile" v-if="showBoxLocationMobile"><img
+              src="~/assets/images/icon-arrow-back.svg"></span>
           <span @click="backSearchLocation()" class="text-back" v-if="showBoxLocationMobile">Quay lại</span>
         </div>
         <div v-if="!showBoxLocationMobile" class="s__box-search-mobile__header--button">
@@ -523,7 +525,8 @@
       <div class="s__box-search-mobile__wrapper">
         <div v-if="!showBoxLocationMobile">
           <div class="s__box-search-mobile__wrapper--box">
-            <div v-if="!activeLocateSearchMobile"  @click="showBoxSearchLocateMobile()" class="s__box-search-mobile__wrapper--box__header">
+            <div v-if="!activeLocateSearchMobile" @click="showBoxSearchLocateMobile()"
+                 class="s__box-search-mobile__wrapper--box__header">
               <div class="s__box-search-mobile__wrapper--box__header--left">
                 Địa điểm
               </div>
@@ -548,7 +551,8 @@
             </div>
           </div>
           <div class="s__box-search-mobile__wrapper--box">
-            <div v-if="!activeTypeActivitySearchMobile"  @click="showBoxSearchActivityMobile()" class="s__box-search-mobile__wrapper--box__header">
+            <div v-if="!activeTypeActivitySearchMobile" @click="showBoxSearchActivityMobile()"
+                 class="s__box-search-mobile__wrapper--box__header">
               <div class="s__box-search-mobile__wrapper--box__header--left">
                 Loại hoạt động
               </div>
@@ -568,7 +572,8 @@
             </div>
           </div>
           <div class="s__box-search-mobile__wrapper--box">
-            <div v-if="!activeTypeBookingSearchMobile"  @click="showBoxSearchBookingMobile()" class="s__box-search-mobile__wrapper--box__header">
+            <div v-if="!activeTypeBookingSearchMobile" @click="showBoxSearchBookingMobile()"
+                 class="s__box-search-mobile__wrapper--box__header">
               <div class="s__box-search-mobile__wrapper--box__header--left">
                 Loại đặt chỗ
               </div>
@@ -578,7 +583,8 @@
             </div>
             <div v-if="activeTypeBookingSearchMobile" class="s__box-search-mobile__wrapper--box__content">
               <div class="s__box-search-mobile__wrapper--box__content--title">
-                Bạn muốn trải nghiệm loại hoạt động nào?<img @click="modalHelpMobile()" class="icon-helf-mobile" src="~/assets/images/icon-help.svg">
+                Bạn muốn trải nghiệm loại hoạt động nào?<img @click="modalHelpMobile()" class="icon-helf-mobile"
+                                                             src="~/assets/images/icon-help.svg">
               </div>
               <div class="s__box-search-mobile__wrapper--box__content--wrap">
                 <div v-for="type in typeTours" class="type_activity-search-item">
@@ -615,13 +621,14 @@
 
 <script>
 import MasonryWall from '@yeger/vue-masonry-wall'
-
+import axios from "axios";
 
 export default {
   name: "AppHeader",
   components: {MasonryWall},
   props: ['isHome'],
   data: () => ({
+    config: useRuntimeConfig(),
     showSearch: false,
     locationActive: false,
     activityActive: false,
@@ -798,26 +805,7 @@ export default {
     isMobile: false,
     pageWidth: 0,
     showHelp: false,
-    typeTours: [
-      {
-        id: 1,
-        name: 'Full Trip',
-        active: true,
-        description: 'Full Trip là trip khởi hành tại Việt Na. Giá trip đã bao gồm tất cả từ vé máy bay, ăn uống,... và có Wildbuddy người Việt Nam theo hỗ trợ xuyên suốt hành trình.'
-      },
-      {
-        id: 2,
-        name: 'Land Tour',
-        active: false,
-        description: 'Land Tour là tour khởi hành tại điểm đến. Giá tour không bao gồm vé máy bay, ăn uống và chi phí Wildbuddy người Việt Nam đi cùng, nhưng đã bao gồm full hành trình, chỗ ở và có Wildbuddy bản địa biết nói tiếng Anh hỗ trợ. Tùy vào số lượng người tham gia mà land tour có giá khác nhau.'
-      },
-      {
-        id: 3,
-        name: 'JoinIN',
-        active: false,
-        description: 'JoinIN là hình thức mua chung Land Tour để có mức giá nhóm tốt nhất. intoWild sẽ hỗ trợ gom nhóm, tư vấn trước chuyến đi và họp đoàn cho các bạn tham gia.'
-      }
-    ],
+    typeTours: [],
     typeToursDescription: '',
     navMobile: false,
     navMobileDetail: false,
@@ -831,38 +819,7 @@ export default {
     navMobileCollection: false,
     navMobileCoupon: false,
     navMobileLevelChildren: false,
-    typeActivies: [
-      {
-        id: 1,
-        name: 'Rock Climbing',
-        thumbnail: '/assets/images/climbing.svg'
-      },
-      {
-        id: 2,
-        name: 'Scuba Diving',
-        thumbnail: '/assets/images/scuba-diving.svg'
-      },
-      {
-        id: 3,
-        name: 'Motobiketrip',
-        thumbnail: '/assets/images/motobiketrip.svg'
-      },
-      {
-        id: 4,
-        name: 'Snorkeling',
-        thumbnail: '/assets/images/snorkeling.svg'
-      },
-      {
-        id: 5,
-        name: 'Paragliding',
-        thumbnail: '/assets/images/paragliding.svg'
-      },
-      {
-        id: 6,
-        name: 'Abseiling',
-        thumbnail: '/assets/images/abseiling.svg'
-      }
-    ],
+    typeActivies: [],
     collections: [
       {
         id: 1,
@@ -919,7 +876,6 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
-    this.typeToursDescription = this.typeTours[0].description
     this.pageWidth = window.innerWidth
     if (this.pageWidth <= 768) {
       this.isMobile = true
@@ -940,8 +896,7 @@ export default {
         this.navMobile = false
       }
     },
-    hasBoxSearch() {
-
+    async hasBoxSearch() {
       this.showSearch = !this.showSearch
       if (this.showSearch) {
         this.isFixed = true
@@ -949,7 +904,37 @@ export default {
         this.isFixed = false
       }
       this.$emit('changeFixed', this.isFixed)
+      await axios.get(this.config.public.baseUrl + '/search-option')
+          .then(res => {
+            if (res.data) {
+              if (res.data.bkType && res.data.bkType.length > 0) {
+                this.typeTours = []
+                res.data.bkType.forEach((val, index) => {
+                  this.typeTours.push({
+                    id: val.id,
+                    name: val.title,
+                    active: index === 0 ? true : false,
+                    description: val.description
+                  })
+                })
+                this.typeToursDescription = this.typeTours[0].description
+              }
 
+              if (res.data.actType && res.data.actType.length > 0) {
+                this.typeActivies = []
+                res.data.actType.forEach((val, index) => {
+                  this.typeActivies.push({
+                    id: val.id,
+                    name: val.title,
+                    thumbnail: val.media
+                  })
+                })
+              }
+            }
+          })
+          .catch(err => {
+
+          })
     },
     closeBoxSearch() {
       this.showSearch = false
@@ -1201,25 +1186,25 @@ export default {
         }
       })
     },
-    showBoxSearchLocateMobile(){
+    showBoxSearchLocateMobile() {
       this.activeLocateSearchMobile = true
       this.activeTypeActivitySearchMobile = false
       this.activeTypeBookingSearchMobile = false
     },
-    showBoxSearchActivityMobile(){
+    showBoxSearchActivityMobile() {
       this.activeLocateSearchMobile = false
       this.activeTypeActivitySearchMobile = true
       this.activeTypeBookingSearchMobile = false
     },
-    showBoxSearchBookingMobile(){
+    showBoxSearchBookingMobile() {
       this.activeLocateSearchMobile = false
       this.activeTypeActivitySearchMobile = false
       this.activeTypeBookingSearchMobile = true
     },
-    searchLocationMobile(){
+    searchLocationMobile() {
       this.showBoxLocationMobile = true
     },
-    backSearchLocation(){
+    backSearchLocation() {
       this.showBoxLocationMobile = false
     }
   }
