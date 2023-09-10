@@ -900,41 +900,42 @@ export default {
       this.showSearch = !this.showSearch
       if (this.showSearch) {
         this.isFixed = true
+        await axios.get(this.config.public.baseUrl + '/search-option')
+            .then(res => {
+              if (res.data) {
+                if (res.data.bkType && res.data.bkType.length > 0) {
+                  this.typeTours = []
+                  res.data.bkType.forEach((val, index) => {
+                    this.typeTours.push({
+                      id: val.id,
+                      name: val.title,
+                      active: index === 0 ? true : false,
+                      description: val.description
+                    })
+                  })
+                  this.typeToursDescription = this.typeTours[0].description
+                }
+
+                if (res.data.actType && res.data.actType.length > 0) {
+                  this.typeActivies = []
+                  res.data.actType.forEach((val, index) => {
+                    this.typeActivies.push({
+                      id: val.id,
+                      name: val.title,
+                      thumbnail: val.media
+                    })
+                  })
+                }
+              }
+            })
+            .catch(err => {
+
+            })
       } else {
         this.isFixed = false
       }
       this.$emit('changeFixed', this.isFixed)
-      await axios.get(this.config.public.baseUrl + '/search-option')
-          .then(res => {
-            if (res.data) {
-              if (res.data.bkType && res.data.bkType.length > 0) {
-                this.typeTours = []
-                res.data.bkType.forEach((val, index) => {
-                  this.typeTours.push({
-                    id: val.id,
-                    name: val.title,
-                    active: index === 0 ? true : false,
-                    description: val.description
-                  })
-                })
-                this.typeToursDescription = this.typeTours[0].description
-              }
 
-              if (res.data.actType && res.data.actType.length > 0) {
-                this.typeActivies = []
-                res.data.actType.forEach((val, index) => {
-                  this.typeActivies.push({
-                    id: val.id,
-                    name: val.title,
-                    thumbnail: val.media
-                  })
-                })
-              }
-            }
-          })
-          .catch(err => {
-
-          })
     },
     closeBoxSearch() {
       this.showSearch = false
