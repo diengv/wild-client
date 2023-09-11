@@ -3192,14 +3192,17 @@ button {
 .w-100-percent {
   width: 100%;
 }
+
 .s__activity--box__content {
-  .carousel__track{
+  .carousel__track {
     gap: 5px;
   }
+
   .carousel__slide {
     width: 33% !important;
   }
 }
+
 .btn-choose-date {
   border-radius: 5px;
   background: var(--greenie-pine, #03483F);
@@ -3271,7 +3274,6 @@ button {
       color: #fff;
     }
   }
-
 
 
   .carousel__slide {
@@ -6533,22 +6535,26 @@ button {
     left: 0;
   }
 }
-.btn-search{
+
+.btn-search {
   cursor: pointer;
 }
-.s__categories_filter--item{
-  &.active{
+
+.s__categories_filter--item {
+  &.active {
     border-radius: 5px;
     background: var(--Greenie-Pine, #03483F);
     color: #fff;
   }
 }
-.img-active-activity{
-  img{
+
+.img-active-activity {
+  img {
     width: 32px;
   }
 }
-.s__items_filter--head__not-has-data{
+
+.s__items_filter--head__not-has-data {
   width: 800px;
   max-width: 800px;
   border-radius: 5px;
@@ -6565,11 +6571,87 @@ button {
   display: flex;
   align-items: center;
   padding: 0 0 0 9.12px;
-  span{
+
+  span {
     display: flex;
     margin-right: 7.81px;
     justify-content: center;
     align-items: center;
   }
 }
+
+.noti-payment-title {
+  color: #000;
+  text-align: center;
+  font-family: Source Sans Pro;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.noti-payment-description {
+  color: #000;
+  text-align: center;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.noti-payment-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.noti-payment-button__back {
+  color: #0D4C3F;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 1px solid #0D4C3F;
+  display: inline-flex;
+  padding: 10px 20px;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.noti-payment-button__more {
+  color: #FFF;
+  text-align: center;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  border-radius: 5px;
+  background: var(--Greenie-Pine, #03483F);
+  display: inline-flex;
+  padding: 10px 20px;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
 @import "responsive";

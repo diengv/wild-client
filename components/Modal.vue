@@ -1,7 +1,7 @@
 <template>
   <div v-if="showModal" class="s__modal">
     <div class="s__modal--wrapper" :style="{width: width, 'max-width': width, top: top, 'border-radius': borderRadius, 'overflow-y': overflowY, height: height}">
-      <div class="s__modal--wrapper__close">
+      <div v-if="close" class="s__modal--wrapper__close">
         <img @click="closeModal()" src="~/assets/images/icon-close-modal.svg">
       </div>
       <div class="s__modal--wrapper__content">
@@ -13,7 +13,7 @@
 <script>
 export default {
   name: "index",
-  props: ['show','width','top','borderRadius','overflowY','height'],
+  props: ['show','width','top','borderRadius','overflowY','height','close'],
   setup(props) {
     // setup() receives props as the first argument.
   },

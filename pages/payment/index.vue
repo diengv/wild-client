@@ -1,5 +1,18 @@
 <template>
   <div class="s__payment">
+    <Modal :close="false" :show="expired_time" :width="'624px'" :top="'100px'" :border-radius="'10px'"
+           :height="'194px'">
+      <div class="noti-payment-title">
+        Đã hết thời gian thanh toán!
+      </div>
+      <div class="noti-payment-description">
+        Bạn có muốn thêm thời gian để hoàn thành đơn hàng không?
+      </div>
+      <div class="noti-payment-button">
+        <button class="noti-payment-button__back">quay lại</button>
+        <button @click="continuePayment()" class="noti-payment-button__more">thêm 10 phút</button>
+      </div>
+    </Modal>
     <Modal @clearModal="updateparent" :show="showChooseCoupon" :width="'624px'" :top="'100px'" :border-radius="'10px'"
            :height="'648px'">
       <div class="s__coupon--wrapper">
@@ -1005,7 +1018,7 @@ export default {
     VueDatePicker
   },
   data: () => ({
-    timeCount: moment(60 * 10 * 1000),
+    timeCount: moment(60 * 1 * 1000),
     showChooseCoupon: false,
     showChooseDate: false,
     showChooseDateMobile: false,
@@ -1251,6 +1264,7 @@ export default {
     activeMoreActivity: false,
     isBoxChoiseGroup: false,
     hasSend: false,
+    expired_time: false,
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -1260,9 +1274,13 @@ export default {
   },
   computed: {
     minute: function () {
+
       return this.timeCount.format('mm');
     },
     second: function () {
+      if (this.timeCount.format('mm') === '00' && this.timeCount.format('ss') === '00'){
+        this.expired_time = true
+      }
       return this.timeCount.format('ss');
     }
   },
@@ -1278,7 +1296,11 @@ export default {
       window.addEventListener('resize', this.onResize);
     })
     setInterval(() => {
-      this.timeCount = moment(this.timeCount.subtract(1, 'seconds'))
+      if (this.timeCount.format('mm') === '00' && this.timeCount.format('ss') === '00'){
+        this.timeCount = moment(0)
+      }else {
+        this.timeCount = moment(this.timeCount.subtract(1, 'seconds'))
+      }
     }, 1000);
   },
   methods: {
@@ -1399,6 +1421,10 @@ export default {
       await new Promise((resolve, reject) => setTimeout(resolve, 1));
       this.showChooseDateMobile = false
     },
+    continuePayment(){
+      this.timeCount = moment(60 * 1 * 1000)
+      this.expired_time = false
+    }
   }
 }
 </script>
