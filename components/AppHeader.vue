@@ -246,7 +246,7 @@
         <div class="s__header--box-nav__right">
           <div v-if="rightNavLocation" class="s__header--box-nav__right--location">
             <div class="s__header--box-nav__right--location-wrap-items" v-if="!rightNavLocationItemDetail">
-              <div @click="showDetailLocation()" v-for="(country,index) in locationCountries" :key="index"
+              <div @click="showDetailLocation(country)" v-for="(country,index) in locationCountries" :key="index"
                    class="s__header--box-nav__right--location-wrap-items__item">
                 <div class="img-item">
                   <img :src="country.thumbnail">
@@ -274,36 +274,12 @@
             </div>
           </div>
           <div v-if="rightNavLevel" class="s__header--box-nav__right--level">
-            <div class="s__header--box-nav__right--level__item">
+            <div v-for="level in activityLevels" class="s__header--box-nav__right--level__item">
               <div class="img-item">
-                <img src="~/assets/images/lv.png">
+                <img :src="level.thumbnail">
               </div>
               <div class="title-item">
-                Người mới
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--level__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Người mới
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--level__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Người mới
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--level__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Người mới
+                {{ level.name }}
               </div>
             </div>
           </div>
@@ -318,68 +294,12 @@
             </div>
           </div>
           <div v-if="rightNavCollection" class="s__header--box-nav__right--collection">
-            <div class="s__header--box-nav__right--collection__item">
+            <div v-for="theme in activityThemes" class="s__header--box-nav__right--collection__item">
               <div class="img-item">
-                <img src="~/assets/images/lv.png">
+                <img :src="theme.thumbnail">
               </div>
               <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
-              </div>
-            </div>
-            <div class="s__header--box-nav__right--collection__item">
-              <div class="img-item">
-                <img src="~/assets/images/lv.png">
-              </div>
-              <div class="title-item">
-                Weekend Getaway
+                {{ theme.name }}
               </div>
             </div>
           </div>
@@ -707,75 +627,8 @@ export default {
       {title: 'Second', description: 'The second item.'},
       {title: 'Second', description: 'The second item.'},
     ],
-    locationCountries: [
-      {
-        id: 1,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Việt Nam",
-      },
-      {
-        id: 2,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Indonesia",
-      },
-      {
-        id: 3,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Thái Lan",
-      },
-      {
-        id: 4,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Philippines",
-      },
-      {
-        id: 5,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Ấn Độ",
-      },
-      {
-        id: 6,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Nepal",
-      },
-      {
-        id: 7,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Mông Cổ",
-      },
-      {
-        id: 8,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Pakistan",
-      },
-      {
-        id: 9,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Kyrgyzstan",
-      },
-      {
-        id: 10,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Georgia",
-      }
-    ],
-    locationRegions: [
-      {
-        id: 1,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Miền bắc",
-      },
-      {
-        id: 2,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Miền trung",
-      },
-      {
-        id: 3,
-        thumbnail: '/assets/images/banner.jpg',
-        name: "Miền nam",
-      },
-    ],
+    locationCountries: [],
+    locationRegions: [],
     levelList: [
       {
         id: 1,
@@ -868,6 +721,8 @@ export default {
     activeTypeBookingSearchMobile: false,
     showHelpMobile: false,
     showBoxLocationMobile: false,
+    activityLevels: [],
+    activityThemes: [],
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -968,6 +823,7 @@ export default {
       this.bookChoosed = book
     },
     showBoxNav() {
+      this.getLocation()
       this.isFixed = true
       this.activeNav = !this.activeNav
       this.showSearch = false
@@ -991,6 +847,88 @@ export default {
         }
       })
     },
+    async getLocation() {
+      await axios.get(this.config.public.baseUrl + '/location/list')
+          .then(res => {
+            if (res.data) {
+              if (res.data.length > 0) {
+                this.locationCountries = []
+                res.data.forEach(val => {
+                  this.locationCountries.push({
+                    id: val.id,
+                    thumbnail: val.image[0] ? val.image[0].original_url : '',
+                    name: val.title,
+                    name_en: val.title_en,
+                    children: val.children,
+                  })
+                })
+              }
+            }
+          })
+          .catch(err => {
+
+          })
+    },
+    async getActivityLevel() {
+      await axios.get(this.config.public.baseUrl + '/activity/level')
+          .then(res => {
+            if (res.data) {
+              if (res.data.length > 0) {
+                this.activityLevels = []
+                res.data.forEach(val => {
+                  this.activityLevels.push({
+                    id: val.id,
+                    thumbnail: val.image[0] ? val.image[0].original_url : '',
+                    name: val.title,
+                  })
+                })
+              }
+            }
+          })
+          .catch(err => {
+
+          })
+    },
+    async getActivityType() {
+      await axios.get(this.config.public.baseUrl + '/activity/type')
+          .then(res => {
+            if (res.data) {
+              if (res.data.length > 0) {
+                this.typeActivies = []
+                res.data.forEach(val => {
+                  this.typeActivies.push({
+                    id: val.id,
+                    thumbnail: val.image[0] ? val.image[0].original_url : '',
+                    name: val.title,
+                  })
+                })
+              }
+            }
+          })
+          .catch(err => {
+
+          })
+    },
+    async getActivityThemes() {
+      await axios.get(this.config.public.baseUrl + '/activity/themes')
+          .then(res => {
+            if (res.data) {
+              if (res.data.length > 0) {
+                this.activityThemes = []
+                res.data.forEach(val => {
+                  this.activityThemes.push({
+                    id: val.id,
+                    thumbnail: val.image[0] ? val.image[0].original_url : '',
+                    name: val.title,
+                  })
+                })
+              }
+            }
+          })
+          .catch(err => {
+
+          })
+    },
     activeItemNav(item) {
       this.itemsNav.forEach((val, i) => {
         if (item.id === val.id) {
@@ -1004,24 +942,28 @@ export default {
             this.rightNavTypeActivity = false
             this.rightNavCollection = false
             this.rightNavCoupon = false
+            this.getLocation()
           } else if (val.id === 3) {
             this.rightNavLevel = true
             this.rightNavLocation = false
             this.rightNavTypeActivity = false
             this.rightNavCollection = false
             this.rightNavCoupon = false
+            this.getActivityLevel()
           } else if (val.id === 4) {
             this.rightNavTypeActivity = true
             this.rightNavLevel = false
             this.rightNavLocation = false
             this.rightNavCollection = false
             this.rightNavCoupon = false
+            this.getActivityType()
           } else if (val.id === 5) {
             this.rightNavCollection = true
             this.rightNavLevel = false
             this.rightNavLocation = false
             this.rightNavTypeActivity = false
             this.rightNavCoupon = false
+            this.getActivityThemes()
           } else if (val.id === 6) {
             this.rightNavCollection = false
             this.rightNavLevel = false
@@ -1034,8 +976,21 @@ export default {
         }
       })
     },
-    showDetailLocation() {
-      this.rightNavLocationItemDetail = true
+    showDetailLocation(country) {
+      if (country.children && country.children.length > 0) {
+        this.rightNavLocationItemDetail = true
+        this.locationRegions = []
+        country.children.forEach(val => {
+          this.locationRegions.push({
+            id: val.id,
+            thumbnail: val.image[0] ? val.image[0].original_url : '',
+            name: val.title,
+            name_en: val.title_en,
+          })
+        })
+      } else {
+        this.rightNavLocationItemDetail = false
+      }
     },
     handleScroll() {
       // Your scroll handling here
