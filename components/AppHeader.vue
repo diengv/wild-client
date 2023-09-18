@@ -257,7 +257,7 @@
               </div>
             </div>
             <div class="s__header--box-nav__right--location-wrap-items" v-if="rightNavLocationItemDetail">
-              <div v-for="(regions,index) in locationRegions" :key="index"
+              <div @click="goToFilterLocation(regions)" v-for="(regions,index) in locationRegions" :key="index"
                    class="s__header--box-nav__right--location-wrap-items__item">
                 <div class="img-item">
                   <img :src="regions.thumbnail">
@@ -274,7 +274,7 @@
             </div>
           </div>
           <div v-if="rightNavLevel" class="s__header--box-nav__right--level">
-            <div v-for="level in activityLevels" class="s__header--box-nav__right--level__item">
+            <div @click="goToFilterLevel(level)" v-for="level in activityLevels" class="s__header--box-nav__right--level__item">
               <div class="img-item">
                 <img :src="level.thumbnail">
               </div>
@@ -284,7 +284,7 @@
             </div>
           </div>
           <div v-if="rightNavTypeActivity" class="s__header--box-nav__right--type-activity">
-            <div v-for="type in typeActivies" class="s__header--box-nav__right--type-activity__item">
+            <div @click="goToFilterTypeActivity(type)" v-for="type in typeActivies" class="s__header--box-nav__right--type-activity__item">
               <div class="icon">
                 <img :src="type.thumbnail">
               </div>
@@ -294,7 +294,7 @@
             </div>
           </div>
           <div v-if="rightNavCollection" class="s__header--box-nav__right--collection">
-            <div v-for="theme in activityThemes" class="s__header--box-nav__right--collection__item">
+            <div @click="goToFilterThemes(theme)" v-for="theme in activityThemes" class="s__header--box-nav__right--collection__item">
               <div class="img-item">
                 <img :src="theme.thumbnail">
               </div>
@@ -723,6 +723,7 @@ export default {
     showBoxLocationMobile: false,
     activityLevels: [],
     activityThemes: [],
+    locationParent: null
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -980,6 +981,7 @@ export default {
       if (country.children && country.children.length > 0) {
         this.rightNavLocationItemDetail = true
         this.locationRegions = []
+        this.locationParent = country.id
         country.children.forEach(val => {
           this.locationRegions.push({
             id: val.id,
@@ -990,7 +992,23 @@ export default {
         })
       } else {
         this.rightNavLocationItemDetail = false
+        this.activeNav = false
+        this.$router.push({
+          path: '/filter',
+          query: {
+            location: country.id,
+          }
+        });
       }
+    },
+    goToFilterLocation(location){
+      this.activeNav = false
+      this.$router.push({
+        path: '/filter',
+        query: {
+          location: this.locationParent+','+location.id,
+        }
+      });
     },
     handleScroll() {
       // Your scroll handling here
@@ -1162,6 +1180,33 @@ export default {
     },
     backSearchLocation() {
       this.showBoxLocationMobile = false
+    },
+    goToFilterLevel(level){
+      this.activeNav = false
+      this.$router.push({
+        path: '/filter',
+        query: {
+          level: level.id,
+        }
+      });
+    },
+    goToFilterTypeActivity(type){
+      this.activeNav = false
+      this.$router.push({
+        path: '/filter',
+        query: {
+          type_activities: type.id,
+        }
+      });
+    },
+    goToFilterThemes(themes){
+      this.activeNav = false
+      this.$router.push({
+        path: '/filter',
+        query: {
+          themes: themes.id,
+        }
+      });
     }
   }
 }

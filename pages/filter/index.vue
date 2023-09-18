@@ -790,6 +790,43 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
+    if (this.$route.query.location) {
+      this.locationSelected = this.$route.query.location.split(",")
+      if (this.locationSelected.length > 0) {
+        this.location.forEach((val) => {
+          this.locationSelected.forEach(j => {
+
+            if (j == val.id) {
+              val.selected = true
+            }
+          })
+        })
+      }
+    }
+
+    if (this.$route.query.level) {
+      this.levelSelected = this.$route.query.level
+
+      this.listLevel.forEach((val) => {
+        if (val.id == this.levelSelected) {
+          this.levelNameSelected = val.name
+        }
+      })
+
+    }
+
+    if (this.$route.query.type_activities) {
+      let type_activities = this.$route.query.type_activities.split(",")
+      if (type_activities.length > 0){
+        this.listTypeActivities.forEach((val) => {
+          type_activities.forEach(j => {
+            if (j == val.id) {
+              val.active = true
+            }
+          })
+        })
+      }
+    }
   },
   methods: {
     showBoxLocation() {
