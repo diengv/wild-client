@@ -2284,7 +2284,7 @@ div {
       border-radius: 5px;
       display: flex;
       color: #fff;
-      z-index: 99999;
+      z-index: 10000;
     }
 
     &.add-filter {
@@ -6161,7 +6161,9 @@ button {
     height: 55px;
   }
 }
-
+.s__header--box-nav{
+  z-index: 999999;
+}
 .s__header--box-nav__right--location-wrap-items__back {
   width: 100%;
   padding-left: 100px;
