@@ -1291,7 +1291,8 @@ export default {
         title: '#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn',
         price: 'từ 7.526.000 VND/người',
       }
-    ]
+    ],
+      reviewProducts: []
   }),
   beforeMount() {
     this.changer()
@@ -1428,6 +1429,9 @@ export default {
       setTimeout(() => this.$refs.boxActivity.scrollIntoView({block: 'start', behavior: 'smooth'}), 200);
       window.scrollBy(0, -73);
     },
+      getProductReviews(){
+
+      }
   },
 }
 </script>
