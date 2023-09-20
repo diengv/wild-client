@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="carousel__item--title">
-            <h3>#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn</h3>
+            <h3>{{card.product.title}}</h3>
           </div>
           <div class="carousel__item--price">từ 7.526.000 VND/người</div>
         </a>
