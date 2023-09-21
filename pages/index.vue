@@ -271,12 +271,12 @@
                 </div>
             </div>
             <div class="s__experience--content">
-                <div class="s__experience--one is-desktop">
-                    <Carousels :sliders-data="slidersExperienceOne" :step-pixel="'60'"></Carousels>
+                <div class="s__experience--one is-desktop" v-if="slidersExperienceOne.length > 0 ">
+                    <Carousels :sliders-experience-one="slidersExperienceOne" :step-pixel="'60'"></Carousels>
                 </div>
-<!--                <div class="s__experience&#45;&#45;one is-desktop">-->
-<!--                    <Carousels :sliders-data="slidersExperienceOne" :step-pixel="'261'"></Carousels>-->
-<!--                </div>-->
+                <!--                <div class="s__experience&#45;&#45;one is-desktop">-->
+                <!--                    <Carousels :sliders-data="slidersExperienceOne" ></Carousels>-->
+                <!--                </div>-->
             </div>
             <div class="s__experience--three is-mobile">
                 <div class="s__experience--three__item">
@@ -468,422 +468,8 @@
                 </div>
             </div>
         </section>
-        <section class="s__activities">
-            <div class="s__container">
-                <div class="s__box_label">
-                    <h2>Các hoạt động khác của intoWild</h2>
-                </div>
-                <div class="s__activities--items">
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                    <div class="s__activities--items__item">
-                        <a href="#">
-                            <div class="s__activities--items__item--image">
-                                <div class="s__activities--items__item--image__icon">
-                                    <img src="~/assets/images/local.jpg">
-                                </div>
-                                <img src="~/assets/images/activity_1.jpg">
-                            </div>
-                            <div class="s__activities--items__item--head">
-                                <div class="s__activities--items__item--head__left">
-                                    VIỆT NAM | 3N2D | Trekking
-                                </div>
-                                <div class="s__activities--items__item--head__right">
-                                    <span><img src="~/assets/images/booked.svg"></span>
-                                    <span>Đã đặt 230</span>
-                                </div>
-                            </div>
-                            <div class="s__activities--items__item--title">
-                                <h3>
-                                    #DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn
-                                </h3>
-                            </div>
-                            <div class="s__activities--items__item--price">
-                                từ 7.526.000 VND/người
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="s__activities--more">
-                    <a href="#">Khám phá thêm</a>
-                </div>
-            </div>
+        <section class="s__activities" v-if="productLists.length > 0">
+            <Product :list-product="productLists"></Product>
         </section>
         <section class="s__customers">
             <div class="s__container--1326">
@@ -917,30 +503,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="h-272">
-                                <div class="item-customer">
-                                    <div class="item-customer__head">
-                                        <div class="item-customer__head--avatar">
-                                            <img src="~/assets/images/avatar-customer.jpg">
-                                        </div>
-                                        <div class="item-customer__head--info">
-                                            <div class="name">
-                                                Tam Tam
-                                            </div>
-                                            <div class="star">
-                                                <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                                                <span class="total_star">5,0</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-customer__head--icon">
-                                            <span><img src="~/assets/images/question.svg"></span>
-                                        </div>
-                                    </div>
-                                    <div class="item-customer__content">
-                                        Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -952,7 +514,8 @@
 
 <script>
 import {Carousel, Slide, Navigation, Pagination} from 'vue3-carousel'
-
+import Carousels from "~/components/Carousels.vue";
+import Product from "~/components/Product.vue";
 import 'vue3-carousel/dist/carousel.css'
 import axios from "axios";
 
@@ -960,7 +523,8 @@ export default {
     name: "index",
     props: ['pageHeight'],
     components: {
-        Carousel,
+        Product,
+        Carousels,
         Slide,
         Navigation,
         Pagination,
@@ -992,49 +556,9 @@ export default {
         innerStylesOne: {},
         stepOne: '',
         transitioningOne: false,
-        slidersExperienceOne: [
-            // {
-            //     id: 1,
-            //     thumbnail: 'assets/images/endow_1.jpg',
-            //     description: 'VIỆT NAM | 3N2D | Trekking',
-            //     bookedCount: '230',
-            //     title: '#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn',
-            //     price: 'từ 7.526.000 VND/người',
-            // },
-            // {
-            //     id: 2,
-            //     thumbnail: 'assets/images/endow_1.jpg',
-            //     description: 'VIỆT NAM | 3N2D | Trekking',
-            //     bookedCount: '230',
-            //     title: '#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn',
-            //     price: 'từ 7.526.000 VND/người',
-            // },
-            // {
-            //     id: 3,
-            //     thumbnail: 'assets/images/endow_1.jpg',
-            //     description: 'VIỆT NAM | 3N2D | Trekking',
-            //     bookedCount: '230',
-            //     title: '#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn',
-            //     price: 'từ 7.526.000 VND/người',
-            // },
-            // {
-            //     id: 4,
-            //     thumbnail: 'assets/images/endow_1.jpg',
-            //     description: 'VIỆT NAM | 3N2D | Trekking',
-            //     bookedCount: '230',
-            //     title: '#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn',
-            //     price: 'từ 7.526.000 VND/người',
-            // },
-            // {
-            //     id: 5,
-            //     thumbnail: 'assets/images/endow_1.jpg',
-            //     description: 'VIỆT NAM | 3N2D | Trekking',
-            //     bookedCount: '230',
-            //     title: '#DiveRAID - Khóa huấn luyện lặn sâu 3 ngày cùng Dive Master Shawn',
-            //     price: 'từ 7.526.000 VND/người',
-            // }
-        ],
-        reviewProducts: []
+        slidersExperienceOne: [],
+        reviewProducts: [],
+        productLists: []
     }),
     beforeMount() {
         this.changer()
@@ -1166,7 +690,7 @@ export default {
                         this.effectSlider = true
                     }
                 })
-            }, 3000);
+            }, 1000);
 
         },
         scrollToActivity() {
@@ -1182,7 +706,11 @@ export default {
             const response = await fetch('http://127.0.0.1:8000/api/public/outstanding-experience/list');
             const data = await response.json();
             this.slidersExperienceOne = data;
-            console.log(data)
+        },
+        async getProductList() {
+            const response = await fetch('http://127.0.0.1:8000/api/public/product/list');
+            const data = await response.json();
+            this.productLists = data;
         }
     },
 }

@@ -1,17 +1,17 @@
 <template>
   <div class="carousel">
     <div class="inner" ref="inner" :style="innerStyles">
-      <div class="card" v-for="card in cards" :key="card">
+      <div class="card" v-for="card in cards" :key="card.id">
         <a href="#">
           <div class="carousel__item--image">
             <div class="carousel__item--image__icon">
               <img src="~/assets/images/local.jpg">
             </div>
-            <img src="~/assets/images/endow_1.jpg">
+            <img  :src="card.image[0]?.thumbnail">
           </div>
           <div class="carousel__item--head">
             <div class="carousel__item--head__left">
-              VIỆT NAM | 3N2D | Trekking
+              {{card.product.nation.name}} | 3N2D | {{card.product.act_type.title}}
             </div>
             <div class="carousel__item--head__right">
               <span><img src="~/assets/images/booked.svg"></span>
@@ -32,7 +32,7 @@
 <script>
 export default {
   name: "carousels",
-  props: ['slidersData', 'stepPixel'],
+  props: ['slidersExperienceOne', 'stepPixel'],
   data: () => ({
     cards: [],
     innerStyles: {},
@@ -40,7 +40,8 @@ export default {
     transitioning: false
   }),
   mounted () {
-    this.cards = this.slidersData
+    this.cards = this.slidersExperienceOne
+    console.log(this.cards)
     this.setStep()
     this.resetTranslate()
   },
