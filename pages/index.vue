@@ -274,9 +274,9 @@
                 <div class="s__experience--one is-desktop" v-if="slidersExperienceOne.length > 0 ">
                     <Carousels :sliders-experience-one="slidersExperienceOne" :step-pixel="'60'"></Carousels>
                 </div>
-                <!--                <div class="s__experience&#45;&#45;one is-desktop">-->
-                <!--                    <Carousels :sliders-data="slidersExperienceOne" ></Carousels>-->
-                <!--                </div>-->
+                <div class="s__experience--one is-desktop" v-if="slidersExperienceOne.length > 0 ">
+                    <Carousels :sliders-experience-one="slidersExperienceOne" :step-pixel="'261'"></Carousels>
+                </div>
             </div>
             <div class="s__experience--three is-mobile">
                 <div class="s__experience--three__item">
@@ -469,46 +469,51 @@
             </div>
         </section>
         <section class="s__activities" v-if="productLists.length > 0">
-            <Product :list-product="productLists"></Product>
-        </section>
-        <section class="s__customers">
-            <div class="s__container--1326">
-                <div class="s__customers--title">
-                    Cảm nhận của khách hàng
+            <div class="s__container">
+                <div class="s__box_label">
+                    <h2>Các hoạt động khác của intoWild</h2>
                 </div>
-                <div v-if="!isMobile" class="s__customers--items">
-                    <div v-for="review in reviewProducts">
-                        <div class="s__customers--items__item">
-                            <div class="h-176">
-                                <div class="item-customer">
-                                    <div class="item-customer__head">
-                                        <div class="item-customer__head--avatar">
-                                            <img src="~/assets/images/avatar-customer.jpg">
+                <Product :product-lists="productLists"></Product>
+
+            </div>
+        </section>
+        <div class="s__container--1326">
+            <div class="s__customers--title">
+                Cảm nhận của khách hàng
+            </div>
+            <div v-if="!isMobile" class="s__customers--items">
+                <div v-for="review in reviewProducts">
+                    <div class="s__customers--items__item">
+                        <div class="h-176">
+                            <div class="item-customer">
+                                <div class="item-customer__head">
+                                    <div class="item-customer__head--avatar">
+                                        <img src="~/assets/images/avatar-customer.jpg">
+                                    </div>
+                                    <div class="item-customer__head--info">
+                                        <div class="name">
+                                            {{ review.user_name }}
                                         </div>
-                                        <div class="item-customer__head--info">
-                                            <div class="name">
-                                                {{ review.user_name }}
-                                            </div>
-                                            <div class="star">
-                                                <span v-for="star in review.point"><img src="~/assets/images/star.svg"></span>
-                                                <span class="total_star">{{ review.point }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-customer__head--icon">
-                                            <span><img src="~/assets/images/question.svg"></span>
+                                        <div class="star">
+                                            <span v-for="star in review.point"><img
+                                                    src="~/assets/images/star.svg"></span>
+                                            <span class="total_star">{{ review.point }}</span>
                                         </div>
                                     </div>
-                                    <div class="item-customer__content">
-                                        {{ review.description }}
+                                    <div class="item-customer__head--icon">
+                                        <span><img src="~/assets/images/question.svg"></span>
                                     </div>
+                                </div>
+                                <div class="item-customer__content">
+                                    {{ review.description }}
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
-        </section>
+        </div>
     </div>
 </template>
 
@@ -567,6 +572,7 @@ export default {
         this.getSlider()
         this.getProductReviews()
         this.getSlidersExperienceOne()
+        this.getProductList()
         this.slidersActive = this.sliders[0]
         this.$nextTick(() => {
             window.addEventListener('resize', this.onResize);
@@ -711,6 +717,7 @@ export default {
             const response = await fetch('http://127.0.0.1:8000/api/public/product/list');
             const data = await response.json();
             this.productLists = data;
+            console.log(this.productLists)
         }
     },
 }
