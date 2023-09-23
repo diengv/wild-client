@@ -11,7 +11,7 @@
                     </div>
                     <div class="carousel__item--head">
                         <div class="carousel__item--head__left">
-                            {{ card.product.nation.name }} | 3N2D | {{ card.product.act_type.title }}
+                            {{card.product.nation ?  card.product.nation.name : '' }} | {{card.product.act_time ?  card.product.act_time.title : ''}} | {{card.product.act_type ? card.product.act_type.title: '' }}
                         </div>
                         <div class="carousel__item--head__right">
                             <span><img src="~/assets/images/booked.svg"></span>
@@ -21,7 +21,7 @@
                     <div class="carousel__item--title">
                         <h3>{{ card.product.title }}</h3>
                     </div>
-                    <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                    <div class="carousel__item--price">từ {{cards.product.product_prices.price_groups ? cards.product.product_prices[0].price_groups[0].price : ''}} VND/người</div>
                 </a>
             </div>
         </div>

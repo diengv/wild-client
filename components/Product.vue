@@ -10,7 +10,7 @@
                     </div>
                     <div class="s__activities--items__item--head">
                         <div class="s__activities--items__item--head__left">
-                            {{item.product.nation.name}} | {{item.product.act_time.title}} | {{item.product.act_type.title}}
+                            {{item.product.nation ? item.product.nation.name: ''}} | {{item.product.act_time ? item.product.act_time.title : ''}} | {{item.product.act_type ? item.product.act_type.title : ''}}
                         </div>
                         <div class="s__activities--items__item--head__right">
                             <span><img src="~/assets/images/booked.svg"></span>
