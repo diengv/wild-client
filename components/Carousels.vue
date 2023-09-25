@@ -21,7 +21,7 @@
                     <div class="carousel__item--title">
                         <h3>{{ card.product.title }}</h3>
                     </div>
-                    <div class="carousel__item--price">từ {{cards.product.product_prices.price_groups ? cards.product.product_prices[0].price_groups[0].price : ''}} VND/người</div>
+                    <div class="carousel__item--price">từ {{card.product.product_prices[0] ? cards.product.product_prices[0].price_groups[0].price : ''}} VND/người</div>
                 </a>
             </div>
         </div>

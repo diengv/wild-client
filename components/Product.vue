@@ -42,7 +42,6 @@ export default {
       items: []
     }),
     mounted() {
-        console.log(this.productLists, 'product component')
     },
 }
 

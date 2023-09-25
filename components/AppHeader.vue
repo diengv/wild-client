@@ -148,90 +148,26 @@
               <NuxtLink>
                 <span><img src="~/assets/images/location.svg"></span>
                 <span>Hoạt động ở gần bạn</span>
-              </NuxtLink>
+              </NuxtLink>locationChoose
             </div>
-            <div class="s__header--box-search__wrap--location__country">
-              <div class="s__header--box-search__wrap--location__country--item" @click="locationChoose('Việt Nam')">
+            <div class="s__header--box-search__wrap--location__country" v-if="locationCountries.length > 0">
+              <div class="s__header--box-search__wrap--location__country--item" v-for="country in locationCountries" :key="country.id"  @click="locationChoose('Việt Nam')">
                 <div class="img-item">
-                  <img src="~/assets/images/vn.png">
+                  <img :src="country.thumbnail">
                 </div>
                 <div class="title-item">
-                  Indonesia
+                  {{country.name ? country.name : ''}}
                 </div>
               </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
+<!--              <div class="s__header&#45;&#45;box-search__wrap&#45;&#45;location__country&#45;&#45;item" >-->
+<!--                <div class="img-item">-->
+<!--                  <img src="~/assets/images/vn.png">-->
+<!--                </div>-->
+<!--                <div class="title-item">-->
+<!--                  Indonesia-->
+<!--                </div>-->
+<!--              </div>-->
 
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
-              <div class="s__header--box-search__wrap--location__country--item">
-                <div class="img-item">
-                  <img src="~/assets/images/vn.png">
-                </div>
-                <div class="title-item">
-                  Indonesia
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -727,12 +663,16 @@ export default {
   }),
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
+
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
     this.pageWidth = window.innerWidth
+    this.getLocation()
+    this.hasBoxSearch()
+   // this.hasBoxSearch()
     if (this.pageWidth <= 768) {
       this.isMobile = true
     } else {
@@ -756,7 +696,7 @@ export default {
       this.showSearch = !this.showSearch
       if (this.showSearch) {
         this.isFixed = true
-        await axios.get(this.config.public.baseUrl + '/search-option')
+        await axios.get('http://127.0.0.1:8000/api/public/search-option')
             .then(res => {
               if (res.data) {
                 if (res.data.bkType && res.data.bkType.length > 0) {
@@ -849,7 +789,7 @@ export default {
       })
     },
     async getLocation() {
-      await axios.get(this.config.public.baseUrl + '/location/list')
+      await axios.get('http://127.0.0.1:8000/api/public/location/list')
           .then(res => {
             if (res.data) {
               if (res.data.length > 0) {
@@ -863,6 +803,7 @@ export default {
                     children: val.children,
                   })
                 })
+                console.log(this.locationCountries);
               }
             }
           })
@@ -891,7 +832,7 @@ export default {
           })
     },
     async getActivityType() {
-      await axios.get(this.config.public.baseUrl + '/activity/type')
+      await axios.get(this.config.public.baseUrl +'/activity/type')
           .then(res => {
             if (res.data) {
               if (res.data.length > 0) {
