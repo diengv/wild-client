@@ -51,7 +51,7 @@
                     hành trình
                     và trải nghiệm mạo hiểm tại nước ngoài của intoWild nhé!
                 </div>
-                <div class="s__topic--top">
+                <div class="s__topic--top" >
                     <div class="s__topic--top__left">
                         <div class="s__topic--top__item">
                             <div class="s__opacity-item"></div>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="s__topic--top__item--info w-345">
                                     <div class="s__topic--top__item--info__title">
-                                        <h3>Adventure Trip</h3>
+                                        <h3></h3>
                                     </div>
                                     <div class="s__topic--top__item--info__description">
                                         Cuộc phiêu lưu mạo hiểm cho những cuồng chân ưa thách thức và bứt phá giới
@@ -280,27 +280,29 @@
             </div>
             <div class="s__experience--three is-mobile">
                 <div class="s__experience--three__item" v-for="slide in slidersExperienceOne" :key="slide.id">
-                  <a href="#">
-                    <div class="carousel__item--image">
-                      <div class="carousel__item--image__icon">
-                        <img src="~/assets/images/local.jpg">
-                      </div>
-                      <img :src="slide.image[0]?.thumbnail">
-                    </div>
-                    <div class="carousel__item--head">
-                      <div class="carousel__item--head__left">
-                        {{slide.product.nation ?  slide.product.nation.name : '' }} | {{slide.product.act_time ?  slide.product.act_time.title : ''}} | {{slide.product.act_type ? slide.product.act_type.title: '' }}
-                      </div>
-                      <div class="carousel__item--head__right">
-                        <span><img src="~/assets/images/booked.svg"></span>
-                        <span>Đã đặt 230</span>
-                      </div>
-                    </div>
-                    <div class="carousel__item--title">
-                      <h3>{{ slide.product.title }}</h3>
-                    </div>
-                    <div class="carousel__item--price">từ 7.526.000 VND/người</div>
-                  </a>
+                    <a href="#">
+                        <div class="carousel__item--image">
+                            <div class="carousel__item--image__icon">
+                                <img src="~/assets/images/local.jpg">
+                            </div>
+                            <img :src="slide.image[0]?.thumbnail">
+                        </div>
+                        <div class="carousel__item--head">
+                            <div class="carousel__item--head__left">
+                                {{ slide.product.nation ? slide.product.nation.name : '' }} |
+                                {{ slide.product.act_time ? slide.product.act_time.title : '' }} |
+                                {{ slide.product.act_type ? slide.product.act_type.title : '' }}
+                            </div>
+                            <div class="carousel__item--head__right">
+                                <span><img src="~/assets/images/booked.svg"></span>
+                                <span>Đã đặt 230</span>
+                            </div>
+                        </div>
+                        <div class="carousel__item--title">
+                            <h3>{{ slide.product.title }}</h3>
+                        </div>
+                        <div class="carousel__item--price">từ 7.526.000 VND/người</div>
+                    </a>
                 </div>
 
                 <div class="btn-more-experience-mobile">
@@ -322,285 +324,285 @@
                 Cảm nhận của khách hàng
             </div>
             <div v-if="!isMobile" class="s__customers--items">
-<!--                <div v-for="review in reviewProducts">-->
-<!--                    <div class="s__customers&#45;&#45;items__item">-->
-<!--                        <div class="">-->
-<!--                            <div class="item-customer">-->
-<!--                                <div class="item-customer__head">-->
-<!--                                    <div class="item-customer__head&#45;&#45;avatar">-->
-<!--                                        <img src="~/assets/images/avatar-customer.jpg">-->
-<!--                                    </div>-->
-<!--                                    <div class="item-customer__head&#45;&#45;info">-->
-<!--                                        <div class="name">-->
-<!--                                            {{ review.user_name }}-->
-<!--                                        </div>-->
-<!--                                        <div class="star">-->
-<!--                                            <span v-for="star in review.point"><img-->
-<!--                                                    src="~/assets/images/star.svg"></span>-->
-<!--                                            <span class="total_star">{{ review.point }}</span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="item-customer__head&#45;&#45;icon">-->
-<!--                                        <span><img src="~/assets/images/question.svg"></span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="item-customer__content">-->
-<!--                                    {{ review.description }}-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-              <div class="s__customers--items__item">
-                <div class="h-176">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
+                <!--                <div v-for="review in reviewProducts">-->
+                <!--                    <div class="s__customers&#45;&#45;items__item">-->
+                <!--                        <div class="">-->
+                <!--                            <div class="item-customer">-->
+                <!--                                <div class="item-customer__head">-->
+                <!--                                    <div class="item-customer__head&#45;&#45;avatar">-->
+                <!--                                        <img src="~/assets/images/avatar-customer.jpg">-->
+                <!--                                    </div>-->
+                <!--                                    <div class="item-customer__head&#45;&#45;info">-->
+                <!--                                        <div class="name">-->
+                <!--                                            {{ review.user_name }}-->
+                <!--                                        </div>-->
+                <!--                                        <div class="star">-->
+                <!--                                            <span v-for="star in review.point"><img-->
+                <!--                                                    src="~/assets/images/star.svg"></span>-->
+                <!--                                            <span class="total_star">{{ review.point }}</span>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="item-customer__head&#45;&#45;icon">-->
+                <!--                                        <span><img src="~/assets/images/question.svg"></span>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                                <div class="item-customer__content">-->
+                <!--                                    {{ review.description }}-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="s__customers--items__item">
+                    <div class="h-176">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
+                    </div>
+                    <div class="h-272">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
                     </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
                 </div>
-                <div class="h-272">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
+                <div class="s__customers--items__item">
+                    <div class="h-248">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
+                    </div>
+                    <div class="h-200">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
                     </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="s__customers--items__item">
-                <div class="h-248">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
+                <div class="s__customers--items__item">
+                    <div class="h-200">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
+                    </div>
+                    <div class="h-272">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
                     </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
                 </div>
-                <div class="h-200">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
+                <div class="s__customers--items__item">
+                    <div class="h-272">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
+                    </div>
+                    <div class="h-176">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
                     </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="s__customers--items__item">
-                <div class="h-200">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
+                <div class="s__customers--items__item">
+                    <div class="h-200">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
+                    </div>
+                    <div class="h-248">
+                        <div class="item-customer">
+                            <div class="item-customer__head">
+                                <div class="item-customer__head--avatar">
+                                    <img src="~/assets/images/avatar-customer.jpg">
+                                </div>
+                                <div class="item-customer__head--info">
+                                    <div class="name">
+                                        Tam Tam
+                                    </div>
+                                    <div class="star">
+                                        <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
+                                        <span class="total_star">5,0</span>
+                                    </div>
+                                </div>
+                                <div class="item-customer__head--icon">
+                                    <span><img src="~/assets/images/question.svg"></span>
+                                </div>
+                            </div>
+                            <div class="item-customer__content">
+                                Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
+                            </div>
                         </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
                     </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
                 </div>
-                <div class="h-272">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
-                        </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
-                        </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
-                    </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="s__customers--items__item">
-                <div class="h-272">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
-                        </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
-                        </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
-                    </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
-                </div>
-                <div class="h-176">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
-                        </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
-                        </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
-                    </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="s__customers--items__item">
-                <div class="h-200">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
-                        </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
-                        </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
-                    </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
-                </div>
-                <div class="h-248">
-                  <div class="item-customer">
-                    <div class="item-customer__head">
-                      <div class="item-customer__head--avatar">
-                        <img src="~/assets/images/avatar-customer.jpg">
-                      </div>
-                      <div class="item-customer__head--info">
-                        <div class="name">
-                          Tam Tam
-                        </div>
-                        <div class="star">
-                          <span v-for="star in 5"><img src="~/assets/images/star.svg"></span>
-                          <span class="total_star">5,0</span>
-                        </div>
-                      </div>
-                      <div class="item-customer__head--icon">
-                        <span><img src="~/assets/images/question.svg"></span>
-                      </div>
-                    </div>
-                    <div class="item-customer__content">
-                      Đừng ngần ngại đặt chuyến tham quan với những người bạn tốt bụng và thân thiện.
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
         </div>
     </div>
@@ -652,16 +654,18 @@ export default {
         transitioningOne: false,
         slidersExperienceOne: [],
         reviewProducts: [],
-        productLists: []
+        productLists: [],
+        activityThemes: []
     }),
     beforeMount() {
         this.changer()
     },
     mounted() {
-        this.getSlider()
-        this.getProductReviews()
-        this.getSlidersExperienceOne()
-        this.getProductList()
+        // this.getSlider()
+        // this.getProductReviews()
+        // this.getSlidersExperienceOne()
+        // this.getProductList()
+        this.getActivityThemes()
         this.slidersActive = this.sliders[0]
         this.$nextTick(() => {
             window.addEventListener('resize', this.onResize);
@@ -806,7 +810,12 @@ export default {
             const response = await fetch('http://127.0.0.1:8000/api/public/product/list');
             const data = await response.json();
             this.productLists = data;
-            console.log(this.productLists)
+        },
+        async getActivityThemes() {
+            const response = await fetch('http://127.0.0.1:8000/api/public/activity-theme');
+            const data = await response.json();
+            this.activityThemes = data;
+            console.log(this.activityThemes)
         }
     },
 }
