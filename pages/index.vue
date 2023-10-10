@@ -51,8 +51,8 @@
                     hành trình
                     và trải nghiệm mạo hiểm tại nước ngoài của intoWild nhé!
                 </div>
-                <div class="s__topic--top" >
-                    <div class="s__topic--top__left">
+                <div class="s__topic--top"  >
+                    <div class="s__topic--top__left" v-if="activityThemes.length > 0">
                         <div class="s__topic--top__item">
                             <div class="s__opacity-item"></div>
                             <div class="s__topic--top__item--image">
@@ -60,12 +60,10 @@
                             </div>
                             <div class="s__topic--top__item--info has-bg w-345 has-left">
                                 <div class="s__topic--top__item--info__title">
-                                    <h3>Weekend Getaway</h3>
+                                    <h3>{{activityThemes[0] ? activityThemes[0].title : ""}}</h3>
                                 </div>
                                 <div class="s__topic--top__item--info__description">
-                                    Ý tưởng cho chuyến đi cuối tuần: chèo Kayak, chinh phục thảo nguyên hay len lỏi khám
-                                    phá thành phố
-                                    mới..
+                                   {{activityThemes[0] ? activityThemes[0].description: ""}}
                                 </div>
                                 <div class="s__topic--top__item--info__button">
                                     <a href="#">Khám phá</a>
@@ -82,11 +80,10 @@
                                 </div>
                                 <div class="s__topic--top__item--info w-345">
                                     <div class="s__topic--top__item--info__title">
-                                        <h3></h3>
+                                        <h3>{{activityThemes[1] ? activityThemes[1].title : ""}}</h3>
                                     </div>
                                     <div class="s__topic--top__item--info__description">
-                                        Cuộc phiêu lưu mạo hiểm cho những cuồng chân ưa thách thức và bứt phá giới
-                                        hạn...
+                                        {{activityThemes[1] ? activityThemes[1].description: ""}}
                                     </div>
                                     <div class="s__topic--top__item--info__button">
                                         <a href="#">Khám phá</a>
@@ -103,11 +100,10 @@
                                     </div>
                                     <div class="s__topic--top__item--info w-345">
                                         <div class="s__topic--top__item--info__title">
-                                            <h3>Adventure Trip</h3>
+                                            <h3>{{activityThemes[2] ? activityThemes[2].title : ""}}</h3>
                                         </div>
                                         <div class="s__topic--top__item--info__description">
-                                            Cuộc phiêu lưu mạo hiểm cho những cuồng chân ưa thách thức và bứt phá giới
-                                            hạn...
+                                            {{activityThemes[2] ? activityThemes[2].description: ""}}
                                         </div>
                                         <div class="s__topic--top__item--info__button">
                                             <a href="#">Khám phá</a>
@@ -123,11 +119,10 @@
                                     </div>
                                     <div class="s__topic--top__item--info w-345">
                                         <div class="s__topic--top__item--info__title">
-                                            <h3>Adventure Trip</h3>
+                                            <h3>{{activityThemes[3] ? activityThemes[3].title : ""}}</h3>
                                         </div>
                                         <div class="s__topic--top__item--info__description">
-                                            Cuộc phiêu lưu mạo hiểm cho những cuồng chân ưa thách thức và bứt phá giới
-                                            hạn...
+                                            {{activityThemes[3] ? activityThemes[3].description: ""}}
                                         </div>
                                         <div class="s__topic--top__item--info__button">
                                             <a href="#">Khám phá</a>
